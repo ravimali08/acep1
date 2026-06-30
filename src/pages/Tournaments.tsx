@@ -772,10 +772,22 @@ export default function Tournaments() {
                     <div>
                       <label className="block text-xs font-bold text-gray-500 uppercase mb-2 tracking-wider">Age *</label>
                       <input
-                        type="number"
+                        type="text"
+                        inputMode="numeric"
+                        pattern="[0-9]*"
                         required
                         value={formAge}
-                        onChange={(e) => setFormAge(e.target.value)}
+                        onChange={(e) => {
+                          const val = e.target.value.replace(/[^0-9]/g, '');
+                          if (val === '') {
+                            setFormAge('');
+                            return;
+                          }
+                          const num = parseInt(val, 10);
+                          if (num >= 1 && num <= 100) {
+                            setFormAge(num.toString());
+                          }
+                        }}
                         placeholder="Player Age"
                         className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-blue-600 text-sm"
                       />
