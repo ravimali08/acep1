@@ -1,5 +1,5 @@
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Facebook, Instagram, Twitter, Youtube } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 export default function Layout() {
@@ -152,9 +152,9 @@ export default function Layout() {
                     placeholder="Email address"
                     value={subscribeEmail}
                     onChange={(e) => setSubscribeEmail(e.target.value)}
-                    className="bg-transparent border-none outline-none text-white px-4 py-2 w-full placeholder:text-blue-200 text-sm"
+                    className="flex-1 min-w-0 bg-transparent border-none outline-none text-white px-3 md:px-4 py-2 placeholder:text-blue-200 text-sm"
                   />
-                  <button onClick={handleSubscribe} className="bg-white text-blue-700 px-6 py-2 rounded-full text-sm font-semibold hover:bg-gray-50 transition-colors">
+                  <button onClick={handleSubscribe} className="shrink-0 bg-white text-blue-700 px-4 md:px-6 py-2 rounded-full text-sm font-semibold hover:bg-gray-50 transition-colors">
                     Subscribe
                   </button>
                 </div>
@@ -191,11 +191,18 @@ export default function Layout() {
               © 2025 Ace Reserve Tennis Club. All rights reserved.
             </p>
             <div className="flex space-x-6">
-              {/* Social placeholders */}
-              <div className="w-5 h-5 bg-blue-200 rounded-full opacity-50 hover:opacity-100 transition-opacity cursor-pointer"></div>
-              <div className="w-5 h-5 bg-blue-200 rounded-full opacity-50 hover:opacity-100 transition-opacity cursor-pointer"></div>
-              <div className="w-5 h-5 bg-blue-200 rounded-full opacity-50 hover:opacity-100 transition-opacity cursor-pointer"></div>
-              <div className="w-5 h-5 bg-blue-200 rounded-full opacity-50 hover:opacity-100 transition-opacity cursor-pointer"></div>
+              <a href="#" className="text-blue-200 hover:text-white transition-colors" aria-label="Facebook">
+                <Facebook className="w-6 h-6" />
+              </a>
+              <a href="#" className="text-blue-200 hover:text-white transition-colors" aria-label="Instagram">
+                <Instagram className="w-6 h-6" />
+              </a>
+              <a href="#" className="text-blue-200 hover:text-white transition-colors" aria-label="Twitter">
+                <Twitter className="w-6 h-6" />
+              </a>
+              <a href="#" className="text-blue-200 hover:text-white transition-colors" aria-label="YouTube">
+                <Youtube className="w-6 h-6" />
+              </a>
             </div>
           </div>
         </div>
