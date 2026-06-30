@@ -108,7 +108,7 @@ export default function Gallery() {
               className="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm cursor-pointer group hover:shadow-lg transition-shadow duration-300"
             >
               <div className="aspect-square overflow-hidden relative">
-                <img
+                <img loading="lazy"
                   src={item.src}
                   alt={item.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -162,7 +162,7 @@ export default function Gallery() {
                 className="max-h-[70vh] max-w-[85vw] flex items-center justify-center select-none"
                 onClick={(e) => e.stopPropagation()} // Prevent closing
               >
-                <img
+                <img loading="lazy"
                   src={filteredItems[lightboxIndex].src}
                   alt={filteredItems[lightboxIndex].title}
                   className="max-h-[70vh] max-w-[85vw] object-contain rounded-2xl shadow-2xl"

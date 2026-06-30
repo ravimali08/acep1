@@ -244,7 +244,7 @@ export default function Blog() {
               <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-6 border-t border-gray-150 pt-8">
                 <div className="flex items-center gap-4">
                   <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-blue-600 shrink-0">
-                    <img src={selectedPost.author.image} alt={selectedPost.author.name} className="w-full h-full object-cover" />
+                    <img loading="lazy" src={selectedPost.author.image} alt={selectedPost.author.name} className="w-full h-full object-cover" />
                   </div>
                   <div>
                     <h4 className="font-bold text-gray-900 text-lg">{selectedPost.author.name}</h4>
@@ -267,7 +267,7 @@ export default function Blog() {
 
             {/* Featured Image */}
             <div className="rounded-[3rem] overflow-hidden aspect-video mb-12 shadow-xl border border-white/50">
-              <img
+              <img loading="lazy"
                 src={selectedPost.image}
                 alt={selectedPost.title}
                 className="w-full h-full object-cover"
@@ -381,7 +381,7 @@ export default function Blog() {
                 >
                   <div>
                     <div className="aspect-[16/10] overflow-hidden">
-                      <img
+                      <img loading="lazy"
                         src={post.image}
                         alt={post.title}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -408,7 +408,7 @@ export default function Blog() {
                   <div className="px-8 pb-8 flex justify-between items-center text-sm font-medium border-t border-gray-50 pt-6">
                     <div className="flex items-center gap-2.5">
                       <div className="w-8 h-8 rounded-full overflow-hidden border border-blue-600">
-                        <img src={post.author.image} alt={post.author.name} className="w-full h-full object-cover" />
+                        <img loading="lazy" src={post.author.image} alt={post.author.name} className="w-full h-full object-cover" />
                       </div>
                       <span className="text-gray-700 text-xs font-bold">{post.author.name}</span>
                     </div>

@@ -368,7 +368,7 @@ export default function BookCourt() {
         {/* Header Cover Banner */}
         <div className="relative rounded-[3rem] overflow-hidden p-8 md:p-16 text-white mb-16 shadow-xl">
           <div className="absolute inset-0 z-0">
-            <img src="/images/indoor-court.jpg" alt="Courts" className="w-full h-full object-cover" />
+            <img loading="lazy" src="/images/indoor-court.jpg" alt="Courts" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-r from-blue-950/95 via-blue-900/90 to-gray-950/90 mix-blend-multiply"></div>
           </div>
           <div className="relative z-10 max-w-3xl">
@@ -430,7 +430,7 @@ export default function BookCourt() {
               <div className="bg-gray-50 rounded-3xl p-6 border border-gray-200/50 flex flex-col md:flex-row gap-6 items-center">
                 {/* Visual Image with scale transition */}
                 <div className="w-full md:w-2/5 aspect-square rounded-2xl overflow-hidden shadow-inner shrink-0 relative bg-gray-100">
-                  <img
+                  <img loading="lazy"
                     src={selectedCourt.image}
                     alt={selectedCourt.name}
                     className="w-full h-full object-cover object-center transition-all duration-300"

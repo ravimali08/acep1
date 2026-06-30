@@ -515,7 +515,7 @@ export default function Tournaments() {
                       <div>
                         {/* Top Cover Card Image */}
                         <div className="aspect-[16/10] overflow-hidden relative bg-gray-200">
-                          <img 
+                          <img loading="lazy" 
                             src={tournament.image} 
                             alt={tournament.title} 
                             className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-102"
@@ -652,7 +652,7 @@ export default function Tournaments() {
                   {/* Left Column: Full Details */}
                   <div className="lg:col-span-8 space-y-8">
                     <div className="aspect-[16/9] rounded-3xl overflow-hidden shadow-sm bg-gray-150">
-                      <img 
+                      <img loading="lazy" 
                         src={tournaments[registeringIndex].image} 
                         alt={tournaments[registeringIndex].title} 
                         className="w-full h-full object-cover object-top" 
@@ -1175,7 +1175,7 @@ export default function Tournaments() {
               </div>
 
               {/* Bracket Tree Board */}
-              <div className="p-8 bg-gray-50 overflow-x-auto min-w-[750px] md:min-w-fit">
+              <div className="p-8 bg-gray-50 overflow-x-auto min-w-full max-w-[750px] md:min-w-fit">
                 <div className="grid grid-cols-4 gap-4 items-center justify-between relative">
                   
                   {/* ROUND 1: QUARTERFINALS */}

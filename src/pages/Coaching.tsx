@@ -588,7 +588,7 @@ export default function Coaching() {
               <div>
                 {/* Visual Image with Cohesive Blue Overlay */}
                 <div className="aspect-[16/10] overflow-hidden relative">
-                  <img src={program.image} alt={program.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-102" />
+                  <img loading="lazy" src={program.image} alt={program.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-102" />
                   <div className="absolute inset-0 bg-gradient-to-t from-blue-950/20 via-transparent to-transparent mix-blend-multiply"></div>
                 </div>
                 
@@ -654,7 +654,7 @@ export default function Coaching() {
               <div key={index} className="bg-gray-50 rounded-[2rem] overflow-hidden border border-gray-100 flex flex-col justify-between hover:shadow-md transition-shadow duration-300 text-left">
                 <div>
                   <div className="aspect-square overflow-hidden relative">
-                    <img src={coach.image} alt={coach.name} className="w-full h-full object-cover object-top" />
+                    <img loading="lazy" src={coach.image} alt={coach.name} className="w-full h-full object-cover object-top" />
                     <div className="absolute inset-0 bg-gradient-to-t from-blue-950/10 via-transparent to-transparent mix-blend-multiply"></div>
                   </div>
                   <div className="p-8 space-y-6">

@@ -300,7 +300,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative h-screen min-h-[600px] flex items-center pt-20">
         <div className="absolute inset-0 z-0">
-          <img 
+          <img loading="lazy" 
             src="/images/hero.jpg" 
             alt="Tennis player serving" 
             className="w-full h-full object-cover"
@@ -352,6 +352,7 @@ export default function Home() {
                   <img 
                     src="/images/C3.jpg" 
                     alt="Red Clay Court" 
+                    loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
                   />
                 </div>
@@ -380,6 +381,7 @@ export default function Home() {
                   <img 
                     src="/images/C1.jpg" 
                     alt="Indoor Hard Court" 
+                    loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
                   />
                 </div>
@@ -408,6 +410,7 @@ export default function Home() {
                   <img 
                     src="/images/C5.jpg" 
                     alt="Exhibition Grass Court" 
+                    loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
                   />
                 </div>
@@ -476,7 +479,7 @@ export default function Home() {
                 <div>
                   {/* Program Image Cover */}
                   <div className="aspect-[16/10] overflow-hidden relative bg-gray-200">
-                    <img 
+                    <img loading="lazy" 
                       src={program.image} 
                       alt={program.title} 
                       className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" 
@@ -546,7 +549,7 @@ export default function Home() {
               <div key={index} className="bg-white rounded-[2rem] overflow-hidden border border-blue-100/50 shadow-xl group flex flex-col justify-between text-left">
                 <div>
                   <div className="aspect-square overflow-hidden">
-                    <img src={coach.image} alt={coach.name} className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" />
+                    <img loading="lazy" src={coach.image} alt={coach.name} className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" />
                   </div>
                   <div className="p-8 space-y-6">
                     <div className="flex justify-between items-start">
@@ -601,7 +604,7 @@ export default function Home() {
             {[...testimonials, ...testimonials].map((t, idx) => (
               <div 
                 key={idx} 
-                className="bg-gray-50 p-10 rounded-[2.2rem] border border-gray-100 flex flex-col justify-between hover:shadow-md transition-all duration-300 w-[420px] shrink-0 text-left"
+                className="bg-gray-50 p-10 rounded-[2.2rem] border border-gray-100 flex flex-col justify-between hover:shadow-md transition-all duration-300 w-full max-w-[420px] shrink-0 text-left"
               >
                 <div>
                   <div className="flex gap-1 mb-5">
@@ -615,7 +618,7 @@ export default function Home() {
                 </div>
                 
                 <div className="flex items-center gap-4 border-t border-gray-200/50 pt-5 mt-auto">
-                  <img 
+                  <img loading="lazy" 
                     src={t.image} 
                     alt={t.name} 
                     className="w-16 h-16 rounded-full object-cover border-2 border-white shadow-md shrink-0" 
@@ -651,7 +654,7 @@ export default function Home() {
               <a href="/blog" key={idx} className="bg-white rounded-[2rem] overflow-hidden border border-gray-100 group flex flex-col justify-between hover:shadow-xl transition-shadow duration-300">
                 <div>
                   <div className="aspect-[16/10] overflow-hidden">
-                    <img src={post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                    <img loading="lazy" src={post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                   </div>
                   <div className="p-8">
                     <div className="flex justify-between items-center mb-4">
@@ -720,7 +723,7 @@ export default function Home() {
         <div className="container mx-auto px-6 md:px-12">
           <div className="bg-gray-50 rounded-[2rem] p-6 md:p-12 flex flex-col lg:flex-row items-center gap-12 border border-gray-100">
             <div className="w-full lg:w-1/2 rounded-2xl overflow-hidden aspect-video lg:aspect-square">
-              <img src="/images/cta.jpg" alt="Players having fun" className="w-full h-full object-cover" />
+              <img loading="lazy" src="/images/cta.jpg" alt="Players having fun" className="w-full h-full object-cover" />
             </div>
             <div className="w-full lg:w-1/2 text-center lg:text-left">
               <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 mb-6">

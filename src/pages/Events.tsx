@@ -416,7 +416,7 @@ export default function Events() {
               <div>
                 {/* Image Section */}
                 <div className="aspect-video overflow-hidden relative">
-                  <img 
+                  <img loading="lazy" 
                     src={event.image} 
                     alt={event.title} 
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -495,7 +495,7 @@ export default function Events() {
                     <h2 className="text-3xl font-black text-gray-900 leading-tight">{selectedEvent.title}</h2>
                     
                     <div className="aspect-video rounded-2xl overflow-hidden border border-gray-100">
-                      <img src={selectedEvent.image} alt={selectedEvent.title} className="w-full h-full object-cover object-top" />
+                      <img loading="lazy" src={selectedEvent.image} alt={selectedEvent.title} className="w-full h-full object-cover object-top" />
                     </div>
 
                     <div className="space-y-4">
