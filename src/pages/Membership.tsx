@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Check, Star, HelpCircle, ChevronDown, ChevronUp, ShieldCheck, ArrowLeft, CreditCard, Smartphone, CheckCircle, Shield, Award, User, Mail, Phone, Download } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
 interface Plan {
   name: string;
@@ -193,6 +194,23 @@ export default function Membership() {
     setCheckoutStep(2);
   };
 
+  const saveToSupabase = async () => {
+    try {
+      await supabase.from('membership_applications').insert([
+        {
+          name: userName,
+          email: userEmail,
+          phone: userPhone,
+          address: "Not provided",
+          type: checkoutPlan?.name || 'Unknown',
+          level: "Not provided"
+        }
+      ]);
+    } catch (err) {
+      console.error('Error saving membership:', err);
+    }
+  };
+
   const handlePaymentSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -224,11 +242,13 @@ export default function Membership() {
       return;
     }
 
+    saveToSupabase();
     setIsProcessing(true);
     setProgressPercentage(0);
   };
 
   const triggerQrPayment = () => {
+    saveToSupabase();
     setIsProcessing(true);
     setProgressPercentage(0);
   };

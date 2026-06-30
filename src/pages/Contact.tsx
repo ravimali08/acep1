@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle, ShieldCheck } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
 export default function Contact() {
   const [name, setName] = useState("");
@@ -9,7 +10,7 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name || !email || !message) return;
 
@@ -30,15 +31,27 @@ export default function Contact() {
     }
 
     setIsSubmitting(true);
-    // Simulate API request
-    setTimeout(() => {
-      setIsSubmitting(false);
+    
+    try {
+      const { error } = await supabase
+        .from('contact_messages')
+        .insert([
+          { name, email, subject: type, message }
+        ]);
+        
+      if (error) throw error;
+      
       setIsSuccess(true);
       setName("");
       setEmail("");
       setType("General Inquiry");
       setMessage("");
-    }, 1500);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('There was an error sending your message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Trophy, Calendar, Search, ShieldCheck, X, CreditCard, Award, QrCode, CheckCircle, Printer, ScanLine, ArrowLeftRight, Users, Activity, Landmark, Download } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
 interface Tournament {
   title: string;
@@ -245,6 +246,24 @@ export default function Tournaments() {
     }
   };
 
+  const saveToSupabase = async () => {
+    try {
+      const tournamentName = registeringIndex !== null ? tournaments[registeringIndex].title : "Unknown";
+      await supabase.from('tournament_registrations').insert([
+        {
+          tournament_name: tournamentName,
+          name: formName,
+          email: formEmail,
+          phone: formPhone,
+          age: formAge,
+          rating: formRating || null
+        }
+      ]);
+    } catch (err) {
+      console.error('Error saving registration:', err);
+    }
+  };
+
   const handleCardSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const newErrors = [];
@@ -265,11 +284,13 @@ export default function Tournaments() {
       setErrors(newErrors);
     } else {
       setErrors([]);
+      saveToSupabase();
       setPaymentStatus('processing');
     }
   };
 
   const handleSimulateUpi = () => {
+    saveToSupabase();
     setPaymentStatus('processing');
   };
 

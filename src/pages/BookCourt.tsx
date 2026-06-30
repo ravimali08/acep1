@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { supabase } from '../lib/supabase';
 import { ShieldCheck, CreditCard, CheckCircle, Printer, MapPin, Activity, CircleAlert, QrCode, ScanLine, ArrowLeftRight, X, Download } from 'lucide-react';
 
 interface Court {
@@ -166,6 +167,25 @@ export default function BookCourt() {
     }
   };
 
+  const saveToSupabase = async () => {
+    try {
+      const court = courts.find(c => c.id === selectedCourtId);
+      await supabase.from('court_bookings').insert([
+        {
+          name: name,
+          email: email,
+          phone: phone,
+          date: selectedDate,
+          time: selectedTime,
+          duration: String(durationHours),
+          court_type: court ? court.type : 'Unknown'
+        }
+      ]);
+    } catch (err) {
+      console.error('Error saving booking:', err);
+    }
+  };
+
   const handleCardSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const errs = [];
@@ -186,11 +206,13 @@ export default function BookCourt() {
       setPaymentErrors(errs);
     } else {
       setPaymentErrors([]);
+      saveToSupabase();
       setPaymentStatus('processing');
     }
   };
 
   const handleSimulateQrScan = () => {
+    saveToSupabase();
     setPaymentStatus('processing');
   };
 

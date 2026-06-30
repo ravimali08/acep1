@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Clock, Award, CheckCircle, X, ChevronRight, HelpCircle, ShieldCheck, CreditCard, QrCode, ArrowLeft, CircleAlert, Activity, Download } from 'lucide-react';
+import { ArrowRight, Trophy, Users, ShieldCheck, Target, CheckCircle, CreditCard, Download, Printer, ScanLine, Clock, Award, X, ChevronRight, HelpCircle, QrCode, ArrowLeft, CircleAlert, Activity } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
 interface Program {
   id: number;
@@ -126,9 +127,28 @@ export default function Coaching() {
     return errors.length === 0;
   };
 
+  const saveToSupabase = async () => {
+    try {
+      await supabase.from('coaching_registrations').insert([
+        {
+          program_name: checkoutProgram?.title || 'Unknown',
+          parent_name: name,
+          child_name: "Not provided",
+          child_age: "Not provided",
+          email: email,
+          phone: phone,
+          level: "Not provided"
+        }
+      ]);
+    } catch (err) {
+      console.error('Error saving coaching registration:', err);
+    }
+  };
+
   const handlePaymentSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (validatePayment()) {
+      saveToSupabase();
       simulatePayment();
     }
   };
@@ -150,6 +170,7 @@ export default function Coaching() {
   };
 
   const triggerQrPayment = () => {
+    saveToSupabase();
     setPaymentStatus('processing');
     setPaymentProgress(0);
     const interval = setInterval(() => {
