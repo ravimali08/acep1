@@ -5,6 +5,8 @@ import { useState, useEffect } from 'react';
 export default function Layout() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSubscribedPopupOpen, setIsSubscribedPopupOpen] = useState(false);
+  const [subscribeEmail, setSubscribeEmail] = useState('');
   const location = useLocation();
   const isHome = location.pathname === '/';
 
@@ -19,7 +21,15 @@ export default function Layout() {
   // Scroll to top on route change
   useEffect(() => {
     window.scrollTo(0, 0);
+    setIsMobileMenuOpen(false);
   }, [location.pathname]);
+
+  const handleSubscribe = () => {
+    if (subscribeEmail.trim()) {
+      setIsSubscribedPopupOpen(true);
+      setSubscribeEmail('');
+    }
+  };
 
   const navLinks = [
     { name: 'Home', path: '/' },
@@ -139,10 +149,12 @@ export default function Layout() {
                 <div className="flex bg-white/10 p-1 rounded-full border border-white/20">
                   <input 
                     type="email" 
-                    placeholder="Email address" 
+                    placeholder="Email address"
+                    value={subscribeEmail}
+                    onChange={(e) => setSubscribeEmail(e.target.value)}
                     className="bg-transparent border-none outline-none text-white px-4 py-2 w-full placeholder:text-blue-200 text-sm"
                   />
-                  <button className="bg-white text-blue-700 px-6 py-2 rounded-full text-sm font-semibold hover:bg-gray-50 transition-colors">
+                  <button onClick={handleSubscribe} className="bg-white text-blue-700 px-6 py-2 rounded-full text-sm font-semibold hover:bg-gray-50 transition-colors">
                     Subscribe
                   </button>
                 </div>
@@ -188,6 +200,27 @@ export default function Layout() {
           </div>
         </div>
       </footer>
+
+      {/* Subscribe Popup Modal */}
+      {isSubscribedPopupOpen && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl">
+            <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+            </div>
+            <h3 className="text-2xl font-black text-gray-900 mb-2">Subscribed!</h3>
+            <p className="text-gray-600 mb-8">
+              Thank you so much for subscribe! You will receive updates from us soon.
+            </p>
+            <button 
+              onClick={() => setIsSubscribedPopupOpen(false)}
+              className="bg-blue-600 hover:bg-blue-700 text-white w-full py-3 rounded-full font-bold transition-colors"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
