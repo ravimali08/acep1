@@ -1,5 +1,0 @@
-packages:
-  - '.'
-shamefully-hoist: true
-allowBuilds:
-  esbuild: true
