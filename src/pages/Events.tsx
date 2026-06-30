@@ -382,7 +382,6 @@ export default function Events() {
               loop 
               muted 
               playsInline 
-              poster="/images/hero.webp"
               className="w-full h-full object-cover"
             >
               <source src="/videos/EV_HR_VD.webm" type="video/webm" />

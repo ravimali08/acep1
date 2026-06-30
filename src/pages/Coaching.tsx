@@ -554,7 +554,6 @@ export default function Coaching() {
               loop 
               muted 
               playsInline 
-              poster="/images/hero.webp"
               className="w-full h-full object-cover"
             >
               <source src="/videos/CP_HR_VD.webm" type="video/webm" />

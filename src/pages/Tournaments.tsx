@@ -402,7 +402,6 @@ export default function Tournaments() {
                   loop 
                   muted 
                   playsInline 
-                  poster="/images/hero.webp"
                   className="w-full h-full object-cover"
                 >
                   <source src="/videos/TR_HR_VD.webm" type="video/webm" />
