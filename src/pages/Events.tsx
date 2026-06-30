@@ -385,7 +385,7 @@ export default function Events() {
               poster="/images/hero.webp"
               className="w-full h-full object-cover"
             >
-              <source src="/videos/EV_HR_VDS.mp4" type="video/mp4" />
+              <source src="/videos/EV_HR_VD_1.mp4" type="video/mp4" />
             </video>
             {/* 20% Opacity Blue Overlay */}
             <div className="absolute inset-0 bg-blue-900/20 mix-blend-multiply"></div>
