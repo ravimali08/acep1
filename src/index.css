@@ -4,6 +4,21 @@
   html, body {
     @apply overflow-x-hidden w-full;
   }
+  
+  /* Tactile feedback for mobile buttons */
+  button, .btn-premium {
+    @apply active:scale-[0.97] transition-transform duration-200;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
 }
 @theme {
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";

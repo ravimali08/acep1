@@ -90,32 +90,34 @@ export default function Layout() {
         </div>
 
         {/* Mobile Nav */}
-        {isMobileMenuOpen && (
-          <div className="lg:hidden absolute top-full left-0 w-full bg-white shadow-xl py-4 flex flex-col px-6 space-y-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.path}
-                className="text-gray-900 font-medium py-2 border-b border-gray-100"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {link.name}
-              </Link>
-            ))}
-            <div className="pt-4 flex flex-col space-y-3">
-              <Link to="/book-court" onClick={() => setIsMobileMenuOpen(false)} className="w-full">
-                <button className="w-full bg-blue-50 text-blue-700 px-5 py-3 rounded-full text-sm font-semibold text-center">
-                  Book a Court
-                </button>
-              </Link>
-              <Link to="/membership" onClick={() => setIsMobileMenuOpen(false)} className="w-full">
-                <button className="w-full bg-blue-600 text-white px-5 py-3 rounded-full text-sm font-semibold text-center">
-                  Join Membership
-                </button>
-              </Link>
-            </div>
+        <div 
+          className={`lg:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-2xl shadow-2xl py-6 flex flex-col px-8 space-y-5 border-b border-gray-100 transition-all duration-300 ease-in-out transform origin-top ${
+            isMobileMenuOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0 pointer-events-none'
+          }`}
+        >
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              to={link.path}
+              className="text-gray-900 font-bold text-lg py-2 border-b border-gray-100/50 hover:text-blue-600 transition-colors"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              {link.name}
+            </Link>
+          ))}
+          <div className="pt-6 flex flex-col space-y-4">
+            <Link to="/book-court" onClick={() => setIsMobileMenuOpen(false)} className="w-full">
+              <button className="w-full bg-blue-50 text-blue-700 px-6 py-4 rounded-2xl text-base font-bold text-center">
+                Book a Court
+              </button>
+            </Link>
+            <Link to="/membership" onClick={() => setIsMobileMenuOpen(false)} className="w-full">
+              <button className="w-full bg-blue-600 text-white px-6 py-4 rounded-2xl text-base font-bold text-center shadow-lg shadow-blue-600/30">
+                Join Membership
+              </button>
+            </Link>
           </div>
-        )}
+        </div>
       </nav>
 
       <main className="flex-grow">
