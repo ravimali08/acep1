@@ -384,7 +384,7 @@ export default function Membership() {
     // Trigger download
     const dataUrl = canvas.toDataURL("image/png");
     const link = document.createElement("a");
-    link.download = `${userName.replace(/\s+/g, '_')}_membership_card.png`;
+    link.download = `${userName.replace(/\s+/g, '_')}_membership_card.webp`;
     link.href = dataUrl;
     link.click();
   };

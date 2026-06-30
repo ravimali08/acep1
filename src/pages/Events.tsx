@@ -43,7 +43,7 @@ export default function Events() {
       type: "Social",
       price: "Free",
       spotsLeft: 45,
-      image: "/images/event-members-mixer.png",
+      image: "/images/event-members-mixer.webp",
       description: "An evening of tennis, food, and music exclusively for Ace Reserve members. Meet fellow players, enjoy complimentary refreshments, and participate in friendly round-robin matches.",
       targetAudience: "All (Adults, Teenagers, Kids)",
       ageGroup: "All Ages"
@@ -56,7 +56,7 @@ export default function Events() {
       type: "Community",
       price: "Free",
       spotsLeft: 120,
-      image: "/images/event-open-court.png",
+      image: "/images/event-open-court.webp",
       description: "Try our world-class courts for free. Open to the entire community, this event includes free mini-lessons, court time, and tours of the club facilities.",
       targetAudience: "All (Adults, Teenagers, Kids)",
       ageGroup: "All Ages"
@@ -69,7 +69,7 @@ export default function Events() {
       type: "Fitness",
       price: "$25",
       spotsLeft: 20,
-      image: "/images/event-cardio-tennis.png",
+      image: "/images/event-cardio-tennis.webp",
       description: "High-energy group fitness on the court. Perfect for all levels, this calorie-burning session combines tennis drills with music and movement.",
       targetAudience: "Adults",
       ageGroup: "18+ Years"
@@ -82,7 +82,7 @@ export default function Events() {
       type: "Social",
       price: "$35",
       spotsLeft: 80,
-      image: "/images/event-junior-awards.png",
+      image: "/images/event-junior-awards.webp",
       description: "Celebrate the achievements of our junior players with dinner, awards, and highlights from the season. Families and guests welcome.",
       targetAudience: "Kids & Teenagers",
       ageGroup: "Under 18 Years"
@@ -95,7 +95,7 @@ export default function Events() {
       type: "Community",
       price: "$10",
       spotsLeft: 200,
-      image: "/images/tourney-junior-funcup.png",
+      image: "/images/tourney-junior-funcup.webp",
       description: "A fun-filled day for the whole family featuring exhibition matches, kids' activities, food trucks, and raffle prizes. Open to all.",
       targetAudience: "All (Adults, Teenagers, Kids)",
       ageGroup: "All Ages"
@@ -108,7 +108,7 @@ export default function Events() {
       type: "Clinic",
       price: "$75",
       spotsLeft: 16,
-      image: "/images/blog-doubles.png",
+      image: "/images/blog-doubles.webp",
       description: "Play alongside our elite coaches in a pro-am doubles clinic. Includes strategy sessions, match play, and post-clinic refreshments.",
       targetAudience: "Adults",
       ageGroup: "18+ Years"
@@ -365,7 +365,7 @@ export default function Events() {
     // Trigger download
     const dataUrl = canvas.toDataURL("image/png");
     const link = document.createElement("a");
-    link.download = `${userName.replace(/\s+/g, '_')}_event_ticket.png`;
+    link.download = `${userName.replace(/\s+/g, '_')}_event_ticket.webp`;
     link.href = dataUrl;
     link.click();
   };

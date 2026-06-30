@@ -301,7 +301,7 @@ export default function Coaching() {
     // Trigger download
     const dataUrl = canvas.toDataURL("image/png");
     const link = document.createElement("a");
-    link.download = `${name.replace(/\s+/g, '_')}_academy_pass.png`;
+    link.download = `${name.replace(/\s+/g, '_')}_academy_pass.webp`;
     link.href = dataUrl;
     link.click();
   };
@@ -312,7 +312,7 @@ export default function Coaching() {
       id: 1,
       title: "Kids Coaching Program",
       price: "$189 / month",
-      image: "/images/kids program.jpg",
+      image: "/images/kids program.webp",
       schedule: [
         "Monday & Wednesday: 4:00 PM - 5:00 PM",
         "Saturday: 9:00 AM - 10:30 AM"
@@ -335,7 +335,7 @@ export default function Coaching() {
       id: 2,
       title: "Teenager Program",
       price: "$229 / month",
-      image: "/images/teenage program.jpg",
+      image: "/images/teenage program.webp",
       schedule: [
         "Tuesday & Thursday: 4:30 PM - 6:00 PM",
         "Saturday Match Play: 2:00 PM - 4:00 PM"
@@ -358,7 +358,7 @@ export default function Coaching() {
       id: 3,
       title: "Adult Program",
       price: "$169 / month",
-      image: "/images/adult program.jpg",
+      image: "/images/adult program.webp",
       schedule: [
         "Morning: Tue & Thu 7:00 AM - 8:30 AM",
         "Evening: Mon & Wed 7:00 PM - 8:30 PM",
@@ -382,7 +382,7 @@ export default function Coaching() {
       id: 4,
       title: "Elite Program",
       price: "$549 / month",
-      image: "/images/elite program.jpg",
+      image: "/images/elite program.webp",
       schedule: [
         "Monday - Friday: 2:00 PM - 6:00 PM",
         "Saturday: 8:00 AM - 12:00 PM"
@@ -419,7 +419,7 @@ export default function Coaching() {
         "Elite Performance"
       ],
       exp: "15+",
-      image: "/images/coach-james.jpg",
+      image: "/images/coach-james.webp",
       credentials: [
         "Davis Cup Captain",
         "ATP High #180",
@@ -441,7 +441,7 @@ export default function Coaching() {
         "Fundamentals"
       ],
       exp: "8+",
-      image: "/images/coach-ana.jpg",
+      image: "/images/coach-ana.webp",
       credentials: [
         "ITF Level 3 Coach",
         "WTA Top 200",
@@ -463,7 +463,7 @@ export default function Coaching() {
         "Injury Prevention"
       ],
       exp: "6+",
-      image: "/images/coach-tyler.jpg",
+      image: "/images/coach-tyler.webp",
       credentials: [
         "MS Kinesiology",
         "NSCA Strength Coach",
@@ -485,7 +485,7 @@ export default function Coaching() {
         "Cardio Tennis"
       ],
       exp: "10+",
-      image: "/images/coach-rachel.jpg",
+      image: "/images/coach-rachel.webp",
       credentials: [
         "Master Instructor",
         "PTR Adult Specialist",
@@ -507,7 +507,7 @@ export default function Coaching() {
         "Tactical Development"
       ],
       exp: "12+",
-      image: "/images/coach-james.jpg",
+      image: "/images/coach-james.webp",
       credentials: [
         "Former Div I Coach",
         "PTR Performance Pro",
@@ -529,7 +529,7 @@ export default function Coaching() {
         "Fun Learning"
       ],
       exp: "5+",
-      image: "/images/coach-lisa.jpg",
+      image: "/images/coach-lisa.webp",
       credentials: [
         "USTA QuickStart Pro",
         "PTR Junior Coach",

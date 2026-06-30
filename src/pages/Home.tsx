@@ -9,7 +9,7 @@ export default function Home() {
       title: "Junior Academy",
       audience: "Ages 5-12",
       price: "$189 / month",
-      image: "/images/kids program.jpg",
+      image: "/images/kids program.webp",
       description: "Building technical fundamentals, coordination, and athletic passion for young juniors.",
       schedule: [
         "Mon & Wed: 4:00 PM - 5:00 PM",
@@ -20,7 +20,7 @@ export default function Home() {
       title: "Teenagers Development",
       audience: "Ages 13-18",
       price: "$229 / month",
-      image: "/images/teenage program.jpg",
+      image: "/images/teenage program.webp",
       description: "Designed for intermediate teenagers seeking competitive USTA/UTR match development.",
       schedule: [
         "Tue & Thu: 4:30 PM - 6:00 PM",
@@ -31,7 +31,7 @@ export default function Home() {
       title: "Adult Mastery",
       audience: "Ages 18+",
       price: "$169 / month",
-      image: "/images/adult program.jpg",
+      image: "/images/adult program.webp",
       description: "High-energy drills, stroke analysis, and doubles strategy clinics tailored for adult league play.",
       schedule: [
         "Morning: Tue & Thu 7:00 AM",
@@ -42,7 +42,7 @@ export default function Home() {
       title: "Elite Performance",
       audience: "Advanced Players",
       price: "$549 / month",
-      image: "/images/elite program.jpg",
+      image: "/images/elite program.webp",
       description: "Intense fitness conditioning, match play strategy analysis, and tournament preparation.",
       schedule: [
         "Mon - Fri: 2:00 PM - 6:00 PM",
@@ -67,7 +67,7 @@ export default function Home() {
         "Elite Performance"
       ],
       exp: "15+",
-      image: "/images/coach-james.jpg",
+      image: "/images/coach-james.webp",
       credentials: [
         "Davis Cup Captain",
         "ATP High #180",
@@ -89,7 +89,7 @@ export default function Home() {
         "Fundamentals"
       ],
       exp: "8+",
-      image: "/images/coach-ana.jpg",
+      image: "/images/coach-ana.webp",
       credentials: [
         "ITF Level 3 Coach",
         "WTA Top 200",
@@ -111,7 +111,7 @@ export default function Home() {
         "Injury Prevention"
       ],
       exp: "6+",
-      image: "/images/coach-tyler.jpg",
+      image: "/images/coach-tyler.webp",
       credentials: [
         "MS Kinesiology",
         "NSCA Strength Coach",
@@ -133,7 +133,7 @@ export default function Home() {
         "Cardio Tennis"
       ],
       exp: "10+",
-      image: "/images/coach-rachel.jpg",
+      image: "/images/coach-rachel.webp",
       credentials: [
         "Master Instructor",
         "PTR Adult Specialist",
@@ -155,7 +155,7 @@ export default function Home() {
         "Tactical Development"
       ],
       exp: "12+",
-      image: "/images/coach-james.jpg",
+      image: "/images/coach-james.webp",
       credentials: [
         "Former Div I Coach",
         "PTR Performance Pro",
@@ -177,7 +177,7 @@ export default function Home() {
         "Fun Learning"
       ],
       exp: "5+",
-      image: "/images/coach-lisa.jpg",
+      image: "/images/coach-lisa.webp",
       credentials: [
         "USTA QuickStart Pro",
         "PTR Junior Coach",
@@ -190,25 +190,25 @@ export default function Home() {
     {
       name: "Ethan Carter",
       tagline: "Member since 2021",
-      image: "/images/user-man-brick.jpg",
+      image: "/images/user-man-brick.webp",
       quote: "Ace Reserve completely changed my game. The coaches are world-class and the facilities are immaculate. I look forward to every visit."
     },
     {
       name: "Olivia Brooks",
       tagline: "Junior Parent",
-      image: "/images/user-girl-blonde.jpg",
+      image: "/images/user-girl-blonde.webp",
       quote: "My son has grown so much as a player and a person since joining the junior academy. The coaches genuinely care about every kid."
     },
     {
       name: "Noah Bennett",
       tagline: "Adult League Player",
-      image: "/images/user-man-glasses.jpg",
+      image: "/images/user-man-glasses.webp",
       quote: "The adult clinics are the perfect mix of fun and challenge. I have met great friends and improved my doubles strategy tremendously."
     },
     {
       name: "Sophia Mitchell",
       tagline: "Tournament Regular",
-      image: "/images/user-girl-brunette.jpg",
+      image: "/images/user-girl-brunette.webp",
       quote: "Best tournament organization in the region. Everything runs on time, the courts are perfect, and the competition is strong."
     }
   ];
@@ -218,7 +218,7 @@ export default function Home() {
       title: "Doubles Domination: Winning Strategies for Partners",
       category: "Strategy",
       excerpt: "Doubles is as much about communication and positioning as it is about shot-making. Learn the net-control strategies that top teams use.",
-      image: "/images/blog-doubles.png",
+      image: "/images/blog-doubles.webp",
       date: "Apr 14, 2026",
       readTime: "5 min read"
     },
@@ -226,7 +226,7 @@ export default function Home() {
       title: "Footwork Fundamentals Every Tennis Player Needs",
       category: "Fitness",
       excerpt: "Great footwork separates good players from great ones. Master these essential movement patterns to cover the court with confidence.",
-      image: "/images/blog-footwork.png",
+      image: "/images/blog-footwork.webp",
       date: "Apr 28, 2026",
       readTime: "4 min read"
     },
@@ -234,7 +234,7 @@ export default function Home() {
       title: "Winning the Mental Game",
       category: "Performance",
       excerpt: "Tennis is as much mental as physical. Learn proven psychological strategies to stay composed under intense match pressure.",
-      image: "/images/blog-mental.png",
+      image: "/images/blog-mental.webp",
       date: "May 12, 2026",
       readTime: "4 min read"
     },
@@ -242,7 +242,7 @@ export default function Home() {
       title: "Summer Tournament Preview",
       category: "Tournaments",
       excerpt: "Our upcoming summer tournament calendar features events for juniors, adults, and senior players in Miami.",
-      image: "/images/blog-tournament.png",
+      image: "/images/blog-tournament.webp",
       date: "May 25, 2026",
       readTime: "3 min read"
     },
@@ -250,7 +250,7 @@ export default function Home() {
       title: "Why Tennis is the Best Sport for Kids",
       category: "Juniors",
       excerpt: "From hand-eye coordination to emotional resilience, discover how tennis helps children grow on and off the court.",
-      image: "/images/blog-kids.png",
+      image: "/images/blog-kids.webp",
       date: "Jun 08, 2026",
       readTime: "5 min read"
     },
@@ -258,7 +258,7 @@ export default function Home() {
       title: "5 Drills to Perfect Your Serve",
       category: "Training",
       excerpt: "Master the most important shot in tennis with these proven practice drills used by our elite coaches.",
-      image: "/images/blog-serve.png",
+      image: "/images/blog-serve.webp",
       date: "Jun 22, 2026",
       readTime: "6 min read"
     }
@@ -301,7 +301,7 @@ export default function Home() {
       <section className="relative h-screen min-h-[600px] flex items-center pt-20">
         <div className="absolute inset-0 z-0">
           <img loading="lazy" 
-            src="/images/hero.jpg" 
+            src="/images/hero.webp" 
             alt="Tennis player serving" 
             className="w-full h-full object-cover"
           />
@@ -350,7 +350,7 @@ export default function Home() {
               <div>
                 <div className="aspect-[16/10] overflow-hidden bg-gray-200">
                   <img 
-                    src="/images/C3.jpg" 
+                    src="/images/C3.webp" 
                     alt="Red Clay Court" 
                     loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
@@ -379,7 +379,7 @@ export default function Home() {
               <div>
                 <div className="aspect-[16/10] overflow-hidden bg-gray-200">
                   <img 
-                    src="/images/C1.jpg" 
+                    src="/images/C1.webp" 
                     alt="Indoor Hard Court" 
                     loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
@@ -408,7 +408,7 @@ export default function Home() {
               <div>
                 <div className="aspect-[16/10] overflow-hidden bg-gray-200">
                   <img 
-                    src="/images/C5.jpg" 
+                    src="/images/C5.webp" 
                     alt="Exhibition Grass Court" 
                     loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
@@ -723,7 +723,7 @@ export default function Home() {
         <div className="container mx-auto px-6 md:px-12">
           <div className="bg-gray-50 rounded-[2rem] p-6 md:p-12 flex flex-col lg:flex-row items-center gap-12 border border-gray-100">
             <div className="w-full lg:w-1/2 rounded-2xl overflow-hidden aspect-video lg:aspect-square">
-              <img loading="lazy" src="/images/cta.jpg" alt="Players having fun" className="w-full h-full object-cover" />
+              <img loading="lazy" src="/images/cta.webp" alt="Players having fun" className="w-full h-full object-cover" />
             </div>
             <div className="w-full lg:w-1/2 text-center lg:text-left">
               <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 mb-6">

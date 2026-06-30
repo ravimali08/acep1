@@ -67,7 +67,7 @@ export default function Tournaments() {
       date: "2026-05-02", 
       category: "Junior", 
       fee: "Free", 
-      image: "/images/event-junior-agility.png",
+      image: "/images/event-junior-agility.webp",
       status: "Completed",
       description: "Concluded fitness and footwork showcase event. Junior academy players evaluated baseline acceleration and court agility drill scores." 
     },
@@ -76,7 +76,7 @@ export default function Tournaments() {
       date: "2026-06-06", 
       category: "Junior", 
       fee: "Free", 
-      image: "/images/event-junior-rallies.png",
+      image: "/images/event-junior-rallies.webp",
       status: "Ongoing",
       description: "Live junior rally challenges in progress. Matches are currently active across multiple under-16 age brackets." 
     },
@@ -85,7 +85,7 @@ export default function Tournaments() {
       date: "2026-08-23", 
       category: "Adult", 
       fee: "Free", 
-      image: "/images/event-adult-challenger.png",
+      image: "/images/event-adult-challenger.webp",
       status: "Upcoming",
       spotsLeft: 4,
       description: "A friendly but competitive adult tournament with singles and doubles brackets. Perfect for league players looking for tournament experience." 
@@ -95,7 +95,7 @@ export default function Tournaments() {
       date: "2026-04-04", 
       category: "Adult", 
       fee: "$40", 
-      image: "/images/event-spring-warmup.png",
+      image: "/images/event-spring-warmup.webp",
       status: "Completed",
       description: "Concluded season-opening social tournament for adult members. Focus on warm-up rallies and friendly match play." 
     },
@@ -104,7 +104,7 @@ export default function Tournaments() {
       date: "2026-08-09", 
       category: "Junior", 
       fee: "$45", 
-      image: "/images/event-usta-junior.png",
+      image: "/images/event-usta-junior.webp",
       status: "Upcoming",
       spotsLeft: 3,
       description: "A USTA-sanctioned junior tournament featuring singles and doubles draws across multiple age divisions. Excellent match play." 
@@ -114,7 +114,7 @@ export default function Tournaments() {
       date: "2026-08-16", 
       category: "Junior", 
       fee: "$60", 
-      image: "/images/event-elite-junior.png",
+      image: "/images/event-elite-junior.webp",
       status: "Upcoming",
       description: "Competitive junior tournament for advanced young players ready for serious match play, intense rallies, and ranking points." 
     },
@@ -123,7 +123,7 @@ export default function Tournaments() {
       date: "2026-09-27", 
       category: "Adult", 
       fee: "$80", 
-      image: "/images/event-hardcourt-doubles.png",
+      image: "/images/event-hardcourt-doubles.webp",
       status: "Upcoming",
       spotsLeft: 5,
       description: "Double up for our premier adult outdoor hardcourt doubles draw. Open to all ratings with post-tournament buffet." 
@@ -133,7 +133,7 @@ export default function Tournaments() {
       date: "2026-10-04", 
       category: "Adult", 
       fee: "Free", 
-      image: "/images/event-senior-open.png",
+      image: "/images/event-senior-open.webp",
       status: "Upcoming",
       description: "A competitive singles and doubles bracket for mature players aged 45 and over. Red clay tournament draws." 
     }
@@ -380,7 +380,7 @@ export default function Tournaments() {
 
     // Trigger download
     const link = document.createElement("a");
-    link.download = `${formName.replace(/\s+/g, "_")}_tournament_pass.png`;
+    link.download = `${formName.replace(/\s+/g, "_")}_tournament_pass.webp`;
     link.href = canvas.toDataURL("image/png");
     link.click();
   };

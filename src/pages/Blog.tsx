@@ -35,12 +35,12 @@ export default function Blog() {
       category: "Strategy",
       date: "Apr 14, 2026",
       readTime: "5 min read",
-      image: "/images/blog-doubles.png",
+      image: "/images/blog-doubles.webp",
       excerpt: "Doubles is as much about communication and positioning as it is about shot-making. Learn the net-control strategies that top teams use.",
       author: {
         name: "James Carter",
         role: "Performance & Strategy Coach",
-        image: "/images/coach-james.jpg"
+        image: "/images/coach-james.webp"
       },
       takeaways: [
         "Position aggressively at the net to close down cross-court angles.",
@@ -66,12 +66,12 @@ export default function Blog() {
       category: "Fitness",
       date: "Apr 28, 2026",
       readTime: "4 min read",
-      image: "/images/blog-footwork.png",
+      image: "/images/blog-footwork.webp",
       excerpt: "Great footwork separates good players from great ones. Master these essential movement patterns to cover the court with confidence.",
       author: {
         name: "Tyler Brooks",
         role: "Fitness & Movement Coach",
-        image: "/images/coach-tyler.jpg"
+        image: "/images/coach-tyler.webp"
       },
       takeaways: [
         "Execute a balanced split step just as your opponent contacts the ball.",
@@ -97,12 +97,12 @@ export default function Blog() {
       category: "Performance",
       date: "May 12, 2026",
       readTime: "4 min read",
-      image: "/images/blog-mental.png",
+      image: "/images/blog-mental.webp",
       excerpt: "Tennis is as much mental as physical. Learn proven psychological strategies to stay composed under intense match pressure.",
       author: {
         name: "James Mitchell",
         role: "Head Coach & Academy Director",
-        image: "/images/coach-james.jpg"
+        image: "/images/coach-james.webp"
       },
       takeaways: [
         "Create a pre-point routine (ball bouncing, deep breath) to reset focus.",
@@ -127,12 +127,12 @@ export default function Blog() {
       category: "Tournaments",
       date: "May 25, 2026",
       readTime: "3 min read",
-      image: "/images/blog-tournament.png",
+      image: "/images/blog-tournament.webp",
       excerpt: "Our upcoming summer tournament calendar features events for juniors, adults, and senior players in Miami.",
       author: {
         name: "James Mitchell",
         role: "Head Coach & Academy Director",
-        image: "/images/coach-james.jpg"
+        image: "/images/coach-james.webp"
       },
       takeaways: [
         "Draws are capped to guarantee structured scheduling and high-quality play.",
@@ -156,12 +156,12 @@ export default function Blog() {
       category: "Juniors",
       date: "Jun 08, 2026",
       readTime: "5 min read",
-      image: "/images/blog-kids.png",
+      image: "/images/blog-kids.webp",
       excerpt: "From hand-eye coordination to emotional resilience, discover how tennis helps children grow on and off the court.",
       author: {
         name: "Ana Rodriguez",
         role: "Junior Development Lead",
-        image: "/images/coach-ana.jpg"
+        image: "/images/coach-ana.webp"
       },
       takeaways: [
         "Develops hand-eye coordination, balance, and aerobic fitness.",
@@ -186,12 +186,12 @@ export default function Blog() {
       category: "Training",
       date: "Jun 22, 2026",
       readTime: "6 min read",
-      image: "/images/blog-serve.png",
+      image: "/images/blog-serve.webp",
       excerpt: "Master the most important shot in tennis with these proven practice drills used by our elite coaches.",
       author: {
         name: "Lisa Wong",
         role: "Youth Development Coach",
-        image: "/images/coach-lisa.jpg"
+        image: "/images/coach-lisa.webp"
       },
       takeaways: [
         "Practice holding the trophy pose daily to build muscle memory and balance.",

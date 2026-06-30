@@ -13,18 +13,18 @@ export default function Gallery() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const items: GalleryItem[] = [
-    { id: 1, title: "Post-Match Club Social Gathering", category: "Events", src: "/images/event-members-mixer.png" },
-    { id: 2, title: "Lush Green Grass Court 6", category: "Courts", src: "/images/gallery-grass-court.png" },
-    { id: 3, title: "Junior Agility Coordination Drills", category: "Events", src: "/images/event-junior-agility.png" },
-    { id: 4, title: "Elite Performance Training Camp", category: "Coaching", src: "/images/elite program.jpg" },
-    { id: 5, title: "Adult Hardcourt Doubles Cup Match", category: "Events", src: "/images/event-hardcourt-doubles.png" },
-    { id: 6, title: "Indoor Performance Hard Court 1", category: "Courts", src: "/images/C2.jpg" },
-    { id: 7, title: "Private Serve Analysis Session", category: "Coaching", src: "/images/gallery-serve-coaching.png" },
-    { id: 8, title: "Summer Junior Rally Challenges", category: "Events", src: "/images/event-junior-rallies.png" },
-    { id: 9, title: "Championship Stadium Clay Court", category: "Events", src: "/images/C1.jpg" },
-    { id: 10, title: "Championship Trophy Presentation", category: "Events", src: "/images/gallery-trophy-ceremony.png" },
-    { id: 11, title: "Club Spring Warm-Up Classic", category: "Events", src: "/images/event-spring-warmup.png" },
-    { id: 12, title: "Summer Members' Mixer", category: "Events", src: "/images/event-members-mixer.png" }
+    { id: 1, title: "Post-Match Club Social Gathering", category: "Events", src: "/images/event-members-mixer.webp" },
+    { id: 2, title: "Lush Green Grass Court 6", category: "Courts", src: "/images/gallery-grass-court.webp" },
+    { id: 3, title: "Junior Agility Coordination Drills", category: "Events", src: "/images/event-junior-agility.webp" },
+    { id: 4, title: "Elite Performance Training Camp", category: "Coaching", src: "/images/elite program.webp" },
+    { id: 5, title: "Adult Hardcourt Doubles Cup Match", category: "Events", src: "/images/event-hardcourt-doubles.webp" },
+    { id: 6, title: "Indoor Performance Hard Court 1", category: "Courts", src: "/images/C2.webp" },
+    { id: 7, title: "Private Serve Analysis Session", category: "Coaching", src: "/images/gallery-serve-coaching.webp" },
+    { id: 8, title: "Summer Junior Rally Challenges", category: "Events", src: "/images/event-junior-rallies.webp" },
+    { id: 9, title: "Championship Stadium Clay Court", category: "Events", src: "/images/C1.webp" },
+    { id: 10, title: "Championship Trophy Presentation", category: "Events", src: "/images/gallery-trophy-ceremony.webp" },
+    { id: 11, title: "Club Spring Warm-Up Classic", category: "Events", src: "/images/event-spring-warmup.webp" },
+    { id: 12, title: "Summer Members' Mixer", category: "Events", src: "/images/event-members-mixer.webp" }
   ];
 
   const filteredItems = activeFilter === "All"

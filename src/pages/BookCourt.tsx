@@ -49,42 +49,42 @@ export default function BookCourt() {
       id: 1,
       name: "Court 1",
       type: "Hard Court",
-      image: "/images/C1.jpg",
+      image: "/images/C1.webp",
       description: "Premier cushioned indoor hard court. Provides consistent ball bounce and speed, ideal for quick rallies."
     },
     {
       id: 2,
       name: "Court 2",
       type: "Hard Court",
-      image: "/images/C2.jpg",
+      image: "/images/C2.webp",
       description: "Outdoor championship hard court. Excellent lighting for night sessions, designed for competitive training."
     },
     {
       id: 3,
       name: "Court 3",
       type: "Clay Court",
-      image: "/images/C3.jpg",
+      image: "/images/C3.webp",
       description: "Authentic red clay court. Slow ball speed and high spin bounce, soft on players' knees."
     },
     {
       id: 4,
       name: "Court 4",
       type: "Clay Court",
-      image: "/images/C4.jpg",
+      image: "/images/C4.webp",
       description: "Outdoor green Har-Tru clay court. Premium playing conditions with superior drainage for all-weather play."
     },
     {
       id: 5,
       name: "Court 5",
       type: "Grass Court",
-      image: "/images/C5.jpg",
+      image: "/images/C5.webp",
       description: "Traditional grass court. Very fast pace and low slice bounce, providing a classic lawn tennis experience."
     },
     {
       id: 6,
       name: "Court 6",
       type: "Grass Court",
-      image: "/images/C6.jpg",
+      image: "/images/C6.webp",
       description: "Exhibition grass court. Impeccably manicured lawn, reserved for competitive matches and academy members."
     }
   ];
@@ -319,7 +319,7 @@ export default function BookCourt() {
 
     // Trigger download
     const link = document.createElement("a");
-    link.download = `${name.replace(/\s+/g, "_")}_court_booking_receipt.png`;
+    link.download = `${name.replace(/\s+/g, "_")}_court_booking_receipt.webp`;
     link.href = canvas.toDataURL("image/png");
     link.click();
   };
@@ -368,7 +368,7 @@ export default function BookCourt() {
         {/* Header Cover Banner */}
         <div className="relative rounded-[3rem] overflow-hidden p-8 md:p-16 text-white mb-16 shadow-xl">
           <div className="absolute inset-0 z-0">
-            <img loading="lazy" src="/images/indoor-court.jpg" alt="Courts" className="w-full h-full object-cover" />
+            <img loading="lazy" src="/images/indoor-court.webp" alt="Courts" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-r from-blue-950/95 via-blue-900/90 to-gray-950/90 mix-blend-multiply"></div>
           </div>
           <div className="relative z-10 max-w-3xl">
