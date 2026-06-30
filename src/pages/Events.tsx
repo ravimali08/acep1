@@ -382,7 +382,7 @@ export default function Events() {
               loop 
               muted 
               playsInline 
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-[75%_center] md:object-center"
             >
               <source src="/videos/EV_HR_VD.webm" type="video/webm" />
             </video>
