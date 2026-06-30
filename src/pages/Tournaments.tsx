@@ -401,7 +401,9 @@ export default function Tournaments() {
                   autoPlay 
                   loop 
                   muted 
-                  playsInline 
+                  playsInline
+                  preload="metadata"
+                  poster="/images/hero.webp"
                   className="w-full h-full object-cover"
                 >
                   <source src="/videos/TR_HR_VD.mp4" type="video/mp4" />

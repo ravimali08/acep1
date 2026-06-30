@@ -553,7 +553,9 @@ export default function Coaching() {
               autoPlay 
               loop 
               muted 
-              playsInline 
+              playsInline
+              preload="metadata"
+              poster="/images/training.webp"
               className="w-full h-full object-cover"
             >
               <source src="/videos/tennis_broll_2.mp4" type="video/mp4" />

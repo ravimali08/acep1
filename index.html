@@ -34,7 +34,39 @@ loadRrweb();
   <script data-arena-views="true">(function(){var isTop=false;try{isTop=window.self===window.top;}catch(e){}if(!isTop)return;window.__ARENA_META={generationId:"gemini-3.1-pro-preview",tournamentId:"b2bc7a24-abdd-4b62-9712-3db5e54a1ca1"};var payload={tournamentId:"b2bc7a24-abdd-4b62-9712-3db5e54a1ca1",modelId:"gemini-3.1-pro-preview"};try{var r=document.referrer;if(r){var u=new URL(r);payload.referrerDomain=u.hostname;}}catch(e){}try{var vid=null;try{vid=localStorage.getItem('arena_vid');}catch(e){}if(!vid){vid=typeof crypto!=="undefined"&&crypto.randomUUID?crypto.randomUUID():(Date.now().toString(36)+Math.random().toString(36).slice(2)).slice(0,32);try{localStorage.setItem('arena_vid',vid);}catch(e){}}if(vid)payload.viewerId=vid;}catch(e){}try{fetch("https://www.designarena.ai/api/agon/page-views",{"method":"POST","headers":{"Content-Type":"application/json"},"body":JSON.stringify(payload),"keepalive":true});}catch(e){}})();</script>
 </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Premium CSS Loading Splash Screen before React mounts -->
+      <style>
+        .initial-loader {
+          position: fixed;
+          inset: 0;
+          background-color: #f9fafb;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 9999;
+          transition: opacity 0.3s ease-out;
+        }
+        .initial-spinner {
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          border: 3px solid #e5e7eb;
+          border-top-color: #2563eb;
+          animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+        /* Hide loader when React renders */
+        #root:not(:empty) .initial-loader {
+          display: none;
+        }
+      </style>
+      <div class="initial-loader">
+        <div class="initial-spinner"></div>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
       <script data-element-picker>/**
  * Agon Element Picker — injected into the preview iframe.
