@@ -405,7 +405,7 @@ export default function Tournaments() {
                   poster="/images/hero.webp"
                   className="w-full h-full object-cover"
                 >
-                  <source src="/videos/TR_HR_VD.mp4" type="video/mp4" />
+                  <source src="/videos/TR_HR_VD.webm" type="video/webm" />
                 </video>
                 {/* 20% Opacity Blue Overlay */}
                 <div className="absolute inset-0 bg-blue-900/20 mix-blend-multiply"></div>

@@ -557,7 +557,7 @@ export default function Coaching() {
               poster="/images/hero.webp"
               className="w-full h-full object-cover"
             >
-              <source src="/videos/tennis_broll_2.mp4" type="video/mp4" />
+              <source src="/videos/CP_HR_VD.webm" type="video/webm" />
             </video>
             {/* Cohesive Blue/Black Theme Gradient Overlay */}
             <div className="absolute inset-0 bg-gradient-to-r from-blue-950/95 via-blue-900/90 to-gray-950/90 mix-blend-multiply"></div>
