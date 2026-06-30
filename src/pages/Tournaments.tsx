@@ -424,7 +424,8 @@ export default function Tournaments() {
                   loop 
                   muted 
                   playsInline 
-                  className="w-full h-full object-cover object-right md:object-center"
+                  className="w-full h-full object-cover"
+                  style={{ objectPosition: '80% 50%' }}
                 >
                   <source src="/videos/TR_HR_VD.webm" type="video/webm" />
                 </video>

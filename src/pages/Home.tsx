@@ -303,7 +303,8 @@ export default function Home() {
           <img loading="lazy" 
             src="/images/hero.webp" 
             alt="Tennis player serving" 
-            className="w-full h-full object-cover object-right md:object-center"
+            className="w-full h-full object-cover"
+            style={{ objectPosition: '80% 50%' }}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
         </div>
