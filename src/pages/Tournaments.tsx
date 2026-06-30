@@ -401,8 +401,7 @@ export default function Tournaments() {
                   autoPlay 
                   loop 
                   muted 
-                  playsInline
-                  preload="metadata"
+                  playsInline 
                   poster="/images/hero.webp"
                   className="w-full h-full object-cover"
                 >

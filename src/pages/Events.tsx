@@ -381,9 +381,8 @@ export default function Events() {
               autoPlay 
               loop 
               muted 
-              playsInline
-              preload="metadata"
-              poster="/images/hero-new-bg.webp"
+              playsInline 
+              poster="/images/hero.webp"
               className="w-full h-full object-cover"
             >
               <source src="/videos/EV_HR_VDS.mp4" type="video/mp4" />
