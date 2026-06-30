@@ -207,6 +207,7 @@ export default function Tournaments() {
   }, [paymentStatus]);
 
   const handleOpenRegistration = (index: number) => {
+    window.scrollTo(0, 0); // Scroll to top to ensure header is visible, not footer
     setRegisteringIndex(index);
     setStep(0); // Set to Details View (Step 0)
     setPaymentMethod('card');
@@ -612,7 +613,10 @@ export default function Tournaments() {
                 <h2 className="text-3xl font-black text-gray-900">{tournaments[registeringIndex].title}</h2>
               </div>
               <button 
-                onClick={() => setRegisteringIndex(null)}
+                onClick={() => {
+                  window.scrollTo(0, 0);
+                  setRegisteringIndex(null);
+                }}
                 className="bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold px-6 py-3 rounded-full text-xs uppercase tracking-wider transition-colors shrink-0"
               >
                 ← Back to Tournament List
@@ -1156,7 +1160,10 @@ export default function Tournaments() {
                       <Printer className="w-4 h-4" /> Print Pass
                     </button>
                     <button
-                      onClick={() => setRegisteringIndex(null)}
+                      onClick={() => {
+                        window.scrollTo(0, 0);
+                        setRegisteringIndex(null);
+                      }}
                       className="bg-gray-800 hover:bg-gray-900 text-white px-6 py-3 rounded-full font-bold text-sm transition-all shadow-md"
                     >
                       Back to Listings
