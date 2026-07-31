@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Membership & Pricing | FALCON CLUB</title>
+<meta name="description" content="Join FALCON BADMINTON CLUB — Choose from Guest, Monthly, or Pro Elite tiers. Premium courts, coaching, and exclusive member benefits await."/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wght@100..900&family=Lexend:wght@100..900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      "colors":{
+        "secondary-fixed":"#e0e3e5","on-surface-variant":"#45464d","surface-tint":"#565e74",
+        "on-tertiary":"#ffffff","primary-fixed":"#dae2fd","surface-container-low":"#f6f3f5",
+        "on-primary":"#ffffff","tertiary":"#000000","error":"#ba1a1a",
+        "secondary-fixed-dim":"#c4c7c9","error-container":"#ffdad6","on-background":"#1b1b1d",
+        "on-primary-fixed-variant":"#3f465c","on-error":"#ffffff","surface-container":"#f0edef",
+        "primary":"#000000","surface-variant":"#e4e2e4","tertiary-fixed-dim":"#abd600",
+        "primary-fixed-dim":"#bec6e0","on-secondary":"#ffffff","surface-bright":"#fcf8fa",
+        "tertiary-container":"#161e00","on-tertiary-fixed-variant":"#3c4d00",
+        "surface-container-high":"#eae7e9","tertiary-fixed":"#c3f400","background":"#fcf8fa",
+        "outline-variant":"#c6c6cd","on-secondary-container":"#626567",
+        "surface-container-lowest":"#ffffff","on-tertiary-container":"#718e00",
+        "inverse-on-surface":"#f3f0f2","surface-dim":"#dcd9db","on-surface":"#1b1b1d",
+        "inverse-primary":"#bec6e0","on-error-container":"#93000a","on-tertiary-fixed":"#161e00",
+        "secondary":"#5c5f61","on-primary-fixed":"#131b2e","secondary-container":"#e0e3e5",
+        "surface-container-highest":"#e4e2e4","primary-container":"#131b2e",
+        "on-primary-container":"#7c839b","outline":"#76777d","surface":"#fcf8fa",
+        "inverse-surface":"#303032","on-secondary-fixed-variant":"#444749",
+        "on-secondary-fixed":"#191c1e"
+      },
+      "borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},
+      "spacing":{"margin-mobile":"16px","section-gap":"120px","gutter":"24px","base":"8px","margin-desktop":"48px","container-max":"1280px"},
+      "fontFamily":{"display-lg-mobile":["Anybody"],"headline-md":["Anybody"],"headline-lg":["Anybody"],"headline-lg-mobile":["Anybody"],"body-lg":["Lexend"],"display-lg":["Anybody"],"body-md":["Lexend"],"label-md":["Lexend"]},
+      "fontSize":{
+        "display-lg-mobile":["48px",{"lineHeight":"52px","letterSpacing":"-0.04em","fontWeight":"800"}],
+        "headline-md":["24px",{"lineHeight":"32px","fontWeight":"700"}],
+        "headline-lg":["40px",{"lineHeight":"48px","letterSpacing":"-0.02em","fontWeight":"700"}],
+        "headline-lg-mobile":["32px",{"lineHeight":"38px","letterSpacing":"-0.02em","fontWeight":"700"}],
+        "body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],
+        "display-lg":["72px",{"lineHeight":"76px","letterSpacing":"-0.04em","fontWeight":"800"}],
+        "body-md":["16px",{"lineHeight":"24px","fontWeight":"400"}],
+        "label-md":["14px",{"lineHeight":"20px","letterSpacing":"0.05em","fontWeight":"600"}]
+      }
+    }
+  }
+}
+</script>
+<style>
+  .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;display:inline-block;line-height:1;vertical-align:middle}
+
+  /* ── Hero ── */
+  .hero-gradient{background:linear-gradient(160deg,#0a0f1c 0%,#131b2e 40%,#1a2340 70%,#0d1420 100%)}
+  .hero-glow{background:radial-gradient(ellipse 60% 50% at 30% 60%,rgba(195,244,0,.06) 0%,transparent 70%)}
+  .hero-glow-2{background:radial-gradient(ellipse 40% 40% at 75% 30%,rgba(190,198,224,.05) 0%,transparent 70%)}
+
+  /* ── Keyframes ── */
+  @keyframes float-slow{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+  @keyframes float-delay{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+  @keyframes float-subtle{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-8px) rotate(2deg)}}
+  @keyframes pulse-ring{0%{transform:scale(1);opacity:.4}100%{transform:scale(1.8);opacity:0}}
+  @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+  @keyframes text-reveal{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+  @keyframes fade-up{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes border-shimmer{
+    0%{border-color:rgba(195,244,0,.3)}
+    50%{border-color:rgba(195,244,0,.8)}
+    100%{border-color:rgba(195,244,0,.3)}
+  }
+  @keyframes glow-pulse{
+    0%,100%{box-shadow:0 0 20px rgba(195,244,0,.1),0 0 60px rgba(195,244,0,.05)}
+    50%{box-shadow:0 0 30px rgba(195,244,0,.2),0 0 80px rgba(195,244,0,.1)}
+  }
+  @keyframes count-up{from{opacity:0;transform:translateY(20px) scale(.8)}to{opacity:1;transform:translateY(0) scale(1)}}
+  @keyframes rotate-slow{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+  @keyframes dash{to{stroke-dashoffset:0}}
+  @keyframes particle-float{
+    0%{transform:translate(0,0) scale(1);opacity:.6}
+    25%{transform:translate(10px,-20px) scale(1.1);opacity:.3}
+    50%{transform:translate(-5px,-35px) scale(.9);opacity:.5}
+    75%{transform:translate(15px,-15px) scale(1.05);opacity:.2}
+    100%{transform:translate(0,0) scale(1);opacity:.6}
+  }
+
+  .float-slow{animation:float-slow 6s ease-in-out infinite}
+  .float-delay{animation:float-delay 7s ease-in-out 1.5s infinite}
+  .float-subtle{animation:float-subtle 8s ease-in-out 0.5s infinite}
+
+  /* ── Glass / Cards ── */
+  .glass{background:rgba(255,255,255,.04);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.08)}
+  .glass-stronger{background:rgba(255,255,255,.06);backdrop-filter:blur(30px);border:1px solid rgba(255,255,255,.12)}
+  .glass-light{background:rgba(255,255,255,.65);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.4)}
+  .card-lift{transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s cubic-bezier(.22,1,.36,1)}
+  .card-lift:hover{transform:translateY(-8px) scale(1.01);box-shadow:0 30px 60px -15px rgba(19,27,46,.2)}
+
+  /* ── Accent line & shimmer ── */
+  .accent-line{height:3px;background:linear-gradient(90deg,#c3f400,#abd600,#c3f400);background-size:200% 100%;animation:shimmer 3s linear infinite}
+  .shimmer-border{animation:border-shimmer 2.5s ease-in-out infinite,glow-pulse 3s ease-in-out infinite}
+  .shimmer-bg{background:linear-gradient(90deg,transparent 0%,rgba(195,244,0,.08) 50%,transparent 100%);background-size:200% 100%;animation:shimmer 4s linear infinite}
+
+  /* ── Reveal ── */
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+  .reveal-delay-1{transition-delay:.15s}
+  .reveal-delay-2{transition-delay:.3s}
+  .reveal-delay-3{transition-delay:.45s}
+
+  /* ── Feature check icon ── */
+  .feature-check{
+    width:22px;height:22px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .feature-check-guest{background:rgba(69,70,77,.1);color:#45464d}
+  .feature-check-monthly{background:rgba(195,244,0,.15);color:#3c4d00}
+  .feature-check-elite{background:rgba(195,244,0,.25);color:#c3f400}
+
+  /* ── Pricing card specific ── */
+  .pricing-card{position:relative;overflow:hidden}
+  .pricing-card::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:3px;
+    background:linear-gradient(90deg,transparent,rgba(195,244,0,.3),transparent);
+    opacity:0;transition:opacity .4s;
+  }
+  .pricing-card:hover::before{opacity:1}
+
+  /* ── Table row hover ── */
+  .table-row-hover{transition:background .2s}
+  .table-row-hover:hover{background:rgba(195,244,0,.04)}
+
+  /* ── Particles ── */
+  .particle{position:absolute;border-radius:50%;pointer-events:none}
+
+  /* ── Stat counter ── */
+  .stat-number{font-variant-numeric:tabular-nums}
+
+  /* ── Mobile nav ── */
+  .mobile-menu{transform:translateX(100%);transition:transform .35s cubic-bezier(.22,1,.36,1)}
+  .mobile-menu.open{transform:translateX(0)}
+</style>
+</head>
+<body class="bg-surface font-body-md text-on-surface overflow-x-hidden">
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- NAVBAR                                                  -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant transition-all duration-300" id="mainNav">
+  <div class="flex justify-between items-center h-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+    <a href="../home_apex_shuttle_badminton_club/code.html" class="font-display-lg text-headline-md tracking-tighter text-primary hover:opacity-80 transition-opacity">FALCON CLUB</a>
+    <nav class="hidden md:flex gap-gutter items-center">
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors relative group" href="../home_apex_shuttle_badminton_club/code.html">
+        Home<span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-tertiary-fixed group-hover:w-full transition-all duration-300"></span>
+      </a>
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors relative group" href="../facilities_courts_apex_shuttle/code.html">
+        Courts<span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-tertiary-fixed group-hover:w-full transition-all duration-300"></span>
+      </a>
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors relative group" href="../coaching_programs_apex_shuttle/code.html">
+        Programs<span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-tertiary-fixed group-hover:w-full transition-all duration-300"></span>
+      </a>
+      <a class="font-label-md text-label-md text-primary font-bold border-b-2 border-tertiary-fixed pb-1" href="../membership_apex_shuttle/code.html">
+        Membership
+      </a>
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors relative group" href="../rankings_leaderboard_apex_shuttle/code.html">
+        Rankings<span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-tertiary-fixed group-hover:w-full transition-all duration-300"></span>
+      </a>
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors relative group" href="../tournament_schedule_apex_shuttle/code.html">
+        Schedule<span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-tertiary-fixed group-hover:w-full transition-all duration-300"></span>
+      </a>
+    </nav>
+    <div class="flex items-center gap-4">
+      <button class="bg-primary text-on-primary font-label-md text-label-md px-6 py-3 hover:shadow-lg hover:shadow-primary/20 active:scale-95 transition-all uppercase tracking-wider">
+        Book Now
+      </button>
+      <!-- Mobile hamburger -->
+      <button class="md:hidden flex flex-col gap-1.5 p-2" id="hamburger" aria-label="Open menu">
+        <span class="w-6 h-0.5 bg-primary transition-transform origin-center" id="bar1"></span>
+        <span class="w-6 h-0.5 bg-primary transition-opacity" id="bar2"></span>
+        <span class="w-6 h-0.5 bg-primary transition-transform origin-center" id="bar3"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile menu overlay -->
+<div class="fixed inset-0 z-40 bg-surface mobile-menu flex flex-col pt-24 px-margin-mobile" id="mobileMenu">
+  <nav class="flex flex-col gap-6">
+    <a class="font-headline-md text-headline-md text-on-surface-variant hover:text-primary transition-colors" href="../home_apex_shuttle_badminton_club/code.html">Home</a>
+    <a class="font-headline-md text-headline-md text-on-surface-variant hover:text-primary transition-colors" href="../facilities_courts_apex_shuttle/code.html">Courts</a>
+    <a class="font-headline-md text-headline-md text-on-surface-variant hover:text-primary transition-colors" href="../coaching_programs_apex_shuttle/code.html">Programs</a>
+    <a class="font-headline-md text-headline-md text-primary border-l-4 border-tertiary-fixed pl-4" href="../membership_apex_shuttle/code.html">Membership</a>
+    <a class="font-headline-md text-headline-md text-on-surface-variant hover:text-primary transition-colors" href="../rankings_leaderboard_apex_shuttle/code.html">Rankings</a>
+    <a class="font-headline-md text-headline-md text-on-surface-variant hover:text-primary transition-colors" href="../tournament_schedule_apex_shuttle/code.html">Schedule</a>
+  </nav>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- HERO — Full Viewport Dark Gradient                      -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="relative min-h-screen hero-gradient flex items-center justify-center overflow-hidden" id="hero">
+  <!-- Glow layers -->
+  <div class="absolute inset-0 hero-glow"></div>
+  <div class="absolute inset-0 hero-glow-2"></div>
+
+  <!-- Giant watermark -->
+  <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
+    <span class="font-display-lg text-[clamp(120px,22vw,280px)] font-[800] tracking-tighter text-white/[.02] leading-none">MEMBER</span>
+  </div>
+
+  <!-- Floating decorative elements -->
+  <div class="absolute top-[15%] left-[8%] w-24 h-24 border border-white/[.06] rounded-full float-slow" aria-hidden="true"></div>
+  <div class="absolute top-[25%] right-[12%] w-16 h-16 border border-tertiary-fixed/20 float-delay" aria-hidden="true">
+    <div class="w-full h-full border border-tertiary-fixed/10 rotate-45"></div>
+  </div>
+  <div class="absolute bottom-[20%] left-[15%] w-3 h-3 bg-tertiary-fixed/30 rounded-full float-subtle" aria-hidden="true"></div>
+  <div class="absolute bottom-[30%] right-[20%] w-2 h-2 bg-white/20 rounded-full float-slow" aria-hidden="true"></div>
+  <div class="absolute top-[60%] left-[5%] w-40 h-40 border border-white/[.03] rounded-full float-delay" aria-hidden="true"></div>
+  <div class="absolute top-[10%] right-[30%] w-1.5 h-1.5 bg-tertiary-fixed/40 rounded-full float-subtle" aria-hidden="true"></div>
+
+  <!-- Pulse ring decoration -->
+  <div class="absolute top-[40%] right-[8%] w-8 h-8" aria-hidden="true">
+    <div class="absolute inset-0 border border-tertiary-fixed/30 rounded-full" style="animation:pulse-ring 3s ease-out infinite"></div>
+    <div class="absolute inset-0 border border-tertiary-fixed/20 rounded-full" style="animation:pulse-ring 3s ease-out 1s infinite"></div>
+    <div class="w-2 h-2 bg-tertiary-fixed/50 rounded-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+  </div>
+
+  <!-- Hero image (background) -->
+  <div class="absolute inset-0 opacity-[.12]">
+    <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDe2ladaRsESSduAQfaDyO41zq6RynnXwK16V1GLLuS10C4WPgOuYKAMhHizBdlptLM2bNbf0bSyBVRpnCI6QU6EIt1EmPTYd3qAvUDVuxzJsG22f8CVzysIorDrKegSz6_LiYkLH90mJj7MVqM2Txk7WfDrq_htvmDaTBmT6A-wy9_IAp0OLZ2bukF7wsHHXtcm8jaJzDs75H2UILScbKa11S0tSz2sYD9EktWpQPXJtHbRu_GVOHFBbde7L9G2w_vTDKDjUqSZEOy" alt="Professional badminton shuttlecock mid-flight"/>
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10 text-center px-margin-mobile md:px-margin-desktop max-w-4xl mx-auto">
+    <!-- Top badge -->
+    <div class="inline-flex items-center gap-2 glass px-5 py-2.5 mb-8" style="animation:fade-up .8s ease-out both">
+      <span class="material-symbols-outlined text-tertiary-fixed text-sm" style="font-variation-settings:'FILL' 1">workspace_premium</span>
+      <span class="font-label-md text-label-md text-tertiary-fixed tracking-widest">CHOOSE YOUR PERFORMANCE TIER</span>
+    </div>
+
+    <!-- Main heading -->
+    <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-white mb-6" style="animation:fade-up .8s ease-out .2s both">
+      ELEVATE YOUR<br/>
+      <span class="relative inline-block">
+        <span class="text-tertiary-fixed">GAME.</span>
+        <span class="absolute -bottom-2 left-0 w-full h-[3px] bg-gradient-to-r from-tertiary-fixed/80 via-tertiary-fixed to-tertiary-fixed/80 animate-pulse"></span>
+      </span>
+    </h1>
+
+    <!-- Subtext -->
+    <p class="font-body-lg text-body-lg text-white/50 max-w-2xl mx-auto mb-12" style="animation:fade-up .8s ease-out .4s both">
+      From occasional casual play to professional-grade training regimes. Join the elite community where precision meets power on every court.
+    </p>
+
+    <!-- Stats row -->
+    <div class="flex flex-wrap justify-center gap-8 md:gap-16" style="animation:fade-up .8s ease-out .6s both">
+      <div class="text-center">
+        <div class="font-headline-lg text-headline-lg text-white stat-number" data-count="500">500+</div>
+        <div class="font-label-md text-label-md text-white/30 mt-1">ACTIVE MEMBERS</div>
+      </div>
+      <div class="text-center">
+        <div class="font-headline-lg text-headline-lg text-tertiary-fixed stat-number" data-count="12">12</div>
+        <div class="font-label-md text-label-md text-white/30 mt-1">PRO COURTS</div>
+      </div>
+      <div class="text-center">
+        <div class="font-headline-lg text-headline-lg text-white stat-number" data-count="98">98%</div>
+        <div class="font-label-md text-label-md text-white/30 mt-1">RETENTION RATE</div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2" style="animation:fade-up .8s ease-out .8s both">
+      <span class="font-label-md text-[11px] text-white/25 tracking-[0.2em] uppercase">Explore Plans</span>
+      <div class="w-[1px] h-10 bg-gradient-to-b from-white/20 to-transparent relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-tertiary-fixed/60 to-transparent" style="animation:float-slow 2s ease-in-out infinite"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- PRICING CARDS                                           -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop" id="pricing">
+  <div class="max-w-container-max mx-auto">
+    <!-- Section header -->
+    <div class="text-center mb-20 reveal">
+      <span class="font-label-md text-label-md text-on-tertiary-container tracking-widest">MEMBERSHIP TIERS</span>
+      <div class="accent-line w-16 mx-auto mt-3 mb-6"></div>
+      <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg">FIND YOUR PERFECT FIT</h2>
+      <p class="font-body-md text-on-surface-variant mt-4 max-w-xl mx-auto">Every tier is engineered for a different level of commitment. Scale up anytime — no long-term contracts.</p>
+    </div>
+
+    <!-- Cards grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter items-stretch">
+
+      <!-- ── GUEST TIER ── -->
+      <div class="pricing-card bg-surface border border-outline-variant p-10 flex flex-col card-lift reveal reveal-delay-1 group">
+        <!-- Tier icon -->
+        <div class="w-14 h-14 rounded-full bg-surface-container-high flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+          <span class="material-symbols-outlined text-on-surface-variant text-2xl">sports_tennis</span>
+        </div>
+        <div class="mb-8">
+          <h3 class="font-headline-md text-headline-md mb-2">Guest</h3>
+          <p class="font-body-md text-on-surface-variant">Pay-per-play access</p>
+        </div>
+        <div class="mb-10">
+          <div class="flex items-baseline gap-1">
+            <span class="font-display-lg text-headline-lg">$25</span>
+            <span class="font-label-md text-on-surface-variant">/ HOUR</span>
+          </div>
+          <div class="w-full h-[1px] bg-outline-variant mt-6"></div>
+        </div>
+        <ul class="space-y-4 mb-12 flex-grow">
+          <li class="flex items-center gap-3">
+            <div class="feature-check feature-check-guest">
+              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings:'FILL' 1">check</span>
+            </div>
+            <span class="font-body-md">Standard Court Access</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <div class="feature-check feature-check-guest">
+              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings:'FILL' 1">check</span>
+            </div>
+            <span class="font-body-md">Equipment Rental Available</span>
+          </li>
+          <li class="flex items-center gap-3 opacity-30">
+            <div class="feature-check" style="background:rgba(0,0,0,.05)">
+              <span class="material-symbols-outlined text-[14px]">close</span>
+            </div>
+            <span class="font-body-md">No Advance Booking</span>
+          </li>
+        </ul>
+        <button class="w-full py-4 border border-primary text-primary font-label-md text-label-md hover:bg-primary hover:text-on-primary transition-all duration-300 uppercase tracking-wider group-hover:shadow-md">
+          Book Single Court
+        </button>
+      </div>
+
+      <!-- ── MONTHLY MEMBER (FEATURED) ── -->
+      <div class="pricing-card bg-surface border-2 border-tertiary-fixed/50 p-10 flex flex-col relative card-lift shimmer-border reveal reveal-delay-2 group md:-mt-6 md:mb-0">
+        <!-- Shimmer background overlay -->
+        <div class="absolute inset-0 shimmer-bg pointer-events-none rounded-sm"></div>
+        <!-- Featured badge -->
+        <div class="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
+          <div class="bg-tertiary-fixed text-tertiary-container px-5 py-1.5 text-[10px] font-bold tracking-[0.2em] uppercase flex items-center gap-1.5 shadow-lg shadow-tertiary-fixed/20">
+            <span class="material-symbols-outlined text-[12px]" style="font-variation-settings:'FILL' 1">star</span>
+            MOST POPULAR
+            <span class="material-symbols-outlined text-[12px]" style="font-variation-settings:'FILL' 1">star</span>
+          </div>
+        </div>
+        <!-- Tier icon -->
+        <div class="relative w-14 h-14 rounded-full bg-tertiary-fixed/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+          <span class="material-symbols-outlined text-on-tertiary-container text-2xl" style="font-variation-settings:'FILL' 1">verified</span>
+          <div class="absolute inset-0 rounded-full border border-tertiary-fixed/20" style="animation:pulse-ring 3s ease-out infinite"></div>
+        </div>
+        <div class="relative mb-8">
+          <h3 class="font-headline-md text-headline-md mb-2">Monthly Member</h3>
+          <p class="font-body-md text-on-surface-variant">Unlimited court time</p>
+        </div>
+        <div class="relative mb-10">
+          <div class="flex items-baseline gap-1">
+            <span class="font-display-lg text-headline-lg">$99</span>
+            <span class="font-label-md text-on-surface-variant">/ MONTH</span>
+          </div>
+          <div class="font-label-md text-[12px] text-on-tertiary-container mt-2">Save $150+ vs. Guest hourly</div>
+          <div class="w-full h-[1px] bg-tertiary-fixed/20 mt-6"></div>
+        </div>
+        <ul class="relative space-y-4 mb-12 flex-grow">
+          <li class="flex items-center gap-3">
+            <div class="feature-check feature-check-monthly">
+              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings:'FILL' 1">check</span>
+            </div>
+            <span class="font-body-md">Unlimited Standard Play</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <div class="feature-check feature-check-monthly">
+              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings:'FILL' 1">check</span>
+            </div>
+            <span class="font-body-md">7-Day Advance Booking</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <div class="feature-check feature-check-monthly">
+              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings:'FILL' 1">check</span>
+            </div>
+            <span class="font-body-md">Member Lounge Access</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <div class="feature-check feature-check-monthly">
+              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings:'FILL' 1">check</span>
+            </div>
+            <span class="font-body-md">10% Pro-Shop Discount</span>
+          </li>
+        </ul>
+        <button class="relative w-full py-4 bg-primary text-on-primary font-label-md text-label-md hover:opacity-90 transition-all duration-300 uppercase tracking-wider shadow-lg shadow-primary/10 group-hover:shadow-xl group-hover:shadow-primary/20">
+          Become a Member
+        </button>
+      </div>
+
+      <!-- ── PRO ELITE ── -->
+      <div class="pricing-card bg-primary-container text-white p-10 flex flex-col card-lift reveal reveal-delay-3 group relative overflow-hidden">
+        <!-- Decorative corner accent -->
+        <div class="absolute top-0 right-0 w-32 h-32 pointer-events-none" aria-hidden="true">
+          <div class="absolute top-4 right-4 w-20 h-20 border border-tertiary-fixed/10 rounded-full"></div>
+          <div class="absolute top-8 right-8 w-10 h-10 border border-tertiary-fixed/5 rounded-full"></div>
+        </div>
+        <!-- Subtle gradient overlay -->
+        <div class="absolute inset-0 bg-gradient-to-br from-white/[.03] via-transparent to-tertiary-fixed/[.03] pointer-events-none"></div>
+
+        <!-- Tier icon -->
+        <div class="relative w-14 h-14 rounded-full bg-tertiary-fixed/15 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+          <span class="material-symbols-outlined text-tertiary-fixed text-2xl" style="font-variation-settings:'FILL' 1">diamond</span>
+        </div>
+        <div class="relative mb-8">
+          <h3 class="font-headline-md text-headline-md mb-2 text-tertiary-fixed">Pro Elite</h3>
+          <p class="font-body-md text-on-primary-container">Ultimate performance tier</p>
+        </div>
+        <div class="relative mb-10">
+          <div class="flex items-baseline gap-1">
+            <span class="font-display-lg text-headline-lg text-tertiary-fixed">$149</span>
+            <span class="font-label-md text-on-primary-container">/ MONTH</span>
+          </div>
+          <div class="font-label-md text-[12px] text-on-primary-container/60 mt-2">Everything in Monthly + Elite perks</div>
+          <div class="w-full h-[1px] bg-white/10 mt-6"></div>
+        </div>
+        <ul class="relative space-y-4 mb-12 flex-grow">
+          <li class="flex items-center gap-3">
+            <div class="feature-check feature-check-elite">
+              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings:'FILL' 1">stars</span>
+            </div>
+            <span class="font-body-md">Priority Court Selection</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <div class="feature-check feature-check-elite">
+              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings:'FILL' 1">stars</span>
+            </div>
+            <span class="font-body-md">25% Coaching Discounts</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <div class="feature-check feature-check-elite">
+              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings:'FILL' 1">stars</span>
+            </div>
+            <span class="font-body-md">Free Stringing Service (2/mo)</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <div class="feature-check feature-check-elite">
+              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings:'FILL' 1">stars</span>
+            </div>
+            <span class="font-body-md">14-Day Advance Booking</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <div class="feature-check feature-check-elite">
+              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings:'FILL' 1">stars</span>
+            </div>
+            <span class="font-body-md">Unlimited Guest Passes (2/mo)</span>
+          </li>
+        </ul>
+        <button class="relative w-full py-4 bg-tertiary-fixed text-primary-container font-label-md text-label-md hover:shadow-lg hover:shadow-tertiary-fixed/30 transition-all duration-300 uppercase tracking-wider active:scale-[.98]">
+          Go Pro Elite
+        </button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- WHY JOIN — Bento-style Feature Grid                     -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-container-low" id="benefits">
+  <div class="max-w-container-max mx-auto">
+    <div class="text-center mb-20 reveal">
+      <span class="font-label-md text-label-md text-on-tertiary-container tracking-widest">MEMBER BENEFITS</span>
+      <div class="accent-line w-16 mx-auto mt-3 mb-6"></div>
+      <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg">WHY JOIN FALCON CLUB</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+      <!-- Benefit 1 -->
+      <div class="bg-surface border border-outline-variant p-8 card-lift reveal reveal-delay-1 group">
+        <div class="w-12 h-12 bg-tertiary-fixed/10 flex items-center justify-center mb-5 group-hover:bg-tertiary-fixed/20 transition-colors">
+          <span class="material-symbols-outlined text-on-tertiary-container text-2xl" style="font-variation-settings:'FILL' 1">sports</span>
+        </div>
+        <h3 class="font-headline-md text-[20px] font-bold mb-3">World-Class Courts</h3>
+        <p class="font-body-md text-on-surface-variant">12 championship-standard courts with premium maple flooring, LED lighting systems, and climate control.</p>
+      </div>
+      <!-- Benefit 2 -->
+      <div class="bg-surface border border-outline-variant p-8 card-lift reveal reveal-delay-2 group">
+        <div class="w-12 h-12 bg-tertiary-fixed/10 flex items-center justify-center mb-5 group-hover:bg-tertiary-fixed/20 transition-colors">
+          <span class="material-symbols-outlined text-on-tertiary-container text-2xl" style="font-variation-settings:'FILL' 1">groups</span>
+        </div>
+        <h3 class="font-headline-md text-[20px] font-bold mb-3">Community & Events</h3>
+        <p class="font-body-md text-on-surface-variant">Weekly socials, monthly tournaments, and networking events with 500+ passionate badminton enthusiasts.</p>
+      </div>
+      <!-- Benefit 3 -->
+      <div class="bg-surface border border-outline-variant p-8 card-lift reveal reveal-delay-3 group">
+        <div class="w-12 h-12 bg-tertiary-fixed/10 flex items-center justify-center mb-5 group-hover:bg-tertiary-fixed/20 transition-colors">
+          <span class="material-symbols-outlined text-on-tertiary-container text-2xl" style="font-variation-settings:'FILL' 1">fitness_center</span>
+        </div>
+        <h3 class="font-headline-md text-[20px] font-bold mb-3">Premium Facilities</h3>
+        <p class="font-body-md text-on-surface-variant">Full-service locker rooms, recovery lounge, pro-shop, and a members-only café with sports nutrition menu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- FULL TIER COMPARISON TABLE                              -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop" id="comparison">
+  <div class="max-w-container-max mx-auto">
+    <div class="text-center mb-16 reveal">
+      <span class="font-label-md text-label-md text-on-tertiary-container tracking-widest">SIDE BY SIDE</span>
+      <div class="accent-line w-16 mx-auto mt-3 mb-6"></div>
+      <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg">FULL TIER COMPARISON</h2>
+    </div>
+
+    <!-- Desktop Table -->
+    <div class="hidden md:block reveal">
+      <div class="overflow-hidden border border-outline-variant">
+        <table class="w-full border-collapse">
+          <thead>
+            <tr class="bg-primary-container text-white">
+              <th class="p-6 text-left font-label-md text-label-md uppercase tracking-wider w-[35%]">Features</th>
+              <th class="p-6 text-center font-label-md text-label-md uppercase tracking-wider">Guest</th>
+              <th class="p-6 text-center font-label-md text-label-md uppercase tracking-wider relative">
+                <span class="text-tertiary-fixed">Monthly</span>
+                <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-[2px] bg-tertiary-fixed"></div>
+              </th>
+              <th class="p-6 text-center font-label-md text-label-md uppercase tracking-wider">Pro Elite</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table-row-hover bg-surface">
+              <td class="p-5 font-body-md border-b border-outline-variant">Peak Hours Access</td>
+              <td class="p-5 text-center border-b border-outline-variant">
+                <span class="material-symbols-outlined text-on-surface-variant text-xl" style="font-variation-settings:'FILL' 1">check_circle</span>
+              </td>
+              <td class="p-5 text-center border-b border-outline-variant bg-tertiary-fixed/[.03]">
+                <span class="material-symbols-outlined text-on-tertiary-container text-xl" style="font-variation-settings:'FILL' 1">check_circle</span>
+              </td>
+              <td class="p-5 text-center border-b border-outline-variant">
+                <span class="material-symbols-outlined text-on-tertiary-container text-xl" style="font-variation-settings:'FILL' 1">check_circle</span>
+              </td>
+            </tr>
+            <tr class="table-row-hover bg-surface-container-low">
+              <td class="p-5 font-body-md border-b border-outline-variant">Equipment Rental</td>
+              <td class="p-5 text-center border-b border-outline-variant">
+                <span class="font-label-md text-on-surface-variant text-[13px]">Paid</span>
+              </td>
+              <td class="p-5 text-center border-b border-outline-variant bg-tertiary-fixed/[.03]">
+                <span class="font-label-md text-on-surface-variant text-[13px]">Included</span>
+              </td>
+              <td class="p-5 text-center border-b border-outline-variant">
+                <span class="font-label-md text-on-surface-variant text-[13px]">Premium</span>
+              </td>
+            </tr>
+            <tr class="table-row-hover bg-surface">
+              <td class="p-5 font-body-md border-b border-outline-variant">Advance Booking</td>
+              <td class="p-5 text-center border-b border-outline-variant">
+                <span class="material-symbols-outlined text-outline text-xl">cancel</span>
+              </td>
+              <td class="p-5 text-center border-b border-outline-variant bg-tertiary-fixed/[.03]">
+                <span class="font-label-md text-on-tertiary-container text-[13px]">7 Days</span>
+              </td>
+              <td class="p-5 text-center border-b border-outline-variant">
+                <span class="font-label-md text-on-tertiary-container text-[13px] font-bold">14 Days</span>
+              </td>
+            </tr>
+            <tr class="table-row-hover bg-surface-container-low">
+              <td class="p-5 font-body-md border-b border-outline-variant">Member Lounge</td>
+              <td class="p-5 text-center border-b border-outline-variant">
+                <span class="material-symbols-outlined text-outline text-xl">cancel</span>
+              </td>
+              <td class="p-5 text-center border-b border-outline-variant bg-tertiary-fixed/[.03]">
+                <span class="material-symbols-outlined text-on-tertiary-container text-xl" style="font-variation-settings:'FILL' 1">check_circle</span>
+              </td>
+              <td class="p-5 text-center border-b border-outline-variant">
+                <span class="material-symbols-outlined text-on-tertiary-container text-xl" style="font-variation-settings:'FILL' 1">check_circle</span>
+              </td>
+            </tr>
+            <tr class="table-row-hover bg-surface">
+              <td class="p-5 font-body-md border-b border-outline-variant">Pro-Shop Discount</td>
+              <td class="p-5 text-center border-b border-outline-variant">
+                <span class="material-symbols-outlined text-outline text-xl">cancel</span>
+              </td>
+              <td class="p-5 text-center border-b border-outline-variant bg-tertiary-fixed/[.03]">
+                <span class="font-label-md text-on-tertiary-container text-[13px]">10%</span>
+              </td>
+              <td class="p-5 text-center border-b border-outline-variant">
+                <span class="font-label-md text-on-tertiary-container text-[13px] font-bold">20%</span>
+              </td>
+            </tr>
+            <tr class="table-row-hover bg-surface-container-low">
+              <td class="p-5 font-body-md border-b border-outline-variant">Coaching Discounts</td>
+              <td class="p-5 text-center border-b border-outline-variant">
+                <span class="material-symbols-outlined text-outline text-xl">cancel</span>
+              </td>
+              <td class="p-5 text-center border-b border-outline-variant bg-tertiary-fixed/[.03]">
+                <span class="material-symbols-outlined text-outline text-xl">cancel</span>
+              </td>
+              <td class="p-5 text-center border-b border-outline-variant">
+                <span class="font-label-md text-on-tertiary-container text-[13px] font-bold">25%</span>
+              </td>
+            </tr>
+            <tr class="table-row-hover bg-surface">
+              <td class="p-5 font-body-md border-b border-outline-variant">Stringing Service</td>
+              <td class="p-5 text-center border-b border-outline-variant">
+                <span class="material-symbols-outlined text-outline text-xl">cancel</span>
+              </td>
+              <td class="p-5 text-center border-b border-outline-variant bg-tertiary-fixed/[.03]">
+                <span class="material-symbols-outlined text-outline text-xl">cancel</span>
+              </td>
+              <td class="p-5 text-center border-b border-outline-variant">
+                <span class="font-label-md text-on-tertiary-container text-[13px] font-bold">2/mo Free</span>
+              </td>
+            </tr>
+            <tr class="table-row-hover bg-surface-container-low">
+              <td class="p-5 font-body-md border-b border-outline-variant">Guest Passes</td>
+              <td class="p-5 text-center border-b border-outline-variant">
+                <span class="material-symbols-outlined text-outline text-xl">cancel</span>
+              </td>
+              <td class="p-5 text-center border-b border-outline-variant bg-tertiary-fixed/[.03]">
+                <span class="material-symbols-outlined text-outline text-xl">cancel</span>
+              </td>
+              <td class="p-5 text-center border-b border-outline-variant">
+                <span class="font-label-md text-on-tertiary-container text-[13px] font-bold">2/mo</span>
+              </td>
+            </tr>
+            <tr class="table-row-hover bg-surface">
+              <td class="p-5 font-body-md">Priority Court Selection</td>
+              <td class="p-5 text-center">
+                <span class="material-symbols-outlined text-outline text-xl">cancel</span>
+              </td>
+              <td class="p-5 text-center bg-tertiary-fixed/[.03]">
+                <span class="material-symbols-outlined text-outline text-xl">cancel</span>
+              </td>
+              <td class="p-5 text-center">
+                <span class="material-symbols-outlined text-on-tertiary-container text-xl" style="font-variation-settings:'FILL' 1">check_circle</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Mobile Comparison (Accordion-style) -->
+    <div class="md:hidden space-y-4 reveal">
+      <div class="border border-outline-variant bg-surface p-6">
+        <h3 class="font-headline-md text-[18px] font-bold mb-4">Guest — $25/hr</h3>
+        <ul class="space-y-3">
+          <li class="flex items-center gap-2 font-body-md text-[14px]">
+            <span class="material-symbols-outlined text-on-surface-variant text-[16px]" style="font-variation-settings:'FILL' 1">check</span> Peak Hours Access
+          </li>
+          <li class="flex items-center gap-2 font-body-md text-[14px]">
+            <span class="material-symbols-outlined text-on-surface-variant text-[16px]" style="font-variation-settings:'FILL' 1">check</span> Equipment Rental (Paid)
+          </li>
+        </ul>
+      </div>
+      <div class="border-2 border-tertiary-fixed/50 bg-surface p-6 relative">
+        <div class="absolute -top-3 left-4 bg-tertiary-fixed text-tertiary-container text-[10px] font-bold px-3 py-1 tracking-widest uppercase">Popular</div>
+        <h3 class="font-headline-md text-[18px] font-bold mb-4">Monthly — $99/mo</h3>
+        <ul class="space-y-3">
+          <li class="flex items-center gap-2 font-body-md text-[14px]">
+            <span class="material-symbols-outlined text-on-tertiary-container text-[16px]" style="font-variation-settings:'FILL' 1">check</span> Unlimited Play
+          </li>
+          <li class="flex items-center gap-2 font-body-md text-[14px]">
+            <span class="material-symbols-outlined text-on-tertiary-container text-[16px]" style="font-variation-settings:'FILL' 1">check</span> 7-Day Advance Booking
+          </li>
+          <li class="flex items-center gap-2 font-body-md text-[14px]">
+            <span class="material-symbols-outlined text-on-tertiary-container text-[16px]" style="font-variation-settings:'FILL' 1">check</span> Member Lounge
+          </li>
+          <li class="flex items-center gap-2 font-body-md text-[14px]">
+            <span class="material-symbols-outlined text-on-tertiary-container text-[16px]" style="font-variation-settings:'FILL' 1">check</span> 10% Pro-Shop Discount
+          </li>
+        </ul>
+      </div>
+      <div class="bg-primary-container text-white p-6">
+        <h3 class="font-headline-md text-[18px] font-bold mb-4 text-tertiary-fixed">Pro Elite — $149/mo</h3>
+        <ul class="space-y-3">
+          <li class="flex items-center gap-2 font-body-md text-[14px]">
+            <span class="material-symbols-outlined text-tertiary-fixed text-[16px]" style="font-variation-settings:'FILL' 1">stars</span> All Monthly benefits
+          </li>
+          <li class="flex items-center gap-2 font-body-md text-[14px]">
+            <span class="material-symbols-outlined text-tertiary-fixed text-[16px]" style="font-variation-settings:'FILL' 1">stars</span> Priority Courts + 14-Day Booking
+          </li>
+          <li class="flex items-center gap-2 font-body-md text-[14px]">
+            <span class="material-symbols-outlined text-tertiary-fixed text-[16px]" style="font-variation-settings:'FILL' 1">stars</span> 25% Coaching Discounts
+          </li>
+          <li class="flex items-center gap-2 font-body-md text-[14px]">
+            <span class="material-symbols-outlined text-tertiary-fixed text-[16px]" style="font-variation-settings:'FILL' 1">stars</span> Free Stringing + Guest Passes
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- FAQ SECTION                                             -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-container-low" id="faq">
+  <div class="max-w-3xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <span class="font-label-md text-label-md text-on-tertiary-container tracking-widest">QUESTIONS?</span>
+      <div class="accent-line w-16 mx-auto mt-3 mb-6"></div>
+      <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg">FREQUENTLY ASKED</h2>
+    </div>
+
+    <div class="space-y-4 reveal">
+      <!-- FAQ Item 1 -->
+      <details class="group border border-outline-variant bg-surface">
+        <summary class="flex items-center justify-between p-6 cursor-pointer font-headline-md text-[16px] font-bold select-none">
+          Can I upgrade my tier mid-month?
+          <span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform duration-300">expand_more</span>
+        </summary>
+        <div class="px-6 pb-6 font-body-md text-on-surface-variant">
+          Absolutely! Upgrades are pro-rated — you only pay the difference for the remaining days. Downgrades take effect at the start of your next billing cycle.
+        </div>
+      </details>
+      <!-- FAQ Item 2 -->
+      <details class="group border border-outline-variant bg-surface">
+        <summary class="flex items-center justify-between p-6 cursor-pointer font-headline-md text-[16px] font-bold select-none">
+          Is there a long-term contract?
+          <span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform duration-300">expand_more</span>
+        </summary>
+        <div class="px-6 pb-6 font-body-md text-on-surface-variant">
+          No contracts. All memberships are month-to-month. Cancel anytime before your next billing date — no questions asked.
+        </div>
+      </details>
+      <!-- FAQ Item 3 -->
+      <details class="group border border-outline-variant bg-surface">
+        <summary class="flex items-center justify-between p-6 cursor-pointer font-headline-md text-[16px] font-bold select-none">
+          What's included in the Guest tier?
+          <span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform duration-300">expand_more</span>
+        </summary>
+        <div class="px-6 pb-6 font-body-md text-on-surface-variant">
+          Guests get standard court access at $25/hour with equipment rental available for an additional fee. No advance booking — courts are subject to availability on the day.
+        </div>
+      </details>
+      <!-- FAQ Item 4 -->
+      <details class="group border border-outline-variant bg-surface">
+        <summary class="flex items-center justify-between p-6 cursor-pointer font-headline-md text-[16px] font-bold select-none">
+          How do Guest Passes work for Pro Elite?
+          <span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform duration-300">expand_more</span>
+        </summary>
+        <div class="px-6 pb-6 font-body-md text-on-surface-variant">
+          Pro Elite members receive 2 complimentary guest passes per month. Each pass allows one guest to play for free during a single session. Unused passes don't roll over.
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- CTA BANNER                                              -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<section class="relative py-28 hero-gradient overflow-hidden reveal" id="cta">
+  <div class="absolute inset-0 hero-glow"></div>
+  <!-- Floating elements -->
+  <div class="absolute top-8 left-[10%] w-16 h-16 border border-white/[.06] rounded-full float-slow" aria-hidden="true"></div>
+  <div class="absolute bottom-12 right-[15%] w-3 h-3 bg-tertiary-fixed/30 rounded-full float-delay" aria-hidden="true"></div>
+
+  <div class="relative z-10 text-center px-margin-mobile md:px-margin-desktop max-w-3xl mx-auto">
+    <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-white mb-6">READY TO STEP ON COURT?</h2>
+    <p class="font-body-lg text-body-lg text-white/50 mb-10 max-w-xl mx-auto">Join 500+ members who chose to elevate their game. Start today — your first session is on us.</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <button class="bg-tertiary-fixed text-primary-container font-label-md text-label-md px-10 py-4 hover:shadow-lg hover:shadow-tertiary-fixed/30 transition-all uppercase tracking-wider active:scale-[.98]">
+        Start Membership
+      </button>
+      <button class="glass text-white font-label-md text-label-md px-10 py-4 hover:bg-white/10 transition-all uppercase tracking-wider">
+        Contact Us
+      </button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- FOOTER                                                  -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<footer class="bg-primary-container text-white py-20 px-margin-mobile md:px-margin-desktop">
+  <div class="max-w-container-max mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+      <!-- Brand -->
+      <div class="md:col-span-1">
+        <div class="font-display-lg text-headline-md tracking-tighter text-white mb-4">FALCON CLUB</div>
+        <p class="font-body-md text-on-primary-container text-[14px] leading-relaxed">Elite badminton excellence. Where champions are forged and legends begin.</p>
+      </div>
+      <!-- Quick Links -->
+      <div>
+        <h4 class="font-label-md text-label-md text-tertiary-fixed tracking-widest mb-5">NAVIGATE</h4>
+        <ul class="space-y-3">
+          <li><a class="font-body-md text-on-primary-container text-[14px] hover:text-white transition-colors" href="../home_apex_shuttle_badminton_club/code.html">Home</a></li>
+          <li><a class="font-body-md text-on-primary-container text-[14px] hover:text-white transition-colors" href="../facilities_courts_apex_shuttle/code.html">Courts</a></li>
+          <li><a class="font-body-md text-on-primary-container text-[14px] hover:text-white transition-colors" href="../coaching_programs_apex_shuttle/code.html">Programs</a></li>
+          <li><a class="font-body-md text-on-primary-container text-[14px] hover:text-white transition-colors" href="../membership_apex_shuttle/code.html">Membership</a></li>
+        </ul>
+      </div>
+      <!-- More Links -->
+      <div>
+        <h4 class="font-label-md text-label-md text-tertiary-fixed tracking-widest mb-5">COMPETE</h4>
+        <ul class="space-y-3">
+          <li><a class="font-body-md text-on-primary-container text-[14px] hover:text-white transition-colors" href="../rankings_leaderboard_apex_shuttle/code.html">Rankings</a></li>
+          <li><a class="font-body-md text-on-primary-container text-[14px] hover:text-white transition-colors" href="../tournament_schedule_apex_shuttle/code.html">Schedule</a></li>
+        </ul>
+      </div>
+      <!-- Contact -->
+      <div>
+        <h4 class="font-label-md text-label-md text-tertiary-fixed tracking-widest mb-5">CONTACT</h4>
+        <ul class="space-y-3">
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-on-primary-container text-[16px]">location_on</span>
+            <span class="font-body-md text-on-primary-container text-[14px]">123 Falcon Drive, Sports City</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-on-primary-container text-[16px]">phone</span>
+            <span class="font-body-md text-on-primary-container text-[14px]">(555) 123-FALCON</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-on-primary-container text-[16px]">mail</span>
+            <span class="font-body-md text-on-primary-container text-[14px]">info@falconclub.com</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="w-full h-[1px] bg-white/10 mb-8"></div>
+
+    <!-- Bottom bar -->
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="font-body-md text-on-primary-container text-[13px]">© 2024 FALCON BADMINTON CLUB. All rights reserved.</p>
+      <div class="flex gap-6">
+        <a href="#" class="font-body-md text-on-primary-container text-[13px] hover:text-white transition-colors">Privacy</a>
+        <a href="#" class="font-body-md text-on-primary-container text-[13px] hover:text-white transition-colors">Terms</a>
+        <a href="#" class="font-body-md text-on-primary-container text-[13px] hover:text-white transition-colors">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- JAVASCRIPT                                              -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<script>
+// ── IntersectionObserver for .reveal elements ──
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ── Navbar scroll effect ──
+const nav = document.getElementById('mainNav');
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const currentScroll = window.scrollY;
+  if (currentScroll > 80) {
+    nav.classList.add('shadow-md');
+    nav.style.background = 'rgba(252,248,250,.95)';
+  } else {
+    nav.classList.remove('shadow-md');
+    nav.style.background = 'rgba(252,248,250,.8)';
+  }
+  lastScroll = currentScroll;
+}, { passive: true });
+
+// ── Mobile menu toggle ──
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+const bar1 = document.getElementById('bar1');
+const bar2 = document.getElementById('bar2');
+const bar3 = document.getElementById('bar3');
+let menuOpen = false;
+
+hamburger.addEventListener('click', () => {
+  menuOpen = !menuOpen;
+  mobileMenu.classList.toggle('open');
+  if (menuOpen) {
+    bar1.style.transform = 'rotate(45deg) translateY(6px)';
+    bar2.style.opacity = '0';
+    bar3.style.transform = 'rotate(-45deg) translateY(-6px)';
+    document.body.style.overflow = 'hidden';
+  } else {
+    bar1.style.transform = '';
+    bar2.style.opacity = '1';
+    bar3.style.transform = '';
+    document.body.style.overflow = '';
+  }
+});
+
+// ── Smooth scroll for internal links ──
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+
+</body>
+</html>

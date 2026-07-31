@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pro Shop | Falcon Club Badminton</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anybody:wght@400;600;700;800&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    /* ===== CSS CUSTOM PROPERTIES ===== */
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #0f0f19;
+      --bg-card: rgba(15, 15, 25, 0.8);
+      --bg-card-hover: rgba(20, 20, 35, 0.9);
+      --accent: #CCFF00;
+      --accent-teal: #00D4AA;
+      --text-primary: #FFFFFF;
+      --text-secondary: #94A3B8;
+      --border: rgba(204, 255, 0, 0.1);
+      --border-hover: rgba(204, 255, 0, 0.3);
+      --error: #FF4444;
+      --surface: rgba(255,255,255,0.03);
+      --glass-bg: rgba(15, 15, 25, 0.6);
+      --glass-border: rgba(255,255,255,0.08);
+      --header-bg: rgba(10, 10, 15, 0.85);
+      --shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    body.light-mode {
+      --bg-primary: #F0F2F5;
+      --bg-secondary: #E4E7EB;
+      --bg-card: rgba(255,255,255,0.85);
+      --bg-card-hover: rgba(255,255,255,0.95);
+      --accent: #8AB400;
+      --accent-teal: #009B7D;
+      --text-primary: #1A1A2E;
+      --text-secondary: #4B5563;
+      --border: rgba(0,0,0,0.08);
+      --border-hover: rgba(138,180,0,0.4);
+      --surface: rgba(0,0,0,0.03);
+      --glass-bg: rgba(255,255,255,0.5);
+      --glass-border: rgba(0,0,0,0.08);
+      --header-bg: rgba(240,242,245,0.9);
+      --shadow: 0 8px 32px rgba(0,0,0,0.1);
+    }
+
+    /* ===== GLOBAL ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Lexend', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: background 0.4s, color 0.4s;
+    }
+    h1,h2,h3,h4,h5,h6,.font-headline { font-family: 'Anybody', sans-serif; }
+    .text-accent { color: var(--accent); }
+    .text-teal { color: var(--accent-teal); }
+    .bg-accent { background: var(--accent); }
+
+    /* ===== ANIMATED GRADIENT BG ===== */
+    .gradient-bg {
+      position: fixed; inset: 0; z-index: -1; pointer-events: none;
+      background:
+        radial-gradient(ellipse 600px 600px at 15% 20%, rgba(204,255,0,0.06), transparent),
+        radial-gradient(ellipse 500px 500px at 85% 80%, rgba(0,212,170,0.05), transparent),
+        radial-gradient(ellipse 400px 400px at 50% 50%, rgba(204,255,0,0.03), transparent);
+    }
+
+    /* ===== GLASS ===== */
+    .glass {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+    }
+    .glass-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      transition: all 0.35s cubic-bezier(.4,0,.2,1);
+    }
+    .glass-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-hover);
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(204,255,0,0.08), 0 0 60px rgba(0,212,170,0.05);
+    }
+
+    /* ===== HEADER ===== */
+    .site-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: var(--header-bg);
+      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--glass-border);
+      transition: background 0.4s;
+    }
+    .nav-link {
+      color: var(--text-secondary);
+      font-weight: 500; font-size: 0.875rem;
+      letter-spacing: 0.02em;
+      padding: 0.5rem 0;
+      position: relative;
+      transition: color 0.3s;
+    }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-teal));
+      transition: width 0.3s;
+    }
+    .nav-link:hover, .nav-link.active { color: var(--text-primary); }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+    .book-btn {
+      background: linear-gradient(135deg, var(--accent), var(--accent-teal));
+      color: #0a0a0f; font-weight: 700; font-size: 0.8rem;
+      padding: 0.6rem 1.4rem; border-radius: 50px; border: none;
+      letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer;
+      transition: all 0.3s; text-decoration: none;
+    }
+    .book-btn:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(204,255,0,0.35); }
+    .theme-toggle {
+      width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--glass-border);
+      background: var(--surface); color: var(--text-secondary);
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: all 0.3s; font-size: 1.1rem;
+    }
+    .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ===== MOBILE MENU ===== */
+    .mobile-menu-btn { display: none; background: none; border: none; color: var(--text-primary); font-size: 1.5rem; cursor: pointer; }
+    .mobile-nav {
+      display: none; position: fixed; inset: 0; z-index: 999;
+      background: rgba(10,10,15,0.97); flex-direction: column;
+      align-items: center; justify-content: center; gap: 1.5rem;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav .nav-link { font-size: 1.25rem; }
+    .mobile-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: var(--text-primary); font-size: 1.8rem; cursor: pointer; }
+
+    /* ===== HERO ===== */
+    .hero {
+      padding: 10rem 0 4rem;
+      position: relative; overflow: hidden;
+      text-align: center;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -50%; left: -20%; width: 140%; height: 200%;
+      background: radial-gradient(ellipse at 50% 30%, rgba(204,255,0,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.4rem 1.2rem; border-radius: 50px;
+      background: rgba(204,255,0,0.08); border: 1px solid rgba(204,255,0,0.2);
+      color: var(--accent); font-size: 0.75rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.15em;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800;
+      line-height: 1.1; margin-bottom: 1rem;
+    }
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--accent), var(--accent-teal));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p { color: var(--text-secondary); font-size: 1.1rem; max-width: 550px; margin: 0 auto 2rem; }
+
+    /* ===== SEARCH BAR ===== */
+    .search-bar {
+      max-width: 500px; margin: 0 auto 1rem; position: relative;
+    }
+    .search-bar input {
+      width: 100%; padding: 0.9rem 1.2rem 0.9rem 3rem;
+      border-radius: 50px; border: 1px solid var(--border);
+      background: var(--bg-card); color: var(--text-primary);
+      font-family: 'Lexend', sans-serif; font-size: 0.95rem;
+      outline: none; transition: all 0.3s;
+    }
+    .search-bar input::placeholder { color: var(--text-secondary); }
+    .search-bar input:focus { border-color: var(--accent); box-shadow: 0 0 20px rgba(204,255,0,0.1); }
+    .search-bar i {
+      position: absolute; left: 1.1rem; top: 50%; transform: translateY(-50%);
+      color: var(--text-secondary); font-size: 1rem;
+    }
+
+    /* ===== MEMBER DISCOUNT BANNER ===== */
+    .member-banner {
+      background: linear-gradient(135deg, rgba(204,255,0,0.1), rgba(0,212,170,0.1));
+      border: 1px solid rgba(204,255,0,0.15); border-radius: 16px;
+      padding: 1.2rem 2rem; text-align: center;
+      margin-bottom: 2.5rem;
+      animation: pulseBorder 3s ease-in-out infinite;
+    }
+    @keyframes pulseBorder {
+      0%,100% { border-color: rgba(204,255,0,0.15); }
+      50% { border-color: rgba(204,255,0,0.35); }
+    }
+    .member-banner span { font-weight: 700; }
+
+    /* ===== CATEGORY FILTERS ===== */
+    .filters { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin-bottom: 2.5rem; }
+    .filter-btn {
+      padding: 0.55rem 1.3rem; border-radius: 50px; border: 1px solid var(--border);
+      background: transparent; color: var(--text-secondary);
+      font-family: 'Lexend', sans-serif; font-size: 0.8rem; font-weight: 500;
+      cursor: pointer; text-transform: uppercase; letter-spacing: 0.08em;
+      transition: all 0.3s;
+    }
+    .filter-btn:hover { border-color: var(--accent); color: var(--text-primary); }
+    .filter-btn.active {
+      background: linear-gradient(135deg, var(--accent), var(--accent-teal));
+      color: #0a0a0f; border-color: transparent; font-weight: 700;
+    }
+
+    /* ===== PRODUCT GRID ===== */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+    @media (max-width: 1024px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .product-grid { grid-template-columns: 1fr; } }
+
+    /* ===== PRODUCT CARD ===== */
+    .product-card {
+      border-radius: 16px; overflow: hidden;
+      background: var(--bg-card); border: 1px solid var(--border);
+      transition: all 0.4s cubic-bezier(.4,0,.2,1);
+      position: relative;
+    }
+    .product-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-8px);
+      box-shadow: 0 16px 48px rgba(204,255,0,0.08), 0 0 80px rgba(0,212,170,0.04);
+    }
+    .product-img {
+      height: 220px; position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .product-img .icon-wrap {
+      font-size: 4rem; opacity: 0.8; transition: transform 0.5s;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+    }
+    .product-card:hover .icon-wrap { transform: scale(1.12) rotate(-3deg); }
+    .product-img .badge-tag {
+      position: absolute; top: 12px; left: 12px;
+      padding: 0.25rem 0.7rem; border-radius: 50px;
+      font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+    }
+    .badge-new { background: var(--accent); color: #0a0a0f; }
+    .badge-sale { background: var(--error); color: #fff; }
+    .badge-top { background: var(--accent-teal); color: #0a0a0f; }
+    .product-info { padding: 1.2rem 1.2rem 1.4rem; }
+    .product-category {
+      font-size: 0.65rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.15em; color: var(--accent-teal); margin-bottom: 0.4rem;
+    }
+    .product-name {
+      font-family: 'Anybody', sans-serif; font-weight: 700; font-size: 1rem;
+      color: var(--text-primary); margin-bottom: 0.35rem; line-height: 1.3;
+    }
+    .product-desc {
+      font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.6rem; line-height: 1.5;
+    }
+    .star-rating { display: flex; align-items: center; gap: 0.25rem; margin-bottom: 0.7rem; }
+    .star-rating i { font-size: 0.75rem; color: #FBBF24; }
+    .star-rating i.empty { color: var(--text-secondary); opacity: 0.3; }
+    .star-rating span { font-size: 0.75rem; color: var(--text-secondary); margin-left: 0.3rem; font-weight: 500; }
+    .price-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+    .price { font-family: 'Anybody', sans-serif; font-weight: 800; font-size: 1.25rem; color: var(--text-primary); }
+    .member-price { font-size: 0.75rem; color: var(--accent-teal); font-weight: 600; }
+    .add-cart-btn {
+      padding: 0.55rem 1rem; border-radius: 50px; border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent-teal));
+      color: #0a0a0f; font-family: 'Lexend', sans-serif; font-weight: 700;
+      font-size: 0.75rem; cursor: pointer; text-transform: uppercase;
+      letter-spacing: 0.06em; transition: all 0.3s;
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      position: relative; overflow: hidden;
+    }
+    .add-cart-btn::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.25), transparent);
+      transform: translateX(-100%); transition: transform 0.4s;
+    }
+    .add-cart-btn:hover::after { transform: translateX(0); }
+    .add-cart-btn:hover { transform: scale(1.06); box-shadow: 0 0 20px rgba(204,255,0,0.3); }
+    .add-cart-btn.added { background: var(--accent-teal); }
+    .add-cart-btn.added i::before { content: "\f00c"; }
+
+    /* ===== SALE BANNER ===== */
+    .sale-banner {
+      margin: 3.5rem 0;
+      border-radius: 20px; overflow: hidden; position: relative;
+      background: linear-gradient(135deg, #0f0f19 0%, #141428 100%);
+      border: 1px solid var(--border);
+      padding: 3rem 2.5rem;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 2rem;
+    }
+    .sale-banner::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 80% 50%, rgba(204,255,0,0.12), transparent 70%);
+      pointer-events: none;
+    }
+    .sale-badge {
+      position: absolute; top: -1px; right: 2rem;
+      background: var(--error); color: #fff;
+      padding: 0.5rem 1.2rem 0.7rem; border-radius: 0 0 12px 12px;
+      font-weight: 800; font-size: 0.8rem; text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .sale-info { position: relative; z-index: 1; }
+    .sale-info h3 { font-family: 'Anybody', sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .sale-info h3 span { color: var(--accent); }
+    .sale-info p { color: var(--text-secondary); max-width: 480px; }
+    .sale-cta {
+      position: relative; z-index: 1;
+      padding: 0.9rem 2.2rem; border-radius: 50px; border: 2px solid var(--accent);
+      background: transparent; color: var(--accent);
+      font-family: 'Lexend', sans-serif; font-weight: 700; font-size: 0.85rem;
+      cursor: pointer; text-transform: uppercase; letter-spacing: 0.08em;
+      transition: all 0.3s;
+    }
+    .sale-cta:hover { background: var(--accent); color: #0a0a0f; box-shadow: 0 0 30px rgba(204,255,0,0.25); }
+
+    /* ===== CART SIDEBAR ===== */
+    .cart-overlay {
+      position: fixed; inset: 0; z-index: 2000;
+      background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+      opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    }
+    .cart-overlay.open { opacity: 1; pointer-events: all; }
+    .cart-sidebar {
+      position: fixed; top: 0; right: 0; bottom: 0; z-index: 2001;
+      width: 420px; max-width: 92vw;
+      background: var(--bg-secondary);
+      border-left: 1px solid var(--border);
+      transform: translateX(100%); transition: transform 0.4s cubic-bezier(.4,0,.2,1);
+      display: flex; flex-direction: column;
+    }
+    .cart-sidebar.open { transform: translateX(0); }
+    .cart-header {
+      padding: 1.5rem 1.5rem 1rem;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .cart-header h3 { font-family: 'Anybody', sans-serif; font-weight: 700; font-size: 1.2rem; }
+    .cart-close { background: none; border: none; color: var(--text-secondary); font-size: 1.4rem; cursor: pointer; transition: color 0.3s; }
+    .cart-close:hover { color: var(--text-primary); }
+    .cart-items { flex: 1; overflow-y: auto; padding: 1rem 1.5rem; }
+    .cart-empty { text-align: center; padding: 3rem 1rem; color: var(--text-secondary); }
+    .cart-empty i { font-size: 3rem; margin-bottom: 1rem; opacity: 0.3; display: block; }
+    .cart-item {
+      display: flex; gap: 1rem; padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      animation: slideInRight 0.3s;
+    }
+    @keyframes slideInRight { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+    .cart-item-img {
+      width: 60px; height: 60px; border-radius: 10px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+    }
+    .cart-item-info { flex: 1; }
+    .cart-item-name { font-weight: 600; font-size: 0.85rem; margin-bottom: 0.2rem; }
+    .cart-item-price { color: var(--accent); font-weight: 700; font-size: 0.9rem; }
+    .cart-item-qty { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.3rem; }
+    .qty-btn {
+      width: 26px; height: 26px; border-radius: 6px; border: 1px solid var(--border);
+      background: transparent; color: var(--text-primary); cursor: pointer;
+      display: flex; align-items: center; justify-content: center; font-size: 0.8rem;
+      transition: all 0.2s;
+    }
+    .qty-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .cart-item-qty span { font-size: 0.85rem; font-weight: 600; min-width: 1.2rem; text-align: center; }
+    .cart-item-remove { background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 0.9rem; transition: color 0.2s; align-self: flex-start; }
+    .cart-item-remove:hover { color: var(--error); }
+    .cart-footer {
+      padding: 1.2rem 1.5rem; border-top: 1px solid var(--border);
+    }
+    .cart-total { display: flex; justify-content: space-between; margin-bottom: 1rem; }
+    .cart-total span:first-child { color: var(--text-secondary); font-weight: 500; }
+    .cart-total span:last-child { font-family: 'Anybody', sans-serif; font-weight: 800; font-size: 1.3rem; }
+    .checkout-btn {
+      width: 100%; padding: 0.9rem; border-radius: 50px; border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent-teal));
+      color: #0a0a0f; font-family: 'Lexend', sans-serif; font-weight: 700;
+      font-size: 0.9rem; cursor: pointer; text-transform: uppercase;
+      letter-spacing: 0.08em; transition: all 0.3s;
+    }
+    .checkout-btn:hover { transform: scale(1.02); box-shadow: 0 0 30px rgba(204,255,0,0.3); }
+
+    /* ===== CART FLOATING BUTTON ===== */
+    .cart-fab {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 1500;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-teal));
+      border: none; color: #0a0a0f; font-size: 1.3rem; cursor: pointer;
+      box-shadow: 0 4px 24px rgba(204,255,0,0.3);
+      transition: all 0.3s; display: flex; align-items: center; justify-content: center;
+    }
+    .cart-fab:hover { transform: scale(1.1); box-shadow: 0 6px 32px rgba(204,255,0,0.45); }
+    .cart-fab .count {
+      position: absolute; top: -4px; right: -4px;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--error); color: #fff;
+      font-size: 0.7rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.3s;
+    }
+    .cart-fab .count.bump { animation: bump 0.3s; }
+    @keyframes bump { 0%,100% { transform: scale(1); } 50% { transform: scale(1.4); } }
+
+    /* ===== FOOTER ===== */
+    .site-footer {
+      background: var(--bg-secondary); border-top: 1px solid var(--border);
+      padding: 4rem 0 0; margin-top: 5rem;
+    }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem; }
+    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+    .footer-brand p { color: var(--text-secondary); font-size: 0.85rem; line-height: 1.7; margin-top: 0.8rem; }
+    .footer-col h4 {
+      font-family: 'Anybody', sans-serif; font-weight: 700; font-size: 0.8rem;
+      text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .footer-col a {
+      display: block; color: var(--text-secondary); text-decoration: none;
+      font-size: 0.85rem; padding: 0.3rem 0; transition: color 0.3s;
+    }
+    .footer-col a:hover { color: var(--text-primary); }
+    .footer-socials { display: flex; gap: 0.8rem; margin-top: 1.2rem; }
+    .footer-socials a {
+      width: 38px; height: 38px; border-radius: 50%;
+      border: 1px solid var(--border); display: flex; align-items: center; justify-content: center;
+      color: var(--text-secondary); font-size: 0.9rem; transition: all 0.3s;
+    }
+    .footer-socials a:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+    .footer-bottom {
+      margin-top: 3rem; padding: 1.5rem 0;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+      font-size: 0.8rem; color: var(--text-secondary);
+    }
+
+    /* ===== HELPERS & ANIMATIONS ===== */
+    .fade-up { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(.4,0,.2,1); }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .no-results { text-align: center; padding: 4rem 1rem; grid-column: 1/-1; }
+    .no-results i { font-size: 3rem; color: var(--text-secondary); opacity: 0.3; margin-bottom: 1rem; }
+    .no-results p { color: var(--text-secondary); }
+    @media (max-width: 768px) {
+      .mobile-menu-btn { display: block; }
+      .desktop-nav { display: none !important; }
+      .hero h1 { font-size: 2.2rem; }
+      .sale-banner { padding: 2rem 1.5rem; }
+      .sale-info h3 { font-size: 1.4rem; }
+    }
+
+    /* ===== PRODUCT IMAGE GRADIENTS ===== */
+    .grad-racket { background: linear-gradient(135deg, #1a1a3e 0%, #0f2027 50%, #203a43 100%); }
+    .grad-shuttle { background: linear-gradient(135deg, #1a0f2e 0%, #0f1923 50%, #1e3a2f 100%); }
+    .grad-apparel { background: linear-gradient(135deg, #1e1e3a 0%, #162028 50%, #28203a 100%); }
+    .grad-accessory { background: linear-gradient(135deg, #0f1f2e 0%, #1a1a2e 50%, #2a1e1e 100%); }
+    .grad-shoes { background: linear-gradient(135deg, #1a2a1a 0%, #0f1a2a 50%, #2a2a1a 100%); }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(204,255,0,0.15); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(204,255,0,0.3); }
+  </style>
+</head>
+<body>
+
+<!-- ANIMATED GRADIENT BG -->
+<div class="gradient-bg"></div>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 lg:h-[72px]">
+    <!-- Logo -->
+    <a href="index.html" class="flex items-center gap-2 text-decoration-none" style="text-decoration:none;">
+      <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-teal));display:flex;align-items:center;justify-content:center;">
+        <i class="fas fa-feather-alt" style="color:#0a0a0f;font-size:1rem;"></i>
+      </div>
+      <span class="font-headline text-lg font-bold" style="color:var(--text-primary);letter-spacing:-0.02em;">FALCON<span style="color:var(--accent);">CLUB</span></span>
+    </a>
+    <!-- Desktop Nav -->
+    <nav class="desktop-nav hidden lg:flex items-center gap-6">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="events.html" class="nav-link">Events</a>
+      <a href="tournaments.html" class="nav-link">Tournaments</a>
+      <a href="programs.html" class="nav-link">Programs</a>
+      <a href="membership.html" class="nav-link">Membership</a>
+      <a href="shop.html" class="nav-link active">Shop</a>
+      <a href="contact.html" class="nav-link">Contact Us</a>
+    </nav>
+    <!-- Actions -->
+    <div class="flex items-center gap-3">
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <i class="fas fa-moon" id="themeIcon"></i>
+      </button>
+      <a href="court-booking.html" class="book-btn hidden sm:inline-flex">Book Now</a>
+      <button class="mobile-menu-btn lg:hidden" onclick="openMobileMenu()" aria-label="Open menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-close" onclick="closeMobileMenu()"><i class="fas fa-times"></i></button>
+  <a href="index.html" class="nav-link" onclick="closeMobileMenu()">Home</a>
+  <a href="events.html" class="nav-link" onclick="closeMobileMenu()">Events</a>
+  <a href="tournaments.html" class="nav-link" onclick="closeMobileMenu()">Tournaments</a>
+  <a href="programs.html" class="nav-link" onclick="closeMobileMenu()">Programs</a>
+  <a href="membership.html" class="nav-link" onclick="closeMobileMenu()">Membership</a>
+  <a href="shop.html" class="nav-link active" onclick="closeMobileMenu()">Shop</a>
+  <a href="contact.html" class="nav-link" onclick="closeMobileMenu()">Contact Us</a>
+  <a href="court-booking.html" class="book-btn" onclick="closeMobileMenu()">Book Now</a>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="fade-up">
+      <div class="hero-badge"><i class="fas fa-shopping-bag"></i> Official Falcon Club Gear</div>
+      <h1>PRO <span>SHOP</span></h1>
+      <p>Premium badminton equipment, apparel, and accessories — trusted by competitive players and club members.</p>
+      <!-- Search Bar -->
+      <div class="search-bar">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchInput" placeholder="Search products..." oninput="filterProducts()" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MAIN SHOP ============ -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+
+  <!-- Member Discount Banner -->
+  <div class="member-banner fade-up">
+    <i class="fas fa-crown" style="color:var(--accent);margin-right:0.4rem;"></i>
+    <span style="color:var(--accent);">Members save up to 20%!</span>
+    <span style="color:var(--text-secondary);"> — Join Falcon Club membership for exclusive pricing on all gear.</span>
+    <a href="membership.html" style="color:var(--accent-teal);font-weight:600;margin-left:0.5rem;text-decoration:underline;">Learn More →</a>
+  </div>
+
+  <!-- Category Filters -->
+  <div class="filters fade-up">
+    <button class="filter-btn active" data-cat="all" onclick="setFilter('all',this)">All</button>
+    <button class="filter-btn" data-cat="rackets" onclick="setFilter('rackets',this)"><i class="fas fa-table-tennis-paddle-ball" style="margin-right:0.3rem;"></i>Rackets</button>
+    <button class="filter-btn" data-cat="shuttlecocks" onclick="setFilter('shuttlecocks',this)"><i class="fas fa-baseball" style="margin-right:0.3rem;"></i>Shuttlecocks</button>
+    <button class="filter-btn" data-cat="apparel" onclick="setFilter('apparel',this)"><i class="fas fa-shirt" style="margin-right:0.3rem;"></i>Apparel</button>
+    <button class="filter-btn" data-cat="accessories" onclick="setFilter('accessories',this)"><i class="fas fa-bag-shopping" style="margin-right:0.3rem;"></i>Accessories</button>
+    <button class="filter-btn" data-cat="shoes" onclick="setFilter('shoes',this)"><i class="fas fa-shoe-prints" style="margin-right:0.3rem;"></i>Shoes</button>
+  </div>
+
+  <!-- Product Grid -->
+  <div class="product-grid" id="productGrid"></div>
+
+  <!-- No Results -->
+  <div class="no-results" id="noResults" style="display:none;">
+    <i class="fas fa-search"></i>
+    <p>No products found. Try a different search or category.</p>
+  </div>
+
+  <!-- ============ SALE BANNER ============ -->
+  <div class="sale-banner fade-up">
+    <div class="sale-badge"><i class="fas fa-bolt"></i> LIMITED TIME</div>
+    <div class="sale-info">
+      <h3>Summer Smash <span>Sale</span></h3>
+      <p>Score up to 30% off select rackets, shoes, and training gear. Gear up for the season — offer ends July 31st!</p>
+    </div>
+    <button class="sale-cta" onclick="setFilter('all',document.querySelector('.filter-btn[data-cat=all]'));window.scrollTo({top:document.getElementById('productGrid').offsetTop-100,behavior:'smooth'});">
+      Shop the Sale <i class="fas fa-arrow-right" style="margin-left:0.4rem;"></i>
+    </button>
+  </div>
+
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="flex items-center gap-2 mb-1">
+          <div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent-teal));display:flex;align-items:center;justify-content:center;">
+            <i class="fas fa-feather-alt" style="color:#0a0a0f;font-size:0.85rem;"></i>
+          </div>
+          <span class="font-headline text-base font-bold" style="letter-spacing:-0.02em;">FALCON<span style="color:var(--accent);">CLUB</span></span>
+        </div>
+        <p>Premier badminton club in the USA offering world-class courts, coaching, tournaments, and pro-level equipment.</p>
+        <div class="footer-socials">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="events.html">Events</a>
+        <a href="tournaments.html">Tournaments</a>
+        <a href="programs.html">Programs</a>
+        <a href="membership.html">Membership</a>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="shop.html">Pro Shop</a>
+        <a href="court-booking.html">Book a Court</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="#">FAQ</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="tel:+15551234567"><i class="fas fa-phone" style="margin-right:0.4rem;font-size:0.75rem;"></i>(555) 123-4567</a>
+        <a href="mailto:info@falconclub.com"><i class="fas fa-envelope" style="margin-right:0.4rem;font-size:0.75rem;"></i>info@falconclub.com</a>
+        <a href="#"><i class="fas fa-map-marker-alt" style="margin-right:0.4rem;font-size:0.75rem;"></i>123 Shuttlecock Ln, CA</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Falcon Club. All rights reserved.</span>
+      <span>Designed with <i class="fas fa-heart" style="color:var(--error);font-size:0.7rem;"></i> for badminton</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ CART FAB ============ -->
+<button class="cart-fab" onclick="openCart()" aria-label="Open cart">
+  <i class="fas fa-shopping-cart"></i>
+  <span class="count" id="cartCount">0</span>
+</button>
+
+<!-- ============ CART OVERLAY & SIDEBAR ============ -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<aside class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3><i class="fas fa-shopping-cart" style="margin-right:0.5rem;color:var(--accent);"></i>Your Cart</h3>
+    <button class="cart-close" onclick="closeCart()"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty" id="cartEmpty">
+      <i class="fas fa-shopping-bag"></i>
+      <p>Your cart is empty</p>
+      <p style="font-size:0.8rem;margin-top:0.5rem;">Browse our products and add items to get started.</p>
+    </div>
+  </div>
+  <div class="cart-footer" id="cartFooter" style="display:none;">
+    <div class="cart-total">
+      <span>Subtotal</span>
+      <span id="cartTotal">$0.00</span>
+    </div>
+    <button class="checkout-btn"><i class="fas fa-lock" style="margin-right:0.4rem;"></i>Proceed to Checkout</button>
+    <p style="text-align:center;font-size:0.7rem;color:var(--text-secondary);margin-top:0.6rem;">Taxes and shipping calculated at checkout</p>
+  </div>
+</aside>
+
+<!-- ============ JAVASCRIPT ============ -->
+<script>
+  // ===== PRODUCTS DATA =====
+  const products = [
+    { id:1, name:"Falcon Pro X1 Racket", price:189.99, memberPrice:151.99, desc:"Competition-grade, carbon fiber frame", rating:4.8, category:"rackets", icon:"fa-table-tennis-paddle-ball", gradient:"grad-racket", badge:"top", badgeText:"TOP SELLER" },
+    { id:2, name:"Falcon Junior Lite", price:79.99, memberPrice:63.99, desc:"Perfect for young players", rating:4.6, category:"rackets", icon:"fa-table-tennis-paddle-ball", gradient:"grad-racket", badge:"new", badgeText:"NEW" },
+    { id:3, name:"Yonex Astrox 88D Pro", price:229.99, memberPrice:183.99, desc:"Power-focused doubles racket", rating:4.9, category:"rackets", icon:"fa-table-tennis-paddle-ball", gradient:"grad-racket", badge:"top", badgeText:"PRO PICK" },
+    { id:4, name:"Falcon Tournament Feather (12pk)", price:34.99, memberPrice:27.99, desc:"Competition approved", rating:4.7, category:"shuttlecocks", icon:"fa-baseball", gradient:"grad-shuttle", badge:"", badgeText:"" },
+    { id:5, name:"Training Nylon Shuttle (6pk)", price:14.99, memberPrice:11.99, desc:"Durable practice shuttles", rating:4.3, category:"shuttlecocks", icon:"fa-baseball", gradient:"grad-shuttle", badge:"", badgeText:"" },
+    { id:6, name:"Falcon Club Performance Tee", price:39.99, memberPrice:31.99, desc:"Moisture-wicking fabric", rating:4.5, category:"apparel", icon:"fa-shirt", gradient:"grad-apparel", badge:"new", badgeText:"NEW" },
+    { id:7, name:"Falcon Club Shorts", price:34.99, memberPrice:27.99, desc:"Lightweight & flexible", rating:4.4, category:"apparel", icon:"fa-shirt", gradient:"grad-apparel", badge:"", badgeText:"" },
+    { id:8, name:"Falcon Club Hoodie", price:59.99, memberPrice:47.99, desc:"Premium cotton blend", rating:4.8, category:"apparel", icon:"fa-shirt", gradient:"grad-apparel", badge:"sale", badgeText:"SALE" },
+    { id:9, name:"Premium Racket Bag (6pk)", price:89.99, memberPrice:71.99, desc:"Thermal compartment", rating:4.6, category:"accessories", icon:"fa-bag-shopping", gradient:"grad-accessory", badge:"", badgeText:"" },
+    { id:10, name:"Grip Tape (3 pack)", price:9.99, memberPrice:7.99, desc:"Anti-slip overgrip", rating:4.5, category:"accessories", icon:"fa-tape", gradient:"grad-accessory", badge:"", badgeText:"" },
+    { id:11, name:"Falcon Club Water Bottle", price:24.99, memberPrice:19.99, desc:"Insulated 32oz", rating:4.7, category:"accessories", icon:"fa-bottle-water", gradient:"grad-accessory", badge:"new", badgeText:"NEW" },
+    { id:12, name:"Falcon Court Pro Shoes", price:129.99, memberPrice:103.99, desc:"Non-marking sole, ankle support", rating:4.8, category:"shoes", icon:"fa-shoe-prints", gradient:"grad-shoes", badge:"top", badgeText:"BEST SELLER" },
+  ];
+
+  let currentFilter = 'all';
+  let cart = [];
+
+  // ===== RENDER PRODUCTS =====
+  function renderProducts() {
+    const grid = document.getElementById('productGrid');
+    const search = document.getElementById('searchInput').value.toLowerCase().trim();
+    let filtered = products.filter(p => {
+      const matchCat = currentFilter === 'all' || p.category === currentFilter;
+      const matchSearch = !search || p.name.toLowerCase().includes(search) || p.desc.toLowerCase().includes(search) || p.category.toLowerCase().includes(search);
+      return matchCat && matchSearch;
+    });
+
+    document.getElementById('noResults').style.display = filtered.length === 0 ? 'block' : 'none';
+
+    grid.innerHTML = filtered.map((p, i) => {
+      const stars = renderStars(p.rating);
+      const badgeHtml = p.badge ? `<span class="badge-tag badge-${p.badge}">${p.badgeText}</span>` : '';
+      return `
+        <div class="product-card fade-up" data-cat="${p.category}" style="animation-delay:${i * 60}ms">
+          <div class="product-img ${p.gradient}">
+            ${badgeHtml}
+            <div class="icon-wrap" style="color:rgba(255,255,255,0.7);">
+              <!-- SVG decorative circles -->
+              <svg style="position:absolute;top:10%;left:10%;opacity:0.08;" width="80" height="80"><circle cx="40" cy="40" r="38" stroke="currentColor" stroke-width="1" fill="none"/></svg>
+              <svg style="position:absolute;bottom:10%;right:10%;opacity:0.06;" width="50" height="50"><circle cx="25" cy="25" r="23" stroke="currentColor" stroke-width="1" fill="none"/></svg>
+              <i class="fas ${p.icon}"></i>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-category">${p.category}</div>
+            <div class="product-name">${p.name}</div>
+            <div class="product-desc">${p.desc}</div>
+            <div class="star-rating">${stars} <span>${p.rating}/5</span></div>
+            <div class="price-row">
+              <div>
+                <div class="price">$${p.price.toFixed(2)}</div>
+                <div class="member-price"><i class="fas fa-crown" style="font-size:0.6rem;margin-right:0.2rem;"></i>Member: $${p.memberPrice.toFixed(2)}</div>
+              </div>
+              <button class="add-cart-btn" id="cartBtn${p.id}" onclick="addToCart(${p.id})">
+                <i class="fas fa-cart-plus"></i> Add
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    // Trigger fade-in
+    requestAnimationFrame(() => {
+      grid.querySelectorAll('.fade-up').forEach((el, i) => {
+        setTimeout(() => el.classList.add('visible'), i * 60);
+      });
+    });
+  }
+
+  function renderStars(rating) {
+    let html = '';
+    for (let i = 1; i <= 5; i++) {
+      if (rating >= i) html += '<i class="fas fa-star"></i>';
+      else if (rating >= i - 0.5) html += '<i class="fas fa-star-half-alt"></i>';
+      else html += '<i class="far fa-star empty"></i>';
+    }
+    return html;
+  }
+
+  // ===== FILTER =====
+  function setFilter(cat, btn) {
+    currentFilter = cat;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderProducts();
+  }
+
+  function filterProducts() {
+    renderProducts();
+  }
+
+  // ===== CART =====
+  function addToCart(id) {
+    const product = products.find(p => p.id === id);
+    if (!product) return;
+    const existing = cart.find(c => c.id === id);
+    if (existing) { existing.qty++; }
+    else { cart.push({ ...product, qty: 1 }); }
+    updateCartUI();
+
+    // Button animation
+    const btn = document.getElementById(`cartBtn${id}`);
+    if (btn) {
+      btn.classList.add('added');
+      btn.innerHTML = '<i class="fas fa-check"></i> Added';
+      setTimeout(() => {
+        btn.classList.remove('added');
+        btn.innerHTML = '<i class="fas fa-cart-plus"></i> Add';
+      }, 1200);
+    }
+
+    // Count bump
+    const countEl = document.getElementById('cartCount');
+    countEl.classList.remove('bump');
+    void countEl.offsetWidth;
+    countEl.classList.add('bump');
+  }
+
+  function removeFromCart(id) {
+    cart = cart.filter(c => c.id !== id);
+    updateCartUI();
+  }
+
+  function changeQty(id, delta) {
+    const item = cart.find(c => c.id === id);
+    if (!item) return;
+    item.qty += delta;
+    if (item.qty <= 0) { removeFromCart(id); return; }
+    updateCartUI();
+  }
+
+  function updateCartUI() {
+    const totalItems = cart.reduce((s, c) => s + c.qty, 0);
+    const totalPrice = cart.reduce((s, c) => s + c.price * c.qty, 0);
+    document.getElementById('cartCount').textContent = totalItems;
+    const itemsEl = document.getElementById('cartItems');
+    const emptyEl = document.getElementById('cartEmpty');
+    const footerEl = document.getElementById('cartFooter');
+
+    if (cart.length === 0) {
+      emptyEl.style.display = 'block';
+      footerEl.style.display = 'none';
+      // Clear item elements but keep empty
+      itemsEl.querySelectorAll('.cart-item').forEach(el => el.remove());
+    } else {
+      emptyEl.style.display = 'none';
+      footerEl.style.display = 'block';
+      // Rebuild items
+      const existingItems = itemsEl.querySelectorAll('.cart-item');
+      existingItems.forEach(el => el.remove());
+      cart.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
+          <div class="cart-item-img ${item.gradient}" style="border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:rgba(255,255,255,0.7);">
+            <i class="fas ${item.icon}"></i>
+          </div>
+          <div class="cart-item-info">
+            <div class="cart-item-name">${item.name}</div>
+            <div class="cart-item-price">$${(item.price * item.qty).toFixed(2)}</div>
+            <div class="cart-item-qty">
+              <button class="qty-btn" onclick="changeQty(${item.id},-1)">−</button>
+              <span>${item.qty}</span>
+              <button class="qty-btn" onclick="changeQty(${item.id},1)">+</button>
+            </div>
+          </div>
+          <button class="cart-item-remove" onclick="removeFromCart(${item.id})"><i class="fas fa-trash-alt"></i></button>
+        `;
+        itemsEl.appendChild(div);
+      });
+      document.getElementById('cartTotal').textContent = `$${totalPrice.toFixed(2)}`;
+    }
+  }
+
+  function openCart() {
+    document.getElementById('cartOverlay').classList.add('open');
+    document.getElementById('cartSidebar').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeCart() {
+    document.getElementById('cartOverlay').classList.remove('open');
+    document.getElementById('cartSidebar').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // ===== THEME TOGGLE =====
+  function toggleTheme() {
+    document.body.classList.toggle('light-mode');
+    const icon = document.getElementById('themeIcon');
+    if (document.body.classList.contains('light-mode')) {
+      icon.className = 'fas fa-sun';
+      localStorage.setItem('falcon-theme', 'light');
+    } else {
+      icon.className = 'fas fa-moon';
+      localStorage.setItem('falcon-theme', 'dark');
+    }
+  }
+  (function loadTheme() {
+    if (localStorage.getItem('falcon-theme') === 'light') {
+      document.body.classList.add('light-mode');
+      document.getElementById('themeIcon').className = 'fas fa-sun';
+    }
+  })();
+
+  // ===== MOBILE MENU =====
+  function openMobileMenu() { document.getElementById('mobileNav').classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeMobileMenu() { document.getElementById('mobileNav').classList.remove('open'); document.body.style.overflow = ''; }
+
+  // ===== INTERSECTION OBSERVER =====
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+
+  function observeElements() {
+    document.querySelectorAll('.fade-up:not(.visible)').forEach(el => observer.observe(el));
+  }
+
+  // ===== INIT =====
+  document.addEventListener('DOMContentLoaded', () => {
+    renderProducts();
+    observeElements();
+  });
+
+  // Keyboard: Escape closes cart/mobile menu
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closeCart(); closeMobileMenu(); }
+  });
+</script>
+</body>
+</html>

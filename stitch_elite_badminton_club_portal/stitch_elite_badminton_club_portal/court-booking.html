@@ -1,0 +1,1990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Court | Falcon Club — Premium Badminton</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anybody:wght@400;600;700;800&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* ─── CSS VARIABLES ─── */
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #0e0e18;
+            --bg-card: rgba(15, 15, 25, 0.8);
+            --bg-card-solid: #0f0f19;
+            --accent: #CCFF00;
+            --accent-teal: #00D4AA;
+            --text-primary: #FFFFFF;
+            --text-secondary: #94A3B8;
+            --border: rgba(204, 255, 0, 0.1);
+            --border-hover: rgba(204, 255, 0, 0.3);
+            --error: #FF4444;
+            --glass-bg: rgba(15, 15, 25, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.05);
+            --surface: rgba(255,255,255,0.03);
+        }
+
+        body.light-mode {
+            --bg-primary: #F5F5F0;
+            --bg-secondary: #EAEAE5;
+            --bg-card: rgba(255, 255, 255, 0.85);
+            --bg-card-solid: #FFFFFF;
+            --text-primary: #1a1a2e;
+            --text-secondary: #555570;
+            --border: rgba(0, 0, 0, 0.08);
+            --border-hover: rgba(0, 0, 0, 0.2);
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(0, 0, 0, 0.06);
+            --surface: rgba(0,0,0,0.03);
+        }
+
+        /* ─── BASE ─── */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Lexend', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+        h1,h2,h3,h4,h5,h6,.font-headline { font-family: 'Anybody', sans-serif; }
+
+        /* ─── SCROLLBAR ─── */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+        /* ─── GLASS CARD ─── */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        .glass:hover { border-color: var(--border-hover); }
+        .glass-strong {
+            background: var(--bg-card);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+        }
+
+        /* ─── NEON GLOW ─── */
+        .neon-text { color: var(--accent); text-shadow: 0 0 20px rgba(204,255,0,0.3); }
+        .neon-glow { box-shadow: 0 0 30px rgba(204,255,0,0.15), 0 0 60px rgba(204,255,0,0.05); }
+        .teal-glow { box-shadow: 0 0 30px rgba(0,212,170,0.2); }
+
+        /* ─── BUTTONS ─── */
+        .btn-primary {
+            background: linear-gradient(135deg, #CCFF00, #00D4AA);
+            color: #0a0a0f;
+            font-family: 'Lexend', sans-serif;
+            font-weight: 700;
+            padding: 14px 32px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(204,255,0,0.3);
+        }
+        .btn-primary:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 10px 24px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'Lexend', sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+        }
+        .btn-outline:hover {
+            background: rgba(204,255,0,0.1);
+            box-shadow: 0 0 20px rgba(204,255,0,0.15);
+        }
+
+        /* ─── HEADER ─── */
+        .site-header {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(10,10,15,0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+        body.light-mode .site-header {
+            background: rgba(245,245,240,0.9);
+        }
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            position: relative;
+            padding: 6px 0;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute; bottom: 0; left: 0;
+            width: 0; height: 2px;
+            background: linear-gradient(90deg, #CCFF00, #00D4AA);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover { color: var(--accent); }
+        .nav-link:hover::after { width: 100%; }
+        .nav-link.active { color: var(--accent); }
+        .nav-link.active::after { width: 100%; }
+
+        .theme-toggle {
+            width: 44px; height: 44px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+        .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+        .mobile-menu-btn {
+            display: none;
+            width: 44px; height: 44px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text-primary);
+            cursor: pointer;
+            align-items: center; justify-content: center;
+            font-size: 1.3rem;
+        }
+        .mobile-nav {
+            display: none;
+            position: fixed; top: 72px; left: 0; right: 0; bottom: 0;
+            background: rgba(10,10,15,0.97);
+            backdrop-filter: blur(20px);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+        }
+        body.light-mode .mobile-nav { background: rgba(245,245,240,0.97); }
+        .mobile-nav.open { display: flex; }
+        .mobile-nav .nav-link { font-size: 1.1rem; }
+
+        /* ─── HERO ─── */
+        .hero-section {
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 100px;
+        }
+        .hero-bg {
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse at 30% 20%, rgba(204,255,0,0.06) 0%, transparent 50%),
+                        radial-gradient(ellipse at 70% 80%, rgba(0,212,170,0.06) 0%, transparent 50%),
+                        radial-gradient(ellipse at 50% 50%, rgba(204,255,0,0.02) 0%, transparent 70%);
+        }
+        .hero-grid {
+            position: absolute; inset: 0;
+            background-image: linear-gradient(rgba(204,255,0,0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(204,255,0,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+        }
+
+        /* Shuttlecock Animations */
+        .shuttle-float {
+            position: absolute;
+            opacity: 0.08;
+            animation: floatSlow 15s ease-in-out infinite;
+        }
+        .shuttle-1 { top: 15%; left: 10%; animation-delay: 0s; font-size: 4rem; }
+        .shuttle-2 { top: 60%; right: 8%; animation-delay: -5s; font-size: 3rem; }
+        .shuttle-3 { bottom: 20%; left: 20%; animation-delay: -10s; font-size: 2.5rem; }
+        .shuttle-4 { top: 30%; right: 25%; animation-delay: -3s; font-size: 3.5rem; }
+
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(5deg); }
+            50% { transform: translateY(-10px) rotate(-3deg); }
+            75% { transform: translateY(-25px) rotate(3deg); }
+        }
+
+        .racket-anim {
+            position: absolute;
+            width: 120px; height: 120px;
+            opacity: 0.06;
+            animation: racketSwing 8s ease-in-out infinite;
+        }
+        .racket-1 { top: 20%; right: 15%; animation-delay: -2s; }
+        .racket-2 { bottom: 25%; left: 12%; animation-delay: -6s; transform: scaleX(-1); }
+
+        @keyframes racketSwing {
+            0%, 100% { transform: rotate(-10deg); }
+            50% { transform: rotate(15deg); }
+        }
+
+        /* ─── SECTION ─── */
+        .section-label {
+            font-family: 'Lexend', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+        .section-title {
+            font-family: 'Anybody', sans-serif;
+            font-weight: 800;
+            line-height: 1.1;
+        }
+
+        /* ─── CALENDAR ─── */
+        .calendar-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .calendar {
+            padding: 24px;
+        }
+        .calendar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+        .calendar-nav {
+            width: 36px; height: 36px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .calendar-nav:hover { border-color: var(--accent); color: var(--accent); }
+        .cal-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+        }
+        .cal-day-name {
+            text-align: center;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 8px 0;
+        }
+        .cal-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--text-primary);
+            border: 1px solid transparent;
+        }
+        .cal-day:hover:not(.disabled):not(.empty) {
+            border-color: var(--accent);
+            background: rgba(204,255,0,0.08);
+        }
+        .cal-day.selected {
+            background: var(--accent);
+            color: #0a0a0f;
+            font-weight: 700;
+            box-shadow: 0 0 20px rgba(204,255,0,0.3);
+        }
+        .cal-day.today {
+            border-color: var(--accent-teal);
+            color: var(--accent-teal);
+        }
+        .cal-day.disabled {
+            color: rgba(148,163,184,0.3);
+            cursor: not-allowed;
+        }
+        .cal-day.empty { cursor: default; }
+
+        /* ─── COURT MAP ─── */
+        .court-map {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            padding: 32px;
+            position: relative;
+        }
+        .court-card {
+            position: relative;
+            padding: 20px;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid var(--border);
+            background: var(--surface);
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .court-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-hover);
+        }
+        .court-card.available { border-color: rgba(0,212,170,0.4); }
+        .court-card.available .court-status-dot { background: #00D4AA; box-shadow: 0 0 10px rgba(0,212,170,0.5); }
+        .court-card.booked {
+            border-color: rgba(255,68,68,0.3);
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .court-card.booked .court-status-dot { background: #FF4444; box-shadow: 0 0 10px rgba(255,68,68,0.5); }
+        .court-card.selected {
+            border-color: var(--accent) !important;
+            background: rgba(204,255,0,0.05) !important;
+            box-shadow: 0 0 30px rgba(204,255,0,0.15), inset 0 0 30px rgba(204,255,0,0.03);
+            opacity: 1;
+        }
+        .court-card.selected .court-status-dot { background: var(--accent); box-shadow: 0 0 15px rgba(204,255,0,0.6); }
+
+        .court-inner {
+            position: relative;
+            height: 70px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            margin: 12px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .court-inner::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 0; right: 0;
+            height: 1px;
+            background: rgba(255,255,255,0.08);
+        }
+        .court-inner::after {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 20px; height: 20px;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .court-net {
+            position: absolute;
+            left: 50%; top: 10%; bottom: 10%;
+            width: 1px;
+            background: repeating-linear-gradient(to bottom, rgba(255,255,255,0.15) 0px, rgba(255,255,255,0.15) 3px, transparent 3px, transparent 6px);
+        }
+
+        .court-status-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .court-type-badge {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 6px;
+            display: inline-block;
+        }
+        .badge-standard { background: rgba(0,212,170,0.15); color: #00D4AA; }
+        .badge-premium { background: rgba(204,255,0,0.15); color: #CCFF00; }
+        .badge-training { background: rgba(138,43,226,0.2); color: #b388ff; }
+        .badge-vip { background: rgba(255,215,0,0.15); color: #FFD700; }
+
+        /* ─── TIME SLOTS ─── */
+        .time-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        .time-slot {
+            padding: 14px 8px;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .time-slot:hover:not(.slot-booked) {
+            border-color: var(--accent);
+            background: rgba(204,255,0,0.05);
+        }
+        .time-slot.slot-available { color: var(--text-primary); }
+        .time-slot.slot-booked {
+            background: rgba(255,68,68,0.08);
+            border-color: rgba(255,68,68,0.2);
+            color: rgba(148,163,184,0.4);
+            cursor: not-allowed;
+            text-decoration: line-through;
+        }
+        .time-slot.slot-selected {
+            background: rgba(204,255,0,0.12) !important;
+            border-color: var(--accent) !important;
+            color: var(--accent) !important;
+            font-weight: 700;
+            box-shadow: 0 0 20px rgba(204,255,0,0.15);
+        }
+
+        /* ─── BOOKING SUMMARY ─── */
+        .summary-sidebar {
+            position: sticky;
+            top: 100px;
+        }
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+        .summary-row:last-child { border-bottom: none; }
+        .summary-label { color: var(--text-secondary); font-weight: 400; }
+        .summary-value { font-weight: 600; }
+        .summary-total {
+            font-size: 1.8rem;
+            font-weight: 800;
+            font-family: 'Anybody', sans-serif;
+            background: linear-gradient(135deg, #CCFF00, #00D4AA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .addon-check {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid var(--border);
+            margin-bottom: 8px;
+        }
+        .addon-check:hover { border-color: var(--border-hover); }
+        .addon-check.checked {
+            border-color: var(--accent);
+            background: rgba(204,255,0,0.05);
+        }
+        .addon-checkbox {
+            width: 20px; height: 20px;
+            border-radius: 6px;
+            border: 2px solid var(--text-secondary);
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+        .addon-check.checked .addon-checkbox {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #0a0a0f;
+        }
+
+        /* ─── POLICY ─── */
+        .policy-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 20px;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            transition: all 0.3s ease;
+        }
+        .policy-card:hover {
+            border-color: var(--border-hover);
+            transform: translateX(4px);
+        }
+        .policy-icon {
+            width: 44px; height: 44px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        /* ─── MY BOOKINGS ─── */
+        .booking-row {
+            display: grid;
+            grid-template-columns: auto 1fr auto auto auto;
+            gap: 20px;
+            align-items: center;
+            padding: 20px;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            transition: all 0.3s ease;
+            margin-bottom: 12px;
+        }
+        .booking-row:hover {
+            border-color: var(--border-hover);
+            background: rgba(204,255,0,0.02);
+        }
+        .booking-status {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .status-confirmed { background: rgba(0,212,170,0.15); color: #00D4AA; }
+        .status-upcoming { background: rgba(204,255,0,0.15); color: #CCFF00; }
+        .status-completed { background: rgba(148,163,184,0.15); color: #94A3B8; }
+
+        /* ─── LEGEND ─── */
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+        .legend-dot {
+            width: 12px; height: 12px;
+            border-radius: 4px;
+        }
+
+        /* ─── FOOTER ─── */
+        .site-footer {
+            border-top: 1px solid var(--border);
+            background: var(--bg-secondary);
+            transition: background 0.5s ease;
+        }
+        body.light-mode .site-footer { background: #e8e8e3; }
+
+        /* ─── ANIMATIONS ─── */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .pulse-ring {
+            animation: pulseRing 2s ease-out infinite;
+        }
+        @keyframes pulseRing {
+            0% { box-shadow: 0 0 0 0 rgba(204,255,0,0.3); }
+            70% { box-shadow: 0 0 0 10px rgba(204,255,0,0); }
+            100% { box-shadow: 0 0 0 0 rgba(204,255,0,0); }
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 1024px) {
+            .court-map { grid-template-columns: repeat(2, 1fr); }
+            .booking-layout { flex-direction: column; }
+            .calendar-container { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .desktop-nav { display: none !important; }
+            .mobile-menu-btn { display: flex !important; }
+            .time-grid { grid-template-columns: repeat(3, 1fr); }
+            .court-map { grid-template-columns: 1fr 1fr; gap: 10px; padding: 16px; }
+            .booking-row { grid-template-columns: 1fr; gap: 8px; }
+            .hero-section { min-height: 40vh; }
+        }
+        @media (max-width: 480px) {
+            .court-map { grid-template-columns: 1fr; }
+            .time-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* Confirmation & Payment Modal */
+        .modal-overlay {
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal-overlay.open { display: flex; }
+        .modal-box {
+            background: var(--bg-card-solid);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 40px;
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+        }
+        .payment-modal-box {
+            background: var(--bg-card-solid);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 32px;
+            max-width: 840px;
+            width: 100%;
+            position: relative;
+            max-height: 92vh;
+            overflow-y: auto;
+            text-align: left;
+        }
+        .modal-check {
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #CCFF00, #00D4AA);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 2.5rem;
+            color: #0a0a0f;
+            animation: popIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        @keyframes popIn {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+
+        /* ─── WIZARD PROGRESS INDICATOR ─── */
+        .wizard-steps-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+        }
+        .wizard-step-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+        .wizard-step-item.active {
+            opacity: 1;
+        }
+        .wizard-step-item.completed {
+            opacity: 0.9;
+        }
+        .wizard-step-num {
+            width: 38px; height: 38px;
+            border-radius: 10px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800;
+            font-family: 'Anybody', sans-serif;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        .wizard-step-item.active .wizard-step-num {
+            background: linear-gradient(135deg, #CCFF00, #00D4AA);
+            color: #0a0a0f;
+            border-color: transparent;
+            box-shadow: 0 0 16px rgba(204,255,0,0.35);
+        }
+        .wizard-step-item.completed .wizard-step-num {
+            background: rgba(0,212,170,0.2);
+            color: #00D4AA;
+            border-color: #00D4AA;
+        }
+        .wizard-step-title {
+            font-family: 'Anybody', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+        .wizard-step-sub {
+            font-size: 0.72rem;
+            color: var(--text-secondary);
+        }
+        .wizard-step-line {
+            flex: 1;
+            min-width: 24px;
+            height: 2px;
+            background: var(--border);
+            transition: all 0.3s ease;
+        }
+        .wizard-step-line.active {
+            background: linear-gradient(90deg, #CCFF00, #00D4AA);
+        }
+
+        .pay-tab-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        .pay-tab-btn.active {
+            background: rgba(204,255,0,0.12);
+            border-color: var(--accent);
+            color: var(--accent);
+            box-shadow: 0 0 15px rgba(204,255,0,0.15);
+        }
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 10px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            font-family: 'Lexend', sans-serif;
+            font-size: 0.85rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        .form-input:focus {
+            border-color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- HEADER -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <header class="site-header">
+        <div style="max-width: 1400px; margin: 0 auto; padding: 0 24px; height: 72px; display: flex; align-items: center; justify-content: space-between;">
+            <!-- Logo -->
+            <a href="index.html" style="text-decoration: none; display: flex; align-items: center; gap: 10px;">
+                <div style="width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, #CCFF00, #00D4AA); display: flex; align-items: center; justify-content: center;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0a0a0f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                </div>
+                <span style="font-family: 'Anybody', sans-serif; font-weight: 800; font-size: 1.25rem; color: var(--text-primary); letter-spacing: -0.5px;">FALCON<span style="color: #CCFF00;">CLUB</span></span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="desktop-nav" style="display: flex; align-items: center; gap: 28px;">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="events.html" class="nav-link">Events</a>
+                <a href="tournaments.html" class="nav-link">Tournaments</a>
+                <a href="programs.html" class="nav-link">Programs</a>
+                <a href="membership.html" class="nav-link">Membership</a>
+                <a href="shop.html" class="nav-link">Shop</a>
+                <a href="contact.html" class="nav-link">Contact Us</a>
+            </nav>
+
+            <!-- Right Actions -->
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle" aria-label="Toggle Theme">🌙</button>
+                <a href="court-booking.html" class="btn-primary" style="padding: 10px 22px; font-size: 0.8rem; text-decoration: none; border-radius: 10px;">Book Now</a>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Nav -->
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="index.html" class="nav-link" onclick="toggleMobileMenu()">Home</a>
+        <a href="events.html" class="nav-link" onclick="toggleMobileMenu()">Events</a>
+        <a href="tournaments.html" class="nav-link" onclick="toggleMobileMenu()">Tournaments</a>
+        <a href="programs.html" class="nav-link" onclick="toggleMobileMenu()">Programs</a>
+        <a href="membership.html" class="nav-link" onclick="toggleMobileMenu()">Membership</a>
+        <a href="shop.html" class="nav-link" onclick="toggleMobileMenu()">Shop</a>
+        <a href="contact.html" class="nav-link" onclick="toggleMobileMenu()">Contact Us</a>
+        <a href="court-booking.html" class="btn-primary" style="text-decoration: none; margin-top: 8px;">Book Now</a>
+    </nav>
+
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- HERO SECTION -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <section class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-grid"></div>
+
+        <!-- Floating Shuttlecocks -->
+        <div class="shuttle-float shuttle-1">🏸</div>
+        <div class="shuttle-float shuttle-2">🏸</div>
+        <div class="shuttle-float shuttle-3">🏸</div>
+        <div class="shuttle-float shuttle-4">🏸</div>
+
+        <!-- Racket SVGs -->
+        <div class="racket-anim racket-1">
+            <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1">
+                <ellipse cx="60" cy="40" rx="30" ry="38" stroke="rgba(204,255,0,0.4)"/>
+                <line x1="60" y1="78" x2="60" y2="118" stroke="rgba(204,255,0,0.4)" stroke-width="3"/>
+                <line x1="60" y1="5" x2="60" y2="75" stroke="rgba(204,255,0,0.15)"/>
+                <line x1="30" y1="40" x2="90" y2="40" stroke="rgba(204,255,0,0.15)"/>
+                <line x1="35" y1="25" x2="85" y2="55" stroke="rgba(204,255,0,0.08)"/>
+                <line x1="35" y1="55" x2="85" y2="25" stroke="rgba(204,255,0,0.08)"/>
+            </svg>
+        </div>
+        <div class="racket-anim racket-2">
+            <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1">
+                <ellipse cx="60" cy="40" rx="30" ry="38" stroke="rgba(0,212,170,0.4)"/>
+                <line x1="60" y1="78" x2="60" y2="118" stroke="rgba(0,212,170,0.4)" stroke-width="3"/>
+                <line x1="60" y1="5" x2="60" y2="75" stroke="rgba(0,212,170,0.15)"/>
+                <line x1="30" y1="40" x2="90" y2="40" stroke="rgba(0,212,170,0.15)"/>
+            </svg>
+        </div>
+
+        <div style="position: relative; z-index: 2; text-align: center; padding: 0 24px;">
+            <div class="section-label" style="margin-bottom: 16px;">⟡ COURT RESERVATIONS</div>
+            <h1 class="section-title" style="font-size: clamp(2.5rem, 6vw, 4.5rem); margin-bottom: 16px;">
+                Book Your <span class="neon-text">Court</span>
+            </h1>
+            <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 550px; margin: 0 auto 32px; line-height: 1.7;">
+                Reserve your premium badminton court in seconds. Choose your court, pick your time, and get ready to play.
+            </p>
+            <!-- Legend -->
+            <div style="display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap;">
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: #00D4AA;"></div>
+                    Available
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: #FF4444;"></div>
+                    Booked
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: #CCFF00; box-shadow: 0 0 8px rgba(204,255,0,0.5);"></div>
+                    Your Selection
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- MAIN BOOKING AREA -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <section style="max-width: 1400px; margin: 0 auto; padding: 40px 24px 80px;">
+
+        <div class="booking-layout" style="display: flex; gap: 32px; align-items: flex-start;">
+
+            <!-- ═══════ LEFT COLUMN ═══════ -->
+            <div style="flex: 1; min-width: 0;">
+
+                <!-- HORIZONTAL WIZARD PROGRESS BAR -->
+                <div class="glass-strong" style="padding: 20px 28px; margin-bottom: 32px; border-radius: 20px;">
+                    <div class="wizard-steps-container">
+                        <!-- Step 1 Pill -->
+                        <div class="wizard-step-item active" id="stepPill1" onclick="goToWizardStep(1)">
+                            <div class="wizard-step-num" id="stepNum1">1</div>
+                            <div>
+                                <div class="wizard-step-title">Select Date</div>
+                                <div class="wizard-step-sub" id="pillSub1">Choose date</div>
+                            </div>
+                        </div>
+                        <div class="wizard-step-line" id="stepLine1"></div>
+
+                        <!-- Step 2 Pill -->
+                        <div class="wizard-step-item" id="stepPill2" onclick="goToWizardStep(2)">
+                            <div class="wizard-step-num" id="stepNum2">2</div>
+                            <div>
+                                <div class="wizard-step-title">Select Court</div>
+                                <div class="wizard-step-sub" id="pillSub2">Pick court</div>
+                            </div>
+                        </div>
+                        <div class="wizard-step-line" id="stepLine2"></div>
+
+                        <!-- Step 3 Pill -->
+                        <div class="wizard-step-item" id="stepPill3" onclick="goToWizardStep(3)">
+                            <div class="wizard-step-num" id="stepNum3">3</div>
+                            <div>
+                                <div class="wizard-step-title">Select Time</div>
+                                <div class="wizard-step-sub" id="pillSub3">Time & Addons</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── STEP 1: DATE SELECTION ── -->
+                <div id="step1Box" style="margin-bottom: 40px;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px;">
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <div style="width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, #CCFF00, #00D4AA); display: flex; align-items: center; justify-content: center; font-weight: 800; color: #0a0a0f; font-family: 'Anybody';">1</div>
+                            <h2 class="section-title" style="font-size: 1.5rem;">Select Date</h2>
+                        </div>
+                    </div>
+
+                    <div class="glass-strong calendar-container" id="calendarContainer">
+                        <!-- Calendars rendered by JS -->
+                    </div>
+
+                    <!-- Step 1 Bottom Action -->
+                    <div style="display: flex; justify-content: flex-end; margin-top: 28px;">
+                        <button class="btn-primary" id="btnNextToStep2" onclick="goToWizardStep(2)">
+                            Next Step: Select Court →
+                        </button>
+                    </div>
+                </div>
+
+
+                <!-- ── STEP 2: COURT SELECTION ── -->
+                <div id="step2Box" style="margin-bottom: 40px; display: none;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px;">
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <div style="width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, #CCFF00, #00D4AA); display: flex; align-items: center; justify-content: center; font-weight: 800; color: #0a0a0f; font-family: 'Anybody';">2</div>
+                            <h2 class="section-title" style="font-size: 1.5rem;">Select Court</h2>
+                        </div>
+                    </div>
+
+                    <div class="glass-strong" style="overflow: hidden;">
+                        <!-- Court Map Label -->
+                        <div style="padding: 20px 32px 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+                            <div>
+                                <div class="section-label" style="margin-bottom: 4px;">BIRD'S EYE VIEW</div>
+                                <p style="color: var(--text-secondary); font-size: 0.85rem;">Click a court to select it</p>
+                            </div>
+                            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                                <span class="court-type-badge badge-standard">Standard $25/hr</span>
+                                <span class="court-type-badge badge-premium">Premium $35/hr</span>
+                                <span class="court-type-badge badge-training">Training $45/hr</span>
+                                <span class="court-type-badge badge-vip">VIP $60/hr</span>
+                            </div>
+                        </div>
+
+                        <div class="court-map" id="courtMap">
+                            <!-- Courts rendered by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Step 2 Bottom Actions -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 28px;">
+                        <button class="btn-outline" onclick="goToWizardStep(1)">
+                            ← Back to Date
+                        </button>
+                        <button class="btn-primary" id="btnNextToStep3" onclick="goToWizardStep(3)">
+                            Next Step: Select Time →
+                        </button>
+                    </div>
+                </div>
+
+
+                <!-- ── STEP 3: TIME SLOTS ── -->
+                <div id="step3Box" style="margin-bottom: 40px; display: none;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px;">
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <div style="width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, #CCFF00, #00D4AA); display: flex; align-items: center; justify-content: center; font-weight: 800; color: #0a0a0f; font-family: 'Anybody';">3</div>
+                            <h2 class="section-title" style="font-size: 1.5rem;">Select Time</h2>
+                        </div>
+                    </div>
+
+                    <div class="glass-strong" style="padding: 28px;">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 8px;">
+                            <p style="color: var(--text-secondary); font-size: 0.85rem;">Select one or more consecutive 1‑hour blocks</p>
+                            <div style="display: flex; gap: 16px;">
+                                <div class="legend-item">
+                                    <div class="legend-dot" style="background: var(--surface); border: 1px solid var(--border);"></div>
+                                    Available
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-dot" style="background: rgba(255,68,68,0.15);"></div>
+                                    Booked
+                                </div>
+                            </div>
+                        </div>
+                        <div class="time-grid" id="timeGrid">
+                            <!-- Time slots rendered by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Step 3 Bottom Actions -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 28px;">
+                        <button class="btn-outline" onclick="goToWizardStep(2)">
+                            ← Back to Court
+                        </button>
+                        <button class="btn-primary" id="btnContinueToPayment" onclick="openPaymentModal()">
+                            Continue to Payment →
+                        </button>
+                    </div>
+                </div>
+
+            </div><!-- / Left Column -->
+
+
+            <!-- ═══════ RIGHT COLUMN — SUMMARY SIDEBAR ═══════ -->
+            <div style="width: 380px; flex-shrink: 0;" class="fade-up">
+                <div class="summary-sidebar glass-strong neon-glow" style="padding: 32px;">
+                    <h3 class="section-title" style="font-size: 1.3rem; margin-bottom: 4px;">Booking Summary</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.8rem; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 1px;">Review your selection</p>
+
+                    <div id="summaryContent">
+                        <div class="summary-row">
+                            <span class="summary-label">Date</span>
+                            <span class="summary-value" id="summaryDate">—</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="summary-label">Court</span>
+                            <span class="summary-value" id="summaryCourt">—</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="summary-label">Time</span>
+                            <span class="summary-value" id="summaryTime">—</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="summary-label">Duration</span>
+                            <span class="summary-value" id="summaryDuration">—</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="summary-label">Court Fee</span>
+                            <span class="summary-value" id="summaryCourtFee">$0.00</span>
+                        </div>
+                    </div>
+
+                    <!-- Add-ons -->
+                    <div style="margin-top: 20px; margin-bottom: 20px;">
+                        <p style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-secondary); font-weight: 600; margin-bottom: 12px;">Equipment Add‑ons</p>
+
+                        <div class="addon-check" id="addonRacket" onclick="toggleAddon('racket')">
+                            <div class="addon-checkbox" id="checkRacket"></div>
+                            <div style="flex: 1;">
+                                <div style="font-size: 0.9rem; font-weight: 600;">Racket Rental</div>
+                                <div style="font-size: 0.75rem; color: var(--text-secondary);">Pro‑grade Yonex racket</div>
+                            </div>
+                            <div style="font-weight: 700; color: var(--accent);">$5</div>
+                        </div>
+
+                        <div class="addon-check" id="addonShuttle" onclick="toggleAddon('shuttle')">
+                            <div class="addon-checkbox" id="checkShuttle"></div>
+                            <div style="flex: 1;">
+                                <div style="font-size: 0.9rem; font-weight: 600;">Shuttlecocks</div>
+                                <div style="font-size: 0.75rem; color: var(--text-secondary);">Tube of 6 feather shuttles</div>
+                            </div>
+                            <div style="font-weight: 700; color: var(--accent);">$3</div>
+                        </div>
+                    </div>
+
+                    <!-- Member Discount -->
+                    <div style="padding: 14px 16px; border-radius: 12px; background: rgba(0,212,170,0.08); border: 1px solid rgba(0,212,170,0.2); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                        <span style="font-size: 1.2rem;">✦</span>
+                        <div>
+                            <div style="font-size: 0.8rem; font-weight: 600; color: #00D4AA;">Members Save 20%</div>
+                            <div style="font-size: 0.72rem; color: var(--text-secondary);">Sign in to apply your discount</div>
+                        </div>
+                    </div>
+
+                    <!-- Totals -->
+                    <div style="border-top: 2px solid var(--border); padding-top: 20px; margin-bottom: 24px;">
+                        <div class="summary-row" style="border: none; padding: 8px 0;">
+                            <span class="summary-label">Subtotal</span>
+                            <span class="summary-value" id="summarySubtotal">$0.00</span>
+                        </div>
+                        <div class="summary-row" style="border: none; padding: 8px 0;">
+                            <span class="summary-label">Tax (8%)</span>
+                            <span class="summary-value" id="summaryTax">$0.00</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 16px; border-top: 1px solid var(--border);">
+                            <span style="font-weight: 600; font-size: 1rem;">Total</span>
+                            <span class="summary-total" id="summaryTotal">$0.00</span>
+                        </div>
+                    </div>
+
+                    <button class="btn-primary" id="confirmBtn" disabled style="width: 100%; font-size: 0.95rem; padding: 16px;" onclick="confirmBooking()">
+                        Confirm Booking
+                    </button>
+                    <p style="text-align: center; font-size: 0.72rem; color: var(--text-secondary); margin-top: 12px;">
+                        By confirming, you agree to our cancellation policy
+                    </p>
+                </div>
+            </div>
+
+        </div><!-- / booking-layout -->
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- BOOKING POLICIES -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <section style="max-width: 1400px; margin: 0 auto; padding: 0 24px 80px;">
+        <div class="fade-up">
+            <div class="section-label" style="margin-bottom: 8px;">📋 GOOD TO KNOW</div>
+            <h2 class="section-title" style="font-size: 2rem; margin-bottom: 32px;">Booking Policies</h2>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px;">
+                <div class="policy-card">
+                    <div class="policy-icon" style="background: rgba(255,68,68,0.12); color: #FF6B6B;">⏰</div>
+                    <div>
+                        <h4 style="font-weight: 700; margin-bottom: 6px; font-size: 0.95rem;">24‑Hour Cancellation Policy</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">Cancel up to 24 hours before your booking for a full refund. Late cancellations are charged 50% of the booking fee.</p>
+                    </div>
+                </div>
+
+                <div class="policy-card">
+                    <div class="policy-icon" style="background: rgba(204,255,0,0.12); color: #CCFF00;">⭐</div>
+                    <div>
+                        <h4 style="font-weight: 700; margin-bottom: 6px; font-size: 0.95rem;">Members Get Priority Booking</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">Club members can book courts up to 14 days in advance. Non‑members can book up to 7 days ahead.</p>
+                    </div>
+                </div>
+
+                <div class="policy-card">
+                    <div class="policy-icon" style="background: rgba(0,212,170,0.12); color: #00D4AA;">🕐</div>
+                    <div>
+                        <h4 style="font-weight: 700; margin-bottom: 6px; font-size: 0.95rem;">Maximum Booking Duration</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">Non‑members can book a maximum of 2 hours per session. Members enjoy unlimited booking duration.</p>
+                    </div>
+                </div>
+
+                <div class="policy-card">
+                    <div class="policy-icon" style="background: rgba(138,43,226,0.12); color: #b388ff;">👟</div>
+                    <div>
+                        <h4 style="font-weight: 700; margin-bottom: 6px; font-size: 0.95rem;">Proper Court Etiquette</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">Non‑marking indoor shoes are required. Please arrive 5 minutes early and vacate promptly at the end of your session.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- MY BOOKINGS -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <section style="max-width: 1400px; margin: 0 auto; padding: 0 24px 100px;">
+        <div class="fade-up">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; flex-wrap: wrap; gap: 16px;">
+                <div>
+                    <div class="section-label" style="margin-bottom: 8px;">📅 YOUR SCHEDULE</div>
+                    <h2 class="section-title" style="font-size: 2rem;">My Bookings</h2>
+                </div>
+                <button class="btn-outline">View All History →</button>
+            </div>
+
+            <!-- Mock Booking Rows -->
+            <div class="booking-row">
+                <div style="text-align: center; min-width: 60px;">
+                    <div style="font-size: 1.8rem; font-weight: 800; font-family: 'Anybody'; line-height: 1;">05</div>
+                    <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary);">Jul</div>
+                </div>
+                <div>
+                    <div style="font-weight: 600;">Court 3 — Standard</div>
+                    <div style="font-size: 0.8rem; color: var(--text-secondary);">10:00 AM — 12:00 PM</div>
+                </div>
+                <div style="font-size: 0.85rem; color: var(--text-secondary);">2 hours</div>
+                <div style="font-weight: 700;">$50.00</div>
+                <span class="booking-status status-confirmed">Confirmed</span>
+            </div>
+
+            <div class="booking-row">
+                <div style="text-align: center; min-width: 60px;">
+                    <div style="font-size: 1.8rem; font-weight: 800; font-family: 'Anybody'; line-height: 1;">08</div>
+                    <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary);">Jul</div>
+                </div>
+                <div>
+                    <div style="font-weight: 600;">Court 7 — Training</div>
+                    <div style="font-size: 0.8rem; color: var(--text-secondary);">6:00 PM — 7:00 PM</div>
+                </div>
+                <div style="font-size: 0.85rem; color: var(--text-secondary);">1 hour</div>
+                <div style="font-weight: 700;">$45.00</div>
+                <span class="booking-status status-upcoming">Upcoming</span>
+            </div>
+
+            <div class="booking-row">
+                <div style="text-align: center; min-width: 60px;">
+                    <div style="font-size: 1.8rem; font-weight: 800; font-family: 'Anybody'; line-height: 1;">28</div>
+                    <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary);">Jun</div>
+                </div>
+                <div>
+                    <div style="font-weight: 600;">Court 8 — VIP</div>
+                    <div style="font-size: 0.8rem; color: var(--text-secondary);">4:00 PM — 6:00 PM</div>
+                </div>
+                <div style="font-size: 0.85rem; color: var(--text-secondary);">2 hours</div>
+                <div style="font-weight: 700;">$120.00</div>
+                <span class="booking-status status-completed">Completed</span>
+            </div>
+
+            <div class="booking-row">
+                <div style="text-align: center; min-width: 60px;">
+                    <div style="font-size: 1.8rem; font-weight: 800; font-family: 'Anybody'; line-height: 1;">25</div>
+                    <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary);">Jun</div>
+                </div>
+                <div>
+                    <div style="font-weight: 600;">Court 5 — Premium</div>
+                    <div style="font-size: 0.8rem; color: var(--text-secondary);">8:00 AM — 9:00 AM</div>
+                </div>
+                <div style="font-size: 0.85rem; color: var(--text-secondary);">1 hour</div>
+                <div style="font-weight: 700;">$35.00</div>
+                <span class="booking-status status-completed">Completed</span>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- FOOTER -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <footer class="site-footer">
+        <div style="max-width: 1400px; margin: 0 auto; padding: 60px 24px 30px;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 48px;">
+                <!-- Brand -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+                        <div style="width: 36px; height: 36px; border-radius: 8px; background: linear-gradient(135deg, #CCFF00, #00D4AA); display: flex; align-items: center; justify-content: center;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0a0a0f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                        </div>
+                        <span style="font-family: 'Anybody'; font-weight: 800; font-size: 1.1rem;">FALCON<span style="color: #CCFF00;">CLUB</span></span>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7; max-width: 260px;">
+                        Premium badminton facilities in the heart of the city. Elevate your game with world‑class courts and coaching.
+                    </p>
+                </div>
+                <!-- Quick Links -->
+                <div>
+                    <h4 style="font-family: 'Anybody'; font-weight: 700; font-size: 0.95rem; margin-bottom: 16px;">QUICK LINKS</h4>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <a href="index.html" style="color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; transition: color 0.3s;" onmouseover="this.style.color='#CCFF00'" onmouseout="this.style.color='var(--text-secondary)'">Home</a>
+                        <a href="events.html" style="color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; transition: color 0.3s;" onmouseover="this.style.color='#CCFF00'" onmouseout="this.style.color='var(--text-secondary)'">Events</a>
+                        <a href="tournaments.html" style="color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; transition: color 0.3s;" onmouseover="this.style.color='#CCFF00'" onmouseout="this.style.color='var(--text-secondary)'">Tournaments</a>
+                        <a href="programs.html" style="color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; transition: color 0.3s;" onmouseover="this.style.color='#CCFF00'" onmouseout="this.style.color='var(--text-secondary)'">Programs</a>
+                    </div>
+                </div>
+                <!-- Club -->
+                <div>
+                    <h4 style="font-family: 'Anybody'; font-weight: 700; font-size: 0.95rem; margin-bottom: 16px;">CLUB</h4>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <a href="membership.html" style="color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; transition: color 0.3s;" onmouseover="this.style.color='#CCFF00'" onmouseout="this.style.color='var(--text-secondary)'">Membership</a>
+                        <a href="court-booking.html" style="color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; transition: color 0.3s;" onmouseover="this.style.color='#CCFF00'" onmouseout="this.style.color='var(--text-secondary)'">Book a Court</a>
+                        <a href="shop.html" style="color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; transition: color 0.3s;" onmouseover="this.style.color='#CCFF00'" onmouseout="this.style.color='var(--text-secondary)'">Pro Shop</a>
+                        <a href="contact.html" style="color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; transition: color 0.3s;" onmouseover="this.style.color='#CCFF00'" onmouseout="this.style.color='var(--text-secondary)'">Contact Us</a>
+                    </div>
+                </div>
+                <!-- Contact -->
+                <div>
+                    <h4 style="font-family: 'Anybody'; font-weight: 700; font-size: 0.95rem; margin-bottom: 16px;">CONTACT</h4>
+                    <div style="display: flex; flex-direction: column; gap: 10px; font-size: 0.85rem; color: var(--text-secondary);">
+                        <span>📍 1200 Shuttle Lane, Austin, TX 78701</span>
+                        <span>📞 (512) 555‑0199</span>
+                        <span>✉️ hello@falconclub.com</span>
+                        <span>🕐 Mon–Sun: 6 AM – 10 PM</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="border-top: 1px solid var(--border); padding-top: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+                <p style="font-size: 0.78rem; color: var(--text-secondary);">© 2026 Falcon Club. All rights reserved.</p>
+                <div style="display: flex; gap: 16px;">
+                    <a href="#" style="color: var(--text-secondary); text-decoration: none; font-size: 0.78rem; transition: color 0.3s;" onmouseover="this.style.color='#CCFF00'" onmouseout="this.style.color='var(--text-secondary)'">Privacy Policy</a>
+                    <a href="#" style="color: var(--text-secondary); text-decoration: none; font-size: 0.78rem; transition: color 0.3s;" onmouseover="this.style.color='#CCFF00'" onmouseout="this.style.color='var(--text-secondary)'">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- CONFIRMATION MODAL -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- PAYMENT & CONFIRMATION POPUP MODAL -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <div class="modal-overlay" id="confirmModal">
+        <div class="payment-modal-box glass-strong neon-glow">
+            
+            <!-- Close Modal Button -->
+            <button onclick="closeModal()" style="position: absolute; top: 20px; right: 20px; background: transparent; border: none; color: var(--text-secondary); font-size: 1.5rem; cursor: pointer; line-height: 1;">✕</button>
+
+            <!-- Horizontal Modal Header / Progress Steps -->
+            <div style="border-bottom: 1px solid var(--border); padding-bottom: 20px; margin-bottom: 24px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+                    <div>
+                        <div class="section-label" style="margin-bottom: 2px;">SECURE CHECKOUT</div>
+                        <h3 class="section-title" style="font-size: 1.4rem;" id="modalTitleText">Complete Payment</h3>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 6px; font-size: 0.75rem; color: #00D4AA; background: rgba(0,212,170,0.1); padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(0,212,170,0.2);">
+                        🔒 256-Bit SSL Encrypted
+                    </div>
+                </div>
+
+                <!-- Horizontal Modal Step Indicator -->
+                <div style="display: flex; align-items: center; gap: 16px; width: 100%;">
+                    <div id="modalStepPill1" style="display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 0.85rem; color: var(--accent);">
+                        <div style="width: 28px; height: 28px; border-radius: 8px; background: linear-gradient(135deg, #CCFF00, #00D4AA); color: #0a0a0f; display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">1</div>
+                        Payment & Details
+                    </div>
+                    <div id="modalStepLine" class="wizard-step-line"></div>
+                    <div id="modalStepPill2" style="display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 0.85rem; color: var(--text-secondary); opacity: 0.5;">
+                        <div style="width: 28px; height: 28px; border-radius: 8px; background: var(--surface); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 0.8rem;">2</div>
+                        Confirmation Pass
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODAL STEP 1: PAYMENT FORM & SUMMARY (HORIZONTAL GRID) -->
+            <div id="paymentStep1View">
+                <div style="display: grid; grid-template-columns: 1fr 1.1fr; gap: 28px; align-items: start;">
+                    
+                    <!-- Left: Booking Summary Card -->
+                    <div class="glass" style="padding: 24px; border-radius: 16px;">
+                        <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 16px; color: var(--accent);">Summary Details</h4>
+                        
+                        <div style="display: flex; flex-direction: column; gap: 12px; font-size: 0.85rem;" id="modalSummaryContent">
+                            <!-- Filled dynamically -->
+                        </div>
+
+                        <div style="margin-top: 20px; padding-top: 16px; border-top: 1px dashed var(--border); display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-weight: 700; font-size: 0.95rem;">Total Payable</span>
+                            <span style="font-weight: 800; font-size: 1.4rem; color: var(--accent); font-family: 'Anybody';" id="modalPayableAmount">$0.00</span>
+                        </div>
+                    </div>
+
+                    <!-- Right: Payment Inputs & Tabs -->
+                    <div>
+                        <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 16px;">Select Payment Method</h4>
+
+                        <!-- Payment Tabs -->
+                        <div style="display: flex; gap: 8px; margin-bottom: 20px;">
+                            <button type="button" class="pay-tab-btn active" id="tabCard" onclick="switchPayTab('card')">💳 Credit Card</button>
+                            <button type="button" class="pay-tab-btn" id="tabUpi" onclick="switchPayTab('upi')">📱 UPI / QR</button>
+                            <button type="button" class="pay-tab-btn" id="tabClub" onclick="switchPayTab('club')">🏛️ Pay at Club</button>
+                        </div>
+
+                        <!-- Card Form -->
+                        <div id="cardPayForm" style="display: flex; flex-direction: column; gap: 14px;">
+                            <div>
+                                <label style="display: block; font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 6px;">Full Name</label>
+                                <input type="text" id="custName" class="form-input" placeholder="e.g. Alex Johnson" value="Alex Johnson" />
+                            </div>
+                            <div>
+                                <label style="display: block; font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 6px;">Email Address</label>
+                                <input type="email" id="custEmail" class="form-input" placeholder="alex@example.com" value="alex@example.com" />
+                            </div>
+                            <div>
+                                <label style="display: block; font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 6px;">Card Number</label>
+                                <input type="text" id="custCardNum" class="form-input" placeholder="4532 •••• •••• 8924" value="4532 8812 9940 8924" />
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                                <div>
+                                    <label style="display: block; font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 6px;">Expiry</label>
+                                    <input type="text" id="custExp" class="form-input" placeholder="MM/YY" value="08/28" />
+                                </div>
+                                <div>
+                                    <label style="display: block; font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 6px;">CVV</label>
+                                    <input type="password" id="custCvv" class="form-input" placeholder="•••" value="882" maxLength="4" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- UPI Form (Hidden by default) -->
+                        <div id="upiPayForm" style="display: none; text-align: center; padding: 20px; background: var(--surface); border-radius: 12px; border: 1px solid var(--border);">
+                            <div style="width: 140px; height: 140px; background: white; border-radius: 12px; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; padding: 8px;">
+                                <svg width="120" height="120" viewBox="0 0 100 100" fill="#000">
+                                    <rect width="100" height="100" fill="#fff"/>
+                                    <path d="M10,10 h30 v30 h-30 z M15,15 v20 h20 v-20 z M22,22 h6 v6 h-6 z" />
+                                    <path d="M60,10 h30 v30 h-30 z M65,15 v20 h20 v-20 z M72,22 h6 v6 h-6 z" />
+                                    <path d="M10,60 h30 v30 h-30 z M15,65 v20 h20 v-20 z M22,72 h6 v6 h-6 z" />
+                                    <rect x="45" y="10" width="10" height="30" />
+                                    <rect x="45" y="45" width="20" height="20" />
+                                    <rect x="70" y="55" width="20" height="35" />
+                                </svg>
+                            </div>
+                            <p style="font-size: 0.8rem; color: var(--text-secondary);">Scan QR code using Google Pay, PhonePe, or Paytm</p>
+                        </div>
+
+                        <!-- Pay at Club (Hidden by default) -->
+                        <div id="clubPayForm" style="display: none; text-align: center; padding: 20px; background: var(--surface); border-radius: 12px; border: 1px solid var(--border);">
+                            <p style="font-size: 0.85rem; color: var(--text-primary); font-weight: 600; margin-bottom: 6px;">Pay upon arrival at reception</p>
+                            <p style="font-size: 0.78rem; color: var(--text-secondary);">Your reservation will be held for 15 minutes past start time.</p>
+                        </div>
+
+                        <!-- Pay Button -->
+                        <button type="button" class="btn-primary" id="processPayBtn" style="width: 100%; margin-top: 20px; padding: 16px;" onclick="executePayment()">
+                            Pay & Complete Booking →
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODAL STEP 2: FINAL CONFIRMATION (HORIZONTAL LAYOUT) -->
+            <div id="paymentStep2View" style="display: none;">
+                <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px; align-items: center;">
+                    <!-- Left: Pass & Success Info -->
+                    <div style="text-align: left;">
+                        <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(0,212,170,0.15); color: #00D4AA; border: 1px solid rgba(0,212,170,0.3); padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 0.8rem; margin-bottom: 16px;">
+                            ✓ RESERVATION CONFIRMED
+                        </div>
+                        <h3 class="section-title" style="font-size: 1.8rem; margin-bottom: 8px;">See You on the Court!</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.6; margin-bottom: 20px;">
+                            Your court booking has been saved. A confirmation entry pass has been generated.
+                        </p>
+
+                        <div class="glass" style="padding: 16px 20px; border-radius: 14px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between;">
+                            <div>
+                                <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--text-secondary); letter-spacing: 1px; display: block; margin-bottom: 2px;">BOOKING REFERENCE</span>
+                                <span style="font-family: 'Anybody'; font-weight: 800; font-size: 1.2rem; color: var(--accent);" id="finalRefCode">#FLC-94281</span>
+                            </div>
+                            <span class="booking-status status-confirmed">Confirmed</span>
+                        </div>
+
+                        <div style="display: flex; gap: 12px;">
+                            <button class="btn-primary" onclick="closeModal()" style="padding: 12px 28px;">Done</button>
+                            <button class="btn-outline" onclick="closeModal(); goToWizardStep(1);">Book Another Court</button>
+                        </div>
+                    </div>
+
+                    <!-- Right: Digital QR Pass Box -->
+                    <div class="glass-strong neon-glow" style="padding: 24px; border-radius: 20px; text-align: center; border: 1px solid var(--accent);">
+                        <div style="font-family: 'Anybody'; font-weight: 800; font-size: 0.95rem; margin-bottom: 12px; letter-spacing: 1px; color: var(--accent);">FALCON CLUB ENTRY PASS</div>
+                        <div style="width: 140px; height: 140px; background: white; border-radius: 12px; margin: 0 auto 16px; padding: 10px; display: flex; align-items: center; justify-content: center;">
+                            <svg width="120" height="120" viewBox="0 0 100 100" fill="#0a0a0f">
+                                <rect width="100" height="100" fill="#fff"/>
+                                <path d="M10,10 h30 v30 h-30 z M15,15 v20 h20 v-20 z M22,22 h6 v6 h-6 z" />
+                                <path d="M60,10 h30 v30 h-30 z M65,15 v20 h20 v-20 z M72,22 h6 v6 h-6 z" />
+                                <path d="M10,60 h30 v30 h-30 z M15,65 v20 h20 v-20 z M22,72 h6 v6 h-6 z" />
+                                <rect x="45" y="10" width="10" height="30" />
+                                <rect x="45" y="45" width="20" height="20" />
+                                <rect x="70" y="55" width="20" height="35" />
+                            </svg>
+                        </div>
+                        <div id="finalPassSummary" style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5;">
+                            <!-- Filled dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- ══════════════════════════════════════════════════════ -->
+    <!-- JAVASCRIPT -->
+    <!-- ══════════════════════════════════════════════════════ -->
+    <script>
+    (() => {
+        'use strict';
+
+        // ─── STATE ───
+        const state = {
+            currentStep: 1,
+            selectedDate: null,
+            selectedCourt: null,
+            selectedSlots: [],
+            addons: { racket: false, shuttle: false },
+            payMethod: 'card'
+        };
+
+        // ─── WIZARD NAVIGATION ───
+        window.goToWizardStep = function(step) {
+            if (step > 1 && !state.selectedDate) {
+                alert("Please select a date first.");
+                return;
+            }
+            if (step > 2 && !state.selectedCourt) {
+                alert("Please select a court first.");
+                return;
+            }
+
+            state.currentStep = step;
+
+            // Hide/Show step panels
+            document.getElementById('step1Box').style.display = step === 1 ? 'block' : 'none';
+            document.getElementById('step2Box').style.display = step === 2 ? 'block' : 'none';
+            document.getElementById('step3Box').style.display = step === 3 ? 'block' : 'none';
+
+            // Update Header Pills & Lines
+            for (let i = 1; i <= 3; i++) {
+                const pill = document.getElementById(`stepPill${i}`);
+                if (pill) {
+                    if (i === step) pill.className = 'wizard-step-item active';
+                    else if (i < step) pill.className = 'wizard-step-item completed';
+                    else pill.className = 'wizard-step-item';
+                }
+            }
+
+            const l1 = document.getElementById('stepLine1');
+            if (l1) l1.className = step > 1 ? 'wizard-step-line active' : 'wizard-step-line';
+            const l2 = document.getElementById('stepLine2');
+            if (l2) l2.className = step > 2 ? 'wizard-step-line active' : 'wizard-step-line';
+
+            updateSummary();
+        };
+
+        // ─── COURT DATA ───
+        const courts = [
+            { id: 1, name: 'Court 1', type: 'Standard', badge: 'badge-standard', price: 25, features: 'Standard court', booked: false },
+            { id: 2, name: 'Court 2', type: 'Standard', badge: 'badge-standard', price: 25, features: 'Standard court', booked: false },
+            { id: 3, name: 'Court 3', type: 'Standard', badge: 'badge-standard', price: 25, features: 'Standard court', booked: true },
+            { id: 4, name: 'Court 4', type: 'Standard', badge: 'badge-standard', price: 25, features: 'Standard court', booked: false },
+            { id: 5, name: 'Court 5', type: 'Premium', badge: 'badge-premium', price: 35, features: 'Better lighting & seating', booked: false },
+            { id: 6, name: 'Court 6', type: 'Premium', badge: 'badge-premium', price: 35, features: 'Better lighting & seating', booked: false },
+            { id: 7, name: 'Court 7', type: 'Training', badge: 'badge-training', price: 45, features: 'Video analysis system', booked: false },
+            { id: 8, name: 'Court 8', type: 'VIP', badge: 'badge-vip', price: 60, features: 'Private, AC, gallery', booked: false },
+        ];
+
+        // ─── TIME SLOTS ───
+        const timeSlots = [];
+        for (let h = 6; h <= 21; h++) {
+            const ampm = h < 12 ? 'AM' : 'PM';
+            const hour12 = h === 0 ? 12 : h > 12 ? h - 12 : h;
+            const end = h + 1;
+            const endAmpm = end < 12 ? 'AM' : 'PM';
+            const endHour12 = end === 0 ? 12 : end > 12 ? end - 12 : end;
+            timeSlots.push({
+                hour: h,
+                label: `${hour12}:00 ${ampm}`,
+                range: `${hour12}:00 ${ampm} – ${endHour12}:00 ${endAmpm}`,
+                booked: [8, 9, 14, 15, 19].includes(h),
+            });
+        }
+
+        // ─── CALENDAR RENDERING ───
+        const today = new Date();
+        const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+        const dayNames = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+        function renderCalendars() {
+            const container = document.getElementById('calendarContainer');
+            container.innerHTML = '';
+
+            for (let offset = 0; offset < 2; offset++) {
+                const m = new Date(today.getFullYear(), today.getMonth() + offset, 1);
+                const year = m.getFullYear();
+                const month = m.getMonth();
+                const firstDay = m.getDay();
+                const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+                let html = `<div class="calendar glass">`;
+                html += `<div class="calendar-header">`;
+                if (offset === 0) html += `<button class="calendar-nav" onclick="navigateCalendar(-1)">‹</button>`;
+                else html += `<div></div>`;
+                html += `<h3 style="font-family:'Anybody';font-weight:700;font-size:1.05rem;">${monthNames[month]} ${year}</h3>`;
+                if (offset === 1) html += `<button class="calendar-nav" onclick="navigateCalendar(1)">›</button>`;
+                else html += `<div></div>`;
+                html += `</div>`;
+
+                html += `<div class="cal-grid">`;
+                dayNames.forEach(d => { html += `<div class="cal-day-name">${d}</div>`; });
+
+                for (let i = 0; i < firstDay; i++) html += `<div class="cal-day empty"></div>`;
+
+                for (let d = 1; d <= daysInMonth; d++) {
+                    const dateObj = new Date(year, month, d);
+                    const isPast = dateObj < new Date(today.getFullYear(), today.getMonth(), today.getDate());
+                    const isToday = dateObj.toDateString() === today.toDateString();
+                    const isSelected = state.selectedDate && dateObj.toDateString() === state.selectedDate.toDateString();
+                    let cls = 'cal-day';
+                    if (isPast) cls += ' disabled';
+                    else if (isSelected) cls += ' selected';
+                    else if (isToday) cls += ' today';
+
+                    const onclick = isPast ? '' : `onclick="selectDate(${year},${month},${d})"`;
+                    html += `<div class="${cls}" ${onclick}>${d}</div>`;
+                }
+
+                html += `</div></div>`;
+                container.innerHTML += html;
+            }
+        }
+
+        window.selectDate = function(y, m, d) {
+            state.selectedDate = new Date(y, m, d);
+            renderCalendars();
+            updateSummary();
+        };
+
+        window.navigateCalendar = function(dir) {
+            // Calendar nav
+        };
+
+        // ─── COURT MAP RENDERING ───
+        function renderCourts() {
+            const map = document.getElementById('courtMap');
+            map.innerHTML = '';
+
+            courts.forEach(court => {
+                const isBooked = court.booked;
+                const isSelected = state.selectedCourt === court.id;
+                let cls = 'court-card';
+                if (isBooked) cls += ' booked';
+                else if (isSelected) cls += ' selected';
+                else cls += ' available';
+
+                const onclick = isBooked ? '' : `onclick="selectCourt(${court.id})"`;
+
+                map.innerHTML += `
+                    <div class="${cls}" ${onclick}>
+                        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+                            <span style="font-family:'Anybody';font-weight:700;font-size:1rem;">${court.name}</span>
+                            <span class="court-status-dot"></span>
+                        </div>
+                        <span class="court-type-badge ${court.badge}" style="margin-bottom:8px;">${court.type}</span>
+                        <div class="court-inner">
+                            <div class="court-net"></div>
+                        </div>
+                        <div style="display:flex;align-items:center;justify-content:space-between;">
+                            <span style="font-size:0.75rem;color:var(--text-secondary);">${court.features}</span>
+                            <span style="font-weight:700;color:${isBooked?'var(--text-secondary)':'var(--accent)'};font-size:0.95rem;">$${court.price}<span style="font-size:0.7rem;font-weight:400;">/hr</span></span>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        window.selectCourt = function(id) {
+            state.selectedCourt = state.selectedCourt === id ? null : id;
+            renderCourts();
+            updateSummary();
+        };
+
+        // ─── TIME SLOTS RENDERING ───
+        function renderTimeSlots() {
+            const grid = document.getElementById('timeGrid');
+            grid.innerHTML = '';
+
+            timeSlots.forEach(slot => {
+                const isBooked = slot.booked;
+                const isSelected = state.selectedSlots.includes(slot.hour);
+                let cls = 'time-slot';
+                if (isBooked) cls += ' slot-booked';
+                else if (isSelected) cls += ' slot-selected';
+                else cls += ' slot-available';
+
+                const onclick = isBooked ? '' : `onclick="toggleSlot(${slot.hour})"`;
+
+                grid.innerHTML += `
+                    <div class="${cls}" ${onclick}>
+                        <div style="font-weight:600;">${slot.label}</div>
+                        <div style="font-size:0.7rem;margin-top:2px;opacity:0.7;">${isBooked ? 'Booked' : 'Available'}</div>
+                    </div>
+                `;
+            });
+        }
+
+        window.toggleSlot = function(hour) {
+            const idx = state.selectedSlots.indexOf(hour);
+            if (idx > -1) {
+                state.selectedSlots.splice(idx, 1);
+            } else {
+                state.selectedSlots.push(hour);
+                state.selectedSlots.sort((a, b) => a - b);
+            }
+            renderTimeSlots();
+            updateSummary();
+        };
+
+        // ─── ADD-ONS ───
+        window.toggleAddon = function(type) {
+            state.addons[type] = !state.addons[type];
+            const el = document.getElementById(type === 'racket' ? 'addonRacket' : 'addonShuttle');
+            const checkEl = document.getElementById(type === 'racket' ? 'checkRacket' : 'checkShuttle');
+            if (state.addons[type]) {
+                el.classList.add('checked');
+                checkEl.innerHTML = '✓';
+            } else {
+                el.classList.remove('checked');
+                checkEl.innerHTML = '';
+            }
+            updateSummary();
+        };
+
+        // ─── UPDATE SUMMARY ───
+        function updateSummary() {
+            const dateEl = document.getElementById('summaryDate');
+            const courtEl = document.getElementById('summaryCourt');
+            const timeEl = document.getElementById('summaryTime');
+            const durationEl = document.getElementById('summaryDuration');
+            const courtFeeEl = document.getElementById('summaryCourtFee');
+            const subtotalEl = document.getElementById('summarySubtotal');
+            const taxEl = document.getElementById('summaryTax');
+            const totalEl = document.getElementById('summaryTotal');
+            const sideBtn = document.getElementById('confirmBtn');
+
+            // Date
+            if (state.selectedDate) {
+                const opts = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' };
+                dateEl.textContent = state.selectedDate.toLocaleDateString('en-US', opts);
+                const shortOpts = { month: 'short', day: 'numeric' };
+                document.getElementById('pillSub1').textContent = state.selectedDate.toLocaleDateString('en-US', shortOpts);
+            } else {
+                dateEl.textContent = '—';
+                document.getElementById('pillSub1').textContent = 'Choose date';
+            }
+
+            // Court
+            if (state.selectedCourt) {
+                const c = courts.find(x => x.id === state.selectedCourt);
+                courtEl.textContent = `${c.name} (${c.type})`;
+                document.getElementById('pillSub2').textContent = c.name;
+            } else {
+                courtEl.textContent = '—';
+                document.getElementById('pillSub2').textContent = 'Pick court';
+            }
+
+            // Time
+            if (state.selectedSlots.length > 0) {
+                const sorted = [...state.selectedSlots].sort((a,b) => a - b);
+                const first = sorted[0];
+                const last = sorted[sorted.length - 1] + 1;
+                const fmt = h => {
+                    const ampm = h < 12 ? 'AM' : 'PM';
+                    const h12 = h === 0 ? 12 : h > 12 ? h - 12 : h;
+                    return `${h12}:00 ${ampm}`;
+                };
+                timeEl.textContent = `${fmt(first)} – ${fmt(last)}`;
+                durationEl.textContent = `${sorted.length} hour${sorted.length > 1 ? 's' : ''}`;
+                document.getElementById('pillSub3').textContent = `${sorted.length} hr selected`;
+            } else {
+                timeEl.textContent = '—';
+                durationEl.textContent = '—';
+                document.getElementById('pillSub3').textContent = 'Time & Addons';
+            }
+
+            // Price Calculation
+            let courtFee = 0;
+            if (state.selectedCourt && state.selectedSlots.length > 0) {
+                const c = courts.find(x => x.id === state.selectedCourt);
+                courtFee = c.price * state.selectedSlots.length;
+            }
+            courtFeeEl.textContent = `$${courtFee.toFixed(2)}`;
+
+            let addonTotal = 0;
+            if (state.addons.racket) addonTotal += 5;
+            if (state.addons.shuttle) addonTotal += 3;
+
+            const subtotal = courtFee + addonTotal;
+            const tax = subtotal * 0.08;
+            const total = subtotal + tax;
+
+            subtotalEl.textContent = `$${subtotal.toFixed(2)}`;
+            taxEl.textContent = `$${tax.toFixed(2)}`;
+            totalEl.textContent = `$${total.toFixed(2)}`;
+
+            // Enable/Disable step buttons
+            const btnS1 = document.getElementById('btnNextToStep2');
+            if (btnS1) btnS1.disabled = !state.selectedDate;
+
+            const btnS2 = document.getElementById('btnNextToStep3');
+            if (btnS2) btnS2.disabled = !state.selectedCourt;
+
+            const btnS3 = document.getElementById('btnContinueToPayment');
+            if (btnS3) btnS3.disabled = !(state.selectedDate && state.selectedCourt && state.selectedSlots.length > 0);
+
+            // Synchronize Sidebar Button
+            if (sideBtn) {
+                if (state.currentStep === 1) {
+                    sideBtn.textContent = 'Next: Select Court →';
+                    sideBtn.disabled = !state.selectedDate;
+                    sideBtn.onclick = function() { goToWizardStep(2); };
+                } else if (state.currentStep === 2) {
+                    sideBtn.textContent = 'Next: Select Time →';
+                    sideBtn.disabled = !state.selectedCourt;
+                    sideBtn.onclick = function() { goToWizardStep(3); };
+                } else {
+                    sideBtn.textContent = 'Continue to Payment →';
+                    sideBtn.disabled = !(state.selectedDate && state.selectedCourt && state.selectedSlots.length > 0);
+                    sideBtn.onclick = function() { openPaymentModal(); };
+                }
+            }
+        }
+
+        // ─── PAYMENT MODAL & POPUP FUNCTIONS ───
+        window.openPaymentModal = function() {
+            if (!state.selectedDate || !state.selectedCourt || state.selectedSlots.length === 0) {
+                alert("Please complete Date, Court, and Time selection first.");
+                return;
+            }
+
+            document.getElementById('paymentStep1View').style.display = 'block';
+            document.getElementById('paymentStep2View').style.display = 'none';
+            document.getElementById('modalTitleText').textContent = 'Complete Payment';
+
+            document.getElementById('modalStepPill1').style.color = 'var(--accent)';
+            document.getElementById('modalStepPill1').style.opacity = '1';
+            document.getElementById('modalStepPill2').style.color = 'var(--text-secondary)';
+            document.getElementById('modalStepPill2').style.opacity = '0.5';
+            document.getElementById('modalStepLine').className = 'wizard-step-line';
+
+            const c = courts.find(x => x.id === state.selectedCourt);
+            const sorted = [...state.selectedSlots].sort((a,b) => a - b);
+            const fmt = h => {
+                const ampm = h < 12 ? 'AM' : 'PM';
+                const h12 = h === 0 ? 12 : h > 12 ? h - 12 : h;
+                return `${h12}:00 ${ampm}`;
+            };
+            const opts = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' };
+            const dateStr = state.selectedDate.toLocaleDateString('en-US', opts);
+            const timeStr = `${fmt(sorted[0])} – ${fmt(sorted[sorted.length - 1] + 1)}`;
+
+            let courtFee = c.price * sorted.length;
+            let addonTotal = (state.addons.racket ? 5 : 0) + (state.addons.shuttle ? 3 : 0);
+            let subtotal = courtFee + addonTotal;
+            let tax = subtotal * 0.08;
+            let total = subtotal + tax;
+
+            document.getElementById('modalSummaryContent').innerHTML = `
+                <div style="display:flex; justify-content:space-between; padding-bottom:8px; border-bottom:1px solid var(--border);">
+                    <span style="color:var(--text-secondary);">Court</span>
+                    <span style="font-weight:700;">${c.name} (${c.type})</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; padding-bottom:8px; border-bottom:1px solid var(--border);">
+                    <span style="color:var(--text-secondary);">Date</span>
+                    <span style="font-weight:700;">${dateStr}</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; padding-bottom:8px; border-bottom:1px solid var(--border);">
+                    <span style="color:var(--text-secondary);">Time Slot</span>
+                    <span style="font-weight:700;">${timeStr} (${sorted.length}h)</span>
+                </div>
+                <div style="display:flex; justify-content:space-between;">
+                    <span style="color:var(--text-secondary);">Court Fee</span>
+                    <span>$${courtFee.toFixed(2)}</span>
+                </div>
+                ${state.addons.racket ? '<div style="display:flex; justify-content:space-between;"><span style="color:var(--text-secondary);">Racket Rental</span><span>+$5.00</span></div>' : ''}
+                ${state.addons.shuttle ? '<div style="display:flex; justify-content:space-between;"><span style="color:var(--text-secondary);">Feather Shuttles</span><span>+$3.00</span></div>' : ''}
+                <div style="display:flex; justify-content:space-between; padding-top:4px;">
+                    <span style="color:var(--text-secondary);">Tax (8%)</span>
+                    <span>$${tax.toFixed(2)}</span>
+                </div>
+            `;
+
+            document.getElementById('modalPayableAmount').textContent = `$${total.toFixed(2)}`;
+            document.getElementById('confirmModal').classList.add('open');
+        };
+
+        window.switchPayTab = function(type) {
+            state.payMethod = type;
+            document.getElementById('tabCard').className = type === 'card' ? 'pay-tab-btn active' : 'pay-tab-btn';
+            document.getElementById('tabUpi').className = type === 'upi' ? 'pay-tab-btn active' : 'pay-tab-btn';
+            document.getElementById('tabClub').className = type === 'club' ? 'pay-tab-btn active' : 'pay-tab-btn';
+
+            document.getElementById('cardPayForm').style.display = type === 'card' ? 'flex' : 'none';
+            document.getElementById('upiPayForm').style.display = type === 'upi' ? 'block' : 'none';
+            document.getElementById('clubPayForm').style.display = type === 'club' ? 'block' : 'none';
+        };
+
+        window.executePayment = function() {
+            const btn = document.getElementById('processPayBtn');
+            const originalText = btn.textContent;
+            btn.textContent = 'Processing Payment... ⏳';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.disabled = false;
+
+                const refCode = '#FLC-' + Math.floor(10000 + Math.random() * 90000);
+                document.getElementById('finalRefCode').textContent = refCode;
+
+                const c = courts.find(x => x.id === state.selectedCourt);
+                const sorted = [...state.selectedSlots].sort((a,b) => a - b);
+                const fmt = h => {
+                    const ampm = h < 12 ? 'AM' : 'PM';
+                    const h12 = h === 0 ? 12 : h > 12 ? h - 12 : h;
+                    return `${h12}:00 ${ampm}`;
+                };
+                const opts = { weekday: 'short', month: 'short', day: 'numeric' };
+                const dateStr = state.selectedDate.toLocaleDateString('en-US', opts);
+                const custName = document.getElementById('custName').value || 'Guest Player';
+
+                document.getElementById('finalPassSummary').innerHTML = `
+                    <strong style="color:var(--text-primary); font-size:0.95rem;">${custName}</strong><br>
+                    ${c.name} — ${c.type}<br>
+                    ${dateStr} | ${fmt(sorted[0])} - ${fmt(sorted[sorted.length - 1] + 1)}
+                `;
+
+                document.getElementById('paymentStep1View').style.display = 'none';
+                document.getElementById('paymentStep2View').style.display = 'block';
+                document.getElementById('modalTitleText').textContent = 'Booking Pass Generated';
+
+                document.getElementById('modalStepPill2').style.color = 'var(--accent)';
+                document.getElementById('modalStepPill2').style.opacity = '1';
+                document.getElementById('modalStepLine').className = 'wizard-step-line active';
+
+            }, 800);
+        };
+
+        window.closeModal = function() {
+            document.getElementById('confirmModal').classList.remove('open');
+        };
+
+        // ─── THEME TOGGLE ───
+        window.toggleTheme = function() {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            document.getElementById('themeToggle').textContent = isLight ? '☀️' : '🌙';
+            localStorage.setItem('falcon-theme', isLight ? 'light' : 'dark');
+        };
+
+        // Load saved theme
+        if (localStorage.getItem('falcon-theme') === 'light') {
+            document.body.classList.add('light-mode');
+            document.getElementById('themeToggle').textContent = '☀️';
+        }
+
+        // ─── MOBILE MENU ───
+        window.toggleMobileMenu = function() {
+            document.getElementById('mobileNav').classList.toggle('open');
+        };
+
+        // ─── SCROLL ANIMATIONS ───
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // ─── INIT ───
+        renderCalendars();
+        renderCourts();
+        renderTimeSlots();
+
+        // Auto-select today's date
+        state.selectedDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+        renderCalendars();
+        goToWizardStep(1);
+
+    })();
+    </script>
+
+</body>
+</html>

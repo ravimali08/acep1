@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membership Plans | Falcon Club – Premium Badminton</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anybody:wght@400;600;700;800&family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== BASE & VARIABLES ===== */
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-card: rgba(15, 15, 25, 0.8);
+            --accent: #CCFF00;
+            --accent-teal: #00D4AA;
+            --text-primary: #FFFFFF;
+            --text-secondary: #94A3B8;
+            --border-accent: rgba(204, 255, 0, 0.1);
+            --error: #FF4444;
+            --surface: rgba(255,255,255,0.03);
+        }
+
+        body.light-mode {
+            --bg-primary: #F0F2F5;
+            --bg-card: rgba(255, 255, 255, 0.85);
+            --text-primary: #0a0a0f;
+            --text-secondary: #475569;
+            --border-accent: rgba(204, 255, 0, 0.25);
+            --surface: rgba(0,0,0,0.03);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Lexend', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        h1, h2, h3, h4, h5, h6, .font-headline {
+            font-family: 'Anybody', sans-serif;
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb { background: #CCFF00; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #00D4AA; }
+
+        /* ===== HEADER ===== */
+        .header-glass {
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(204, 255, 0, 0.08);
+            transition: background 0.5s ease;
+        }
+        body.light-mode .header-glass {
+            background: rgba(255, 255, 255, 0.88);
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .nav-link {
+            position: relative;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.03em;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #CCFF00;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #CCFF00, #00D4AA);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        .btn-book {
+            background: linear-gradient(135deg, #CCFF00, #00D4AA);
+            color: #0a0a0f;
+            font-weight: 700;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(204, 255, 0, 0.2);
+        }
+        .btn-book:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 35px rgba(204, 255, 0, 0.4);
+        }
+
+        /* ===== THEME TOGGLE ===== */
+        .theme-toggle {
+            width: 44px;
+            height: 24px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            position: relative;
+            cursor: pointer;
+            border: 1px solid rgba(204, 255, 0, 0.2);
+            transition: background 0.3s;
+        }
+        .theme-toggle .toggle-dot {
+            width: 18px;
+            height: 18px;
+            background: #CCFF00;
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.3s ease;
+        }
+        body.light-mode .theme-toggle .toggle-dot {
+            transform: translateX(20px);
+            background: #00D4AA;
+        }
+
+        /* ===== MOBILE NAV ===== */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(10, 10, 15, 0.97);
+            backdrop-filter: blur(30px);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 28px;
+        }
+        body.light-mode .mobile-menu {
+            background: rgba(240, 242, 245, 0.97);
+        }
+        .mobile-menu.active { display: flex; }
+        .mobile-menu .nav-link { font-size: 1.3rem; }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .hamburger span {
+            width: 26px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: all 0.3s;
+        }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        @media (max-width: 1024px) {
+            .desktop-nav { display: none !important; }
+            .hamburger { display: flex; }
+        }
+
+        /* ===== HERO ===== */
+        .hero-membership {
+            position: relative;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+        .hero-bg-gradient {
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse 80% 60% at 50% 40%, rgba(204, 255, 0, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 50% at 80% 20%, rgba(0, 212, 170, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse 50% 40% at 20% 80%, rgba(204, 255, 0, 0.04) 0%, transparent 50%),
+                linear-gradient(180deg, var(--bg-primary) 0%, rgba(10, 10, 15, 0.95) 100%);
+            animation: heroPulse 8s ease-in-out infinite alternate;
+        }
+        @keyframes heroPulse {
+            0% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+
+        /* Floating geometric shapes */
+        .geo-shape {
+            position: absolute;
+            border: 1px solid rgba(204, 255, 0, 0.15);
+            opacity: 0.5;
+            animation: geoFloat 12s ease-in-out infinite;
+        }
+        .geo-shape.shape-1 {
+            width: 120px; height: 120px;
+            top: 15%; left: 8%;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation-duration: 14s;
+        }
+        .geo-shape.shape-2 {
+            width: 80px; height: 80px;
+            top: 25%; right: 12%;
+            border-radius: 50%;
+            border-color: rgba(0, 212, 170, 0.2);
+            animation-duration: 10s;
+            animation-delay: -3s;
+        }
+        .geo-shape.shape-3 {
+            width: 150px; height: 150px;
+            bottom: 20%; left: 15%;
+            border-radius: 50%;
+            border-color: rgba(204, 255, 0, 0.1);
+            animation-duration: 16s;
+            animation-delay: -5s;
+        }
+        .geo-shape.shape-4 {
+            width: 60px; height: 60px;
+            bottom: 30%; right: 20%;
+            transform: rotate(45deg);
+            animation-duration: 11s;
+            animation-delay: -2s;
+        }
+        .geo-shape.shape-5 {
+            width: 100px; height: 100px;
+            top: 50%; left: 50%;
+            border-radius: 20%;
+            border-color: rgba(0, 212, 170, 0.12);
+            animation-duration: 18s;
+            animation-delay: -7s;
+        }
+        @keyframes geoFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(5deg); }
+            50% { transform: translateY(-10px) rotate(-3deg); }
+            75% { transform: translateY(-25px) rotate(2deg); }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(204, 255, 0, 0.08);
+            border: 1px solid rgba(204, 255, 0, 0.2);
+            border-radius: 50px;
+            padding: 8px 20px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #CCFF00;
+            margin-bottom: 24px;
+        }
+
+        /* ===== GLASSMORPHISM CARD ===== */
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-accent);
+            border-radius: 20px;
+            transition: all 0.4s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(204, 255, 0, 0.25);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        /* ===== PRICING TOGGLE ===== */
+        .pricing-toggle-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin: 40px 0 60px;
+        }
+        .pricing-toggle-label {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            transition: color 0.3s;
+        }
+        .pricing-toggle-label.active-label { color: var(--text-primary); }
+
+        .pricing-switch {
+            width: 60px;
+            height: 32px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 16px;
+            position: relative;
+            cursor: pointer;
+            border: 1px solid rgba(204, 255, 0, 0.2);
+            transition: background 0.3s;
+        }
+        .pricing-switch .switch-dot {
+            width: 26px;
+            height: 26px;
+            background: linear-gradient(135deg, #CCFF00, #00D4AA);
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 0 12px rgba(204, 255, 0, 0.4);
+        }
+        .pricing-switch.annual .switch-dot {
+            transform: translateX(28px);
+        }
+        .save-badge {
+            background: rgba(0, 212, 170, 0.15);
+            color: #00D4AA;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* ===== TIER CARDS ===== */
+        .tier-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-accent);
+            border-radius: 24px;
+            padding: 40px 32px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .tier-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, rgba(204, 255, 0, 0.3), transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        .tier-card:hover::before { opacity: 1; }
+        .tier-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+        }
+
+        /* Featured Silver Card */
+        .tier-card.featured {
+            border: 2px solid #CCFF00;
+            transform: scale(1.05);
+            box-shadow: 
+                0 0 40px rgba(204, 255, 0, 0.1),
+                0 0 80px rgba(204, 255, 0, 0.05),
+                inset 0 0 60px rgba(204, 255, 0, 0.02);
+            z-index: 2;
+        }
+        .tier-card.featured::before {
+            opacity: 1;
+            height: 4px;
+            background: linear-gradient(90deg, #CCFF00, #00D4AA, #CCFF00);
+            animation: shimmerBorder 3s linear infinite;
+            background-size: 200% 100%;
+        }
+        @keyframes shimmerBorder {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        .tier-card.featured:hover {
+            transform: scale(1.05) translateY(-8px);
+            box-shadow: 
+                0 30px 80px rgba(0,0,0,0.3),
+                0 0 60px rgba(204, 255, 0, 0.15);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -1px;
+            right: 24px;
+            background: linear-gradient(135deg, #CCFF00, #00D4AA);
+            color: #0a0a0f;
+            font-family: 'Anybody', sans-serif;
+            font-weight: 800;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 8px 18px;
+            border-radius: 0 0 12px 12px;
+        }
+
+        .tier-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        .tier-icon.bronze { background: rgba(205, 127, 50, 0.15); border: 1px solid rgba(205, 127, 50, 0.3); }
+        .tier-icon.silver { background: rgba(204, 255, 0, 0.1); border: 1px solid rgba(204, 255, 0, 0.3); }
+        .tier-icon.gold { background: rgba(255, 215, 0, 0.15); border: 1px solid rgba(255, 215, 0, 0.3); }
+
+        .price-value {
+            font-family: 'Anybody', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1;
+            background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .tier-card.featured .price-value {
+            background: linear-gradient(135deg, #CCFF00, #00D4AA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px 0;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        .feature-item .check-icon {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            margin-top: 2px;
+        }
+        .check-bronze { background: rgba(205, 127, 50, 0.2); color: #CD7F32; }
+        .check-silver { background: rgba(204, 255, 0, 0.15); color: #CCFF00; }
+        .check-gold { background: rgba(255, 215, 0, 0.2); color: #FFD700; }
+
+        .btn-tier {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            border-radius: 14px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-top: 28px;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-tier.outline {
+            background: transparent;
+            border: 1px solid rgba(204, 255, 0, 0.3);
+            color: #CCFF00;
+        }
+        .btn-tier.outline:hover {
+            background: rgba(204, 255, 0, 0.1);
+            border-color: #CCFF00;
+            box-shadow: 0 0 25px rgba(204, 255, 0, 0.15);
+        }
+        .btn-tier.filled {
+            background: linear-gradient(135deg, #CCFF00, #00D4AA);
+            color: #0a0a0f;
+            box-shadow: 0 0 25px rgba(204, 255, 0, 0.2);
+        }
+        .btn-tier.filled:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 40px rgba(204, 255, 0, 0.35);
+        }
+        .btn-tier.gold-btn {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #0a0a0f;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.2);
+        }
+        .btn-tier.gold-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.35);
+        }
+
+        /* ===== COMPARISON TABLE ===== */
+        .comparison-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            overflow: hidden;
+            border-radius: 20px;
+            border: 1px solid var(--border-accent);
+        }
+        .comparison-table thead th {
+            background: rgba(204, 255, 0, 0.05);
+            padding: 20px 16px;
+            font-family: 'Anybody', sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            border-bottom: 1px solid var(--border-accent);
+            color: var(--text-primary);
+        }
+        .comparison-table thead th:first-child {
+            text-align: left;
+        }
+        .comparison-table tbody td {
+            padding: 16px;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+            text-align: center;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            transition: background 0.3s;
+        }
+        body.light-mode .comparison-table tbody td {
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .comparison-table tbody td:first-child {
+            text-align: left;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+        .comparison-table tbody tr:hover td {
+            background: rgba(204, 255, 0, 0.02);
+        }
+        .comparison-table .silver-col { background: rgba(204, 255, 0, 0.03); }
+        .table-check { color: #CCFF00; font-size: 1.1rem; }
+        .table-cross { color: #475569; font-size: 1rem; }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonial-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-accent);
+            border-radius: 20px;
+            padding: 36px;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+        .testimonial-card:hover {
+            border-color: rgba(204, 255, 0, 0.25);
+            transform: translateY(-4px);
+        }
+        .testimonial-card .quote-mark {
+            font-size: 4rem;
+            line-height: 1;
+            background: linear-gradient(135deg, #CCFF00, #00D4AA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: Georgia, serif;
+            position: absolute;
+            top: 20px;
+            left: 28px;
+            opacity: 0.3;
+        }
+        .stars { color: #CCFF00; font-size: 0.85rem; letter-spacing: 3px; }
+
+        /* ===== FAQ ACCORDION ===== */
+        .faq-item {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-accent);
+            border-radius: 16px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .faq-item:hover { border-color: rgba(204, 255, 0, 0.2); }
+        .faq-item.active { border-color: rgba(204, 255, 0, 0.3); }
+
+        .faq-question {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 22px 28px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-primary);
+            user-select: none;
+            transition: color 0.3s;
+        }
+        .faq-question:hover { color: #CCFF00; }
+        .faq-question .faq-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(204, 255, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: #CCFF00;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+        .faq-item.active .faq-icon { transform: rotate(45deg); }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+        .faq-answer-inner {
+            padding: 0 28px 22px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 0.92rem;
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-glow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.12;
+        }
+        .cta-glow.g1 { background: #CCFF00; top: -100px; left: -100px; }
+        .cta-glow.g2 { background: #00D4AA; bottom: -100px; right: -100px; }
+
+        .btn-cta-large {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #CCFF00, #00D4AA);
+            color: #0a0a0f;
+            font-family: 'Anybody', sans-serif;
+            font-weight: 800;
+            font-size: 1.1rem;
+            padding: 18px 48px;
+            border-radius: 60px;
+            text-decoration: none;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 40px rgba(204, 255, 0, 0.2);
+        }
+        .btn-cta-large:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 0 60px rgba(204, 255, 0, 0.35);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer-main {
+            background: rgba(5, 5, 10, 0.9);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(204, 255, 0, 0.06);
+        }
+        body.light-mode .footer-main {
+            background: rgba(230, 232, 236, 0.95);
+            border-top: 1px solid rgba(0,0,0,0.06);
+        }
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.88rem;
+            transition: color 0.3s;
+        }
+        .footer-link:hover { color: #CCFF00; }
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(204, 255, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        .social-icon:hover {
+            background: rgba(204, 255, 0, 0.1);
+            border-color: rgba(204, 255, 0, 0.3);
+            color: #CCFF00;
+            transform: translateY(-2px);
+        }
+
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* ===== SECTION LABEL ===== */
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #CCFF00;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .section-label .label-line {
+            width: 24px;
+            height: 1px;
+            background: linear-gradient(90deg, #CCFF00, transparent);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .tier-card.featured {
+                transform: scale(1);
+            }
+            .tier-card.featured:hover {
+                transform: translateY(-8px);
+            }
+            .price-value { font-size: 2.8rem; }
+            .comparison-table { font-size: 0.82rem; }
+            .comparison-table thead th, .comparison-table tbody td { padding: 12px 8px; }
+        }
+
+        /* ===== PARTICLE GRID ===== */
+        .particle-grid {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                radial-gradient(circle, rgba(204, 255, 0, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.5;
+        }
+
+        /* Annual savings badge on cards */
+        .annual-save {
+            display: none;
+            background: rgba(0, 212, 170, 0.12);
+            color: #00D4AA;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-top: 6px;
+        }
+        .annual-mode .annual-save { display: inline-block; }
+    </style>
+</head>
+<body>
+
+    <!-- ========== HEADER ========== -->
+    <header class="header-glass fixed top-0 left-0 w-full z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center gap-3 text-decoration-none">
+                <div style="width:40px;height:40px;background:linear-gradient(135deg,#CCFF00,#00D4AA);border-radius:12px;display:flex;align-items:center;justify-content:center;">
+                    <span style="font-size:1.2rem;">🏸</span>
+                </div>
+                <div>
+                    <span class="font-headline font-extrabold text-lg tracking-wide" style="color:var(--text-primary);">FALCON</span>
+                    <span class="font-headline font-extrabold text-lg" style="color:#CCFF00;">CLUB</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="desktop-nav flex items-center gap-8">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="events.html" class="nav-link">Events</a>
+                <a href="tournaments.html" class="nav-link">Tournaments</a>
+                <a href="programs.html" class="nav-link">Programs</a>
+                <a href="membership.html" class="nav-link active">Membership</a>
+                <a href="shop.html" class="nav-link">Shop</a>
+                <a href="contact.html" class="nav-link">Contact Us</a>
+            </nav>
+
+            <!-- Right Actions -->
+            <div class="flex items-center gap-4">
+                <div class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
+                    <div class="toggle-dot"></div>
+                </div>
+                <a href="court-booking.html" class="btn-book hidden sm:inline-flex">Book Now</a>
+                <div class="hamburger" onclick="toggleMobileMenu()">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="events.html" class="nav-link">Events</a>
+        <a href="tournaments.html" class="nav-link">Tournaments</a>
+        <a href="programs.html" class="nav-link">Programs</a>
+        <a href="membership.html" class="nav-link active">Membership</a>
+        <a href="shop.html" class="nav-link">Shop</a>
+        <a href="contact.html" class="nav-link">Contact Us</a>
+        <a href="court-booking.html" class="btn-book" style="margin-top:16px;">Book Now</a>
+    </div>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section class="hero-membership" style="padding-top:100px;">
+        <div class="hero-bg-gradient"></div>
+        <div class="particle-grid"></div>
+
+        <!-- Floating Geometry -->
+        <div class="geo-shape shape-1"></div>
+        <div class="geo-shape shape-2"></div>
+        <div class="geo-shape shape-3"></div>
+        <div class="geo-shape shape-4"></div>
+        <div class="geo-shape shape-5"></div>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-6 py-20">
+            <div class="hero-badge reveal">
+                <svg width="14" height="14" fill="#CCFF00" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+                PREMIUM MEMBERSHIP
+            </div>
+            <h1 class="font-headline font-extrabold text-5xl md:text-7xl mb-6 reveal reveal-delay-1" style="line-height:1.05;">
+                Membership<br>
+                <span style="background:linear-gradient(135deg,#CCFF00,#00D4AA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Plans</span>
+            </h1>
+            <p class="text-lg md:text-xl reveal reveal-delay-2" style="color:var(--text-secondary);max-width:600px;margin:0 auto;line-height:1.7;">
+                Unlock your potential with a plan tailored to your game. 
+                From casual players to competitive athletes – we've got you covered.
+            </p>
+            <div class="flex flex-wrap justify-center gap-6 mt-10 reveal reveal-delay-3">
+                <div class="flex items-center gap-3" style="color:var(--text-secondary);font-size:0.9rem;">
+                    <div style="width:8px;height:8px;border-radius:50%;background:#CCFF00;"></div>
+                    No long-term contracts
+                </div>
+                <div class="flex items-center gap-3" style="color:var(--text-secondary);font-size:0.9rem;">
+                    <div style="width:8px;height:8px;border-radius:50%;background:#00D4AA;"></div>
+                    Cancel anytime
+                </div>
+                <div class="flex items-center gap-3" style="color:var(--text-secondary);font-size:0.9rem;">
+                    <div style="width:8px;height:8px;border-radius:50%;background:#CCFF00;"></div>
+                    7-day free trial
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PRICING SECTION ========== -->
+    <section class="relative py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+
+            <!-- Monthly / Annual Toggle -->
+            <div class="pricing-toggle-wrapper reveal">
+                <span class="pricing-toggle-label active-label" id="monthlyLabel">MONTHLY</span>
+                <div class="pricing-switch" id="pricingSwitch" onclick="togglePricing()">
+                    <div class="switch-dot"></div>
+                </div>
+                <span class="pricing-toggle-label" id="annualLabel">ANNUAL</span>
+                <span class="save-badge">SAVE UP TO 17%</span>
+            </div>
+
+            <!-- Tier Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-4 items-center" id="tierCards">
+                
+                <!-- BRONZE TIER -->
+                <div class="tier-card reveal reveal-delay-1">
+                    <div class="tier-icon bronze">🥉</div>
+                    <h3 class="font-headline font-bold text-xl mb-1" style="color:var(--text-primary);">BRONZE</h3>
+                    <p style="color:#CD7F32;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;font-weight:600;margin-bottom:24px;">Starter Tier</p>
+                    
+                    <div class="mb-6">
+                        <div class="flex items-end gap-1">
+                            <span style="color:var(--text-secondary);font-size:1rem;margin-bottom:8px;">$</span>
+                            <span class="price-value monthly-price">49</span>
+                            <span class="price-value annual-price" style="display:none;">499</span>
+                            <span style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:8px;" class="price-period">/mo</span>
+                        </div>
+                        <div class="annual-save">Save $89/year</div>
+                    </div>
+
+                    <div style="height:1px;background:var(--border-accent);margin-bottom:20px;"></div>
+
+                    <div class="space-y-1">
+                        <div class="feature-item"><span class="check-icon check-bronze">✓</span> 8 court sessions per month</div>
+                        <div class="feature-item"><span class="check-icon check-bronze">✓</span> Access to group classes</div>
+                        <div class="feature-item"><span class="check-icon check-bronze">✓</span> Locker room access</div>
+                        <div class="feature-item"><span class="check-icon check-bronze">✓</span> Member discounts (10%)</div>
+                        <div class="feature-item"><span class="check-icon check-bronze">✓</span> Basic equipment rental</div>
+                    </div>
+
+                    <a href="#join" class="btn-tier outline">Get Started</a>
+                </div>
+
+                <!-- SILVER TIER (FEATURED) -->
+                <div class="tier-card featured reveal reveal-delay-2">
+                    <div class="popular-badge">MOST POPULAR</div>
+                    <div class="tier-icon silver">🥈</div>
+                    <h3 class="font-headline font-bold text-xl mb-1" style="color:var(--text-primary);">SILVER</h3>
+                    <p style="color:#CCFF00;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;font-weight:600;margin-bottom:24px;">Most Popular</p>
+                    
+                    <div class="mb-6">
+                        <div class="flex items-end gap-1">
+                            <span style="color:var(--text-secondary);font-size:1rem;margin-bottom:8px;">$</span>
+                            <span class="price-value monthly-price">99</span>
+                            <span class="price-value annual-price" style="display:none;">999</span>
+                            <span style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:8px;" class="price-period">/mo</span>
+                        </div>
+                        <div class="annual-save">Save $189/year</div>
+                    </div>
+
+                    <div style="height:1px;background:rgba(204,255,0,0.15);margin-bottom:20px;"></div>
+
+                    <div class="space-y-1">
+                        <div class="feature-item"><span class="check-icon check-silver">✓</span> Unlimited court sessions</div>
+                        <div class="feature-item"><span class="check-icon check-silver">✓</span> All group & specialty classes</div>
+                        <div class="feature-item"><span class="check-icon check-silver">✓</span> Priority booking (24hr advance)</div>
+                        <div class="feature-item"><span class="check-icon check-silver">✓</span> Pro shop 20% discount</div>
+                        <div class="feature-item"><span class="check-icon check-silver">✓</span> Guest passes (2/month)</div>
+                        <div class="feature-item"><span class="check-icon check-silver">✓</span> Towel service</div>
+                        <div class="feature-item"><span class="check-icon check-silver">✓</span> Tournament entry discounts</div>
+                    </div>
+
+                    <a href="#join" class="btn-tier filled">Choose Silver</a>
+                </div>
+
+                <!-- GOLD TIER -->
+                <div class="tier-card reveal reveal-delay-3">
+                    <div class="tier-icon gold">🥇</div>
+                    <h3 class="font-headline font-bold text-xl mb-1" style="color:var(--text-primary);">GOLD</h3>
+                    <p style="color:#FFD700;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.1em;font-weight:600;margin-bottom:24px;">Elite Tier</p>
+                    
+                    <div class="mb-6">
+                        <div class="flex items-end gap-1">
+                            <span style="color:var(--text-secondary);font-size:1rem;margin-bottom:8px;">$</span>
+                            <span class="price-value monthly-price">179</span>
+                            <span class="price-value annual-price" style="display:none;">1,799</span>
+                            <span style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:8px;" class="price-period">/mo</span>
+                        </div>
+                        <div class="annual-save">Save $349/year</div>
+                    </div>
+
+                    <div style="height:1px;background:var(--border-accent);margin-bottom:20px;"></div>
+
+                    <div class="space-y-1">
+                        <div class="feature-item"><span class="check-icon check-gold">✓</span> Everything in Silver</div>
+                        <div class="feature-item"><span class="check-icon check-gold">✓</span> 4 private coaching sessions/mo</div>
+                        <div class="feature-item"><span class="check-icon check-gold">✓</span> VIP court reservation</div>
+                        <div class="feature-item"><span class="check-icon check-gold">✓</span> Unlimited guest passes</div>
+                        <div class="feature-item"><span class="check-icon check-gold">✓</span> Free tournament entries</div>
+                        <div class="feature-item"><span class="check-icon check-gold">✓</span> Personalized training plan</div>
+                        <div class="feature-item"><span class="check-icon check-gold">✓</span> Premium locker</div>
+                        <div class="feature-item"><span class="check-icon check-gold">✓</span> Exclusive member events</div>
+                        <div class="feature-item"><span class="check-icon check-gold">✓</span> Free equipment rental</div>
+                    </div>
+
+                    <a href="#join" class="btn-tier gold-btn">Go Gold</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== COMPARISON TABLE ========== -->
+    <section class="relative py-20 px-6">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-14 reveal">
+                <div class="section-label justify-center">
+                    <span class="label-line"></span>
+                    PLAN COMPARISON
+                    <span class="label-line" style="transform:scaleX(-1);"></span>
+                </div>
+                <h2 class="font-headline font-extrabold text-3xl md:text-4xl">Compare All <span style="color:#CCFF00;">Features</span></h2>
+            </div>
+
+            <div class="reveal" style="overflow-x:auto;">
+                <table class="comparison-table" style="background:var(--bg-card);backdrop-filter:blur(20px);">
+                    <thead>
+                        <tr>
+                            <th style="min-width:200px;">Feature</th>
+                            <th style="min-width:120px;">🥉 Bronze</th>
+                            <th class="silver-col" style="min-width:120px;">🥈 Silver</th>
+                            <th style="min-width:120px;">🥇 Gold</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Monthly Price</td>
+                            <td>$49</td>
+                            <td class="silver-col" style="color:#CCFF00;font-weight:600;">$99</td>
+                            <td>$179</td>
+                        </tr>
+                        <tr>
+                            <td>Court Sessions</td>
+                            <td>8/month</td>
+                            <td class="silver-col">Unlimited</td>
+                            <td>Unlimited + VIP</td>
+                        </tr>
+                        <tr>
+                            <td>Group Classes</td>
+                            <td><span class="table-check">✓</span></td>
+                            <td class="silver-col"><span class="table-check">✓</span> All + Specialty</td>
+                            <td><span class="table-check">✓</span> All + Specialty</td>
+                        </tr>
+                        <tr>
+                            <td>Private Coaching</td>
+                            <td><span class="table-cross">✕</span></td>
+                            <td class="silver-col"><span class="table-cross">✕</span></td>
+                            <td><span class="table-check">✓</span> 4 sessions/mo</td>
+                        </tr>
+                        <tr>
+                            <td>Priority Booking</td>
+                            <td><span class="table-cross">✕</span></td>
+                            <td class="silver-col"><span class="table-check">✓</span> 24hr advance</td>
+                            <td><span class="table-check">✓</span> VIP</td>
+                        </tr>
+                        <tr>
+                            <td>Pro Shop Discount</td>
+                            <td>10%</td>
+                            <td class="silver-col">20%</td>
+                            <td>20%</td>
+                        </tr>
+                        <tr>
+                            <td>Guest Passes</td>
+                            <td><span class="table-cross">✕</span></td>
+                            <td class="silver-col">2/month</td>
+                            <td>Unlimited</td>
+                        </tr>
+                        <tr>
+                            <td>Locker Room</td>
+                            <td><span class="table-check">✓</span></td>
+                            <td class="silver-col"><span class="table-check">✓</span></td>
+                            <td><span class="table-check">✓</span> Premium</td>
+                        </tr>
+                        <tr>
+                            <td>Towel Service</td>
+                            <td><span class="table-cross">✕</span></td>
+                            <td class="silver-col"><span class="table-check">✓</span></td>
+                            <td><span class="table-check">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Tournament Entry</td>
+                            <td><span class="table-cross">✕</span></td>
+                            <td class="silver-col">Discounted</td>
+                            <td>Free</td>
+                        </tr>
+                        <tr>
+                            <td>Personalized Training Plan</td>
+                            <td><span class="table-cross">✕</span></td>
+                            <td class="silver-col"><span class="table-cross">✕</span></td>
+                            <td><span class="table-check">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Equipment Rental</td>
+                            <td>Basic</td>
+                            <td class="silver-col">Basic</td>
+                            <td>Free (All)</td>
+                        </tr>
+                        <tr>
+                            <td>Exclusive Events</td>
+                            <td><span class="table-cross">✕</span></td>
+                            <td class="silver-col"><span class="table-cross">✕</span></td>
+                            <td><span class="table-check">✓</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== TESTIMONIALS ========== -->
+    <section class="relative py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-14 reveal">
+                <div class="section-label justify-center">
+                    <span class="label-line"></span>
+                    MEMBER STORIES
+                    <span class="label-line" style="transform:scaleX(-1);"></span>
+                </div>
+                <h2 class="font-headline font-extrabold text-3xl md:text-4xl">What Our Members <span style="color:#CCFF00;">Say</span></h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card reveal reveal-delay-1">
+                    <div class="quote-mark">"</div>
+                    <div class="stars mb-4">★★★★★</div>
+                    <p style="color:var(--text-primary);line-height:1.8;margin-bottom:24px;position:relative;z-index:1;font-size:0.95rem;">
+                        "Best badminton facility in the state! The coaching alone is worth the membership."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div style="width:48px;height:48px;border-radius:50%;overflow:hidden;border:2px solid rgba(255,215,0,0.3);">
+                            <img src="https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=600" alt="Jennifer T." style="width:100%;height:100%;object-fit:cover;">
+                        </div>
+                        <div>
+                            <div style="font-weight:600;color:var(--text-primary);font-size:0.9rem;">Jennifer T.</div>
+                            <div style="font-size:0.78rem;color:#FFD700;text-transform:uppercase;letter-spacing:0.08em;font-weight:600;">Gold Member</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card reveal reveal-delay-2">
+                    <div class="quote-mark">"</div>
+                    <div class="stars mb-4">★★★★★</div>
+                    <p style="color:var(--text-primary);line-height:1.8;margin-bottom:24px;position:relative;z-index:1;font-size:0.95rem;">
+                        "Love the community here. Friday socials are the highlight of my week."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div style="width:48px;height:48px;border-radius:50%;overflow:hidden;border:2px solid rgba(204,255,0,0.3);">
+                            <img src="https://images.unsplash.com/photo-1613918431703-aa50889e3be4?w=600" alt="Robert K." style="width:100%;height:100%;object-fit:cover;">
+                        </div>
+                        <div>
+                            <div style="font-weight:600;color:var(--text-primary);font-size:0.9rem;">Robert K.</div>
+                            <div style="font-size:0.78rem;color:#CCFF00;text-transform:uppercase;letter-spacing:0.08em;font-weight:600;">Silver Member</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card reveal reveal-delay-3">
+                    <div class="quote-mark">"</div>
+                    <div class="stars mb-4">★★★★★</div>
+                    <p style="color:var(--text-primary);line-height:1.8;margin-bottom:24px;position:relative;z-index:1;font-size:0.95rem;">
+                        "My kids have improved so much since joining. Amazing junior programs!"
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div style="width:48px;height:48px;border-radius:50%;overflow:hidden;border:2px solid rgba(204,255,0,0.3);">
+                            <div style="width:100%;height:100%;background:linear-gradient(135deg,#CCFF00,#00D4AA);display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:700;color:#0a0a0f;">MS</div>
+                        </div>
+                        <div>
+                            <div style="font-weight:600;color:var(--text-primary);font-size:0.9rem;">Maria S.</div>
+                            <div style="font-size:0.78rem;color:#CCFF00;text-transform:uppercase;letter-spacing:0.08em;font-weight:600;">Silver Member</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FAQ SECTION ========== -->
+    <section class="relative py-20 px-6">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-14 reveal">
+                <div class="section-label justify-center">
+                    <span class="label-line"></span>
+                    FAQ
+                    <span class="label-line" style="transform:scaleX(-1);"></span>
+                </div>
+                <h2 class="font-headline font-extrabold text-3xl md:text-4xl">Frequently Asked <span style="color:#CCFF00;">Questions</span></h2>
+            </div>
+
+            <div class="reveal">
+                <!-- FAQ 1 -->
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        <span>What is the cancellation policy?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            We believe in flexibility. You can cancel your membership at any time with no cancellation fees. Monthly memberships can be cancelled before your next billing cycle. Annual memberships can be cancelled with a prorated refund for unused months (minus a small processing fee of $25). Simply visit the front desk or email us at <span style="color:#CCFF00;">membership@falconclub.com</span> to initiate cancellation.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        <span>Can I freeze my membership?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Absolutely! Life happens, and we get it. You can freeze your membership for up to 3 months per year at no charge. During the freeze period, your billing is paused and your membership tier is preserved. To freeze your account, provide at least 7 days' notice before your next billing date. Extended freezes beyond 3 months may be available for medical reasons with documentation.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        <span>Do you offer family plans?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Yes! Families that play together stay together. We offer family bundles at a <span style="color:#CCFF00;">15% discount</span> when 3 or more family members sign up on the same plan. Each family member gets their own individual membership benefits. Junior memberships (ages 8–17) are available at 40% off adult pricing. Contact our membership team for a customized family package tailored to your needs.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        <span>Is there a free trial period?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Yes! We offer a <span style="color:#CCFF00;">7-day free trial</span> for all new members. During your trial, you'll have full access to Bronze-level amenities, including 2 court sessions, group classes, and locker room facilities. No credit card is required to start your trial. If you love it (and we're sure you will!), you can upgrade to any tier seamlessly. Walk into our club or sign up online to begin your trial today.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        <span>Can I upgrade or downgrade my plan?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Of course! You can change your membership tier at any time. Upgrades take effect immediately, and you'll be charged the prorated difference for the remainder of your billing cycle. Downgrades take effect at the start of your next billing cycle. Simply visit the front desk or log into your member portal to make changes.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== JOIN NOW CTA ========== -->
+    <section class="cta-section relative py-28 px-6" id="join">
+        <div class="cta-glow g1"></div>
+        <div class="cta-glow g2"></div>
+        <div class="particle-grid" style="opacity:0.3;"></div>
+
+        <div class="relative z-10 max-w-3xl mx-auto text-center reveal">
+            <div class="section-label justify-center">
+                <span class="label-line"></span>
+                JOIN THE CLUB
+                <span class="label-line" style="transform:scaleX(-1);"></span>
+            </div>
+            <h2 class="font-headline font-extrabold text-4xl md:text-5xl mb-6">
+                Ready to Elevate<br>
+                <span style="background:linear-gradient(135deg,#CCFF00,#00D4AA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Your Game?</span>
+            </h2>
+            <p style="color:var(--text-secondary);font-size:1.05rem;line-height:1.8;margin-bottom:40px;max-width:550px;margin-left:auto;margin-right:auto;">
+                Start with a 7-day free trial. No commitments, no credit card required. 
+                Experience the Falcon Club difference today.
+            </p>
+            <a href="court-booking.html" class="btn-cta-large">
+                Start Free Trial
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M13.025 1l-2.847 2.828 6.176 6.176H0v3.992h16.354l-6.176 6.176L13.025 23 24 12z"/></svg>
+            </a>
+            <p style="color:var(--text-secondary);font-size:0.82rem;margin-top:20px;opacity:0.7;">
+                🔒 Secure payment · Cancel anytime · No hidden fees
+            </p>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer-main py-16 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <!-- Brand -->
+                <div>
+                    <div class="flex items-center gap-3 mb-5">
+                        <div style="width:36px;height:36px;background:linear-gradient(135deg,#CCFF00,#00D4AA);border-radius:10px;display:flex;align-items:center;justify-content:center;">
+                            <span style="font-size:1rem;">🏸</span>
+                        </div>
+                        <div>
+                            <span class="font-headline font-extrabold" style="color:var(--text-primary);">FALCON</span>
+                            <span class="font-headline font-extrabold" style="color:#CCFF00;">CLUB</span>
+                        </div>
+                    </div>
+                    <p style="color:var(--text-secondary);font-size:0.88rem;line-height:1.7;">
+                        Premium badminton facility dedicated to excellence in sport and community.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-headline font-bold mb-5" style="font-size:0.85rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-primary);">Quick Links</h4>
+                    <div class="flex flex-col gap-3">
+                        <a href="index.html" class="footer-link">Home</a>
+                        <a href="events.html" class="footer-link">Events</a>
+                        <a href="tournaments.html" class="footer-link">Tournaments</a>
+                        <a href="programs.html" class="footer-link">Programs</a>
+                    </div>
+                </div>
+
+                <!-- Club -->
+                <div>
+                    <h4 class="font-headline font-bold mb-5" style="font-size:0.85rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-primary);">Club</h4>
+                    <div class="flex flex-col gap-3">
+                        <a href="membership.html" class="footer-link">Membership</a>
+                        <a href="shop.html" class="footer-link">Pro Shop</a>
+                        <a href="court-booking.html" class="footer-link">Book a Court</a>
+                        <a href="contact.html" class="footer-link">Contact Us</a>
+                    </div>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="font-headline font-bold mb-5" style="font-size:0.85rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-primary);">Contact</h4>
+                    <div class="flex flex-col gap-3">
+                        <span class="footer-link" style="cursor:default;">📍 123 Falcon Drive, Austin, TX 78701</span>
+                        <span class="footer-link" style="cursor:default;">📞 (512) 555-0199</span>
+                        <span class="footer-link" style="cursor:default;">✉️ info@falconclub.com</span>
+                    </div>
+                    <div class="flex gap-3 mt-5">
+                        <a href="#" class="social-icon" title="Instagram">IG</a>
+                        <a href="#" class="social-icon" title="Facebook">FB</a>
+                        <a href="#" class="social-icon" title="Twitter">X</a>
+                        <a href="#" class="social-icon" title="YouTube">YT</a>
+                    </div>
+                </div>
+            </div>
+
+            <div style="height:1px;background:var(--border-accent);margin-bottom:24px;"></div>
+
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <p style="color:var(--text-secondary);font-size:0.8rem;">
+                    © 2026 Falcon Club. All rights reserved.
+                </p>
+                <div class="flex gap-6">
+                    <a href="#" class="footer-link" style="font-size:0.8rem;">Privacy Policy</a>
+                    <a href="#" class="footer-link" style="font-size:0.8rem;">Terms of Service</a>
+                    <a href="#" class="footer-link" style="font-size:0.8rem;">Refund Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script>
+        // ===== THEME TOGGLE =====
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            localStorage.setItem('falcon-theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+        }
+        // Load saved theme
+        if (localStorage.getItem('falcon-theme') === 'light') {
+            document.body.classList.add('light-mode');
+        }
+
+        // ===== MOBILE MENU =====
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+            document.querySelector('.hamburger').classList.toggle('active');
+        }
+
+        // ===== PRICING TOGGLE =====
+        let isAnnual = false;
+        function togglePricing() {
+            isAnnual = !isAnnual;
+            const sw = document.getElementById('pricingSwitch');
+            const monthlyLabel = document.getElementById('monthlyLabel');
+            const annualLabel = document.getElementById('annualLabel');
+            const tierCardsSection = document.getElementById('tierCards');
+
+            sw.classList.toggle('annual', isAnnual);
+            monthlyLabel.classList.toggle('active-label', !isAnnual);
+            annualLabel.classList.toggle('active-label', isAnnual);
+            tierCardsSection.classList.toggle('annual-mode', isAnnual);
+
+            // Toggle price display
+            document.querySelectorAll('.monthly-price').forEach(el => {
+                el.style.display = isAnnual ? 'none' : 'inline';
+            });
+            document.querySelectorAll('.annual-price').forEach(el => {
+                el.style.display = isAnnual ? 'inline' : 'none';
+            });
+            document.querySelectorAll('.price-period').forEach(el => {
+                el.textContent = isAnnual ? '/yr' : '/mo';
+            });
+
+            // Animate price values
+            document.querySelectorAll('.price-value').forEach(el => {
+                if (el.style.display !== 'none') {
+                    el.style.transform = 'scale(0.8)';
+                    el.style.opacity = '0';
+                    setTimeout(() => {
+                        el.style.transition = 'all 0.3s ease';
+                        el.style.transform = 'scale(1)';
+                        el.style.opacity = '1';
+                    }, 50);
+                }
+            });
+        }
+
+        // ===== FAQ ACCORDION =====
+        function toggleFaq(item) {
+            const wasActive = item.classList.contains('active');
+            // Close all first
+            document.querySelectorAll('.faq-item').forEach(faq => faq.classList.remove('active'));
+            // Toggle clicked
+            if (!wasActive) {
+                item.classList.add('active');
+            }
+        }
+
+        // ===== SCROLL REVEAL =====
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            const windowHeight = window.innerHeight;
+            reveals.forEach(el => {
+                const top = el.getBoundingClientRect().top;
+                if (top < windowHeight - 80) {
+                    el.classList.add('visible');
+                }
+            });
+        }
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+
+        // ===== HEADER SCROLL =====
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header-glass');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 4px 30px rgba(0,0,0,0.3)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

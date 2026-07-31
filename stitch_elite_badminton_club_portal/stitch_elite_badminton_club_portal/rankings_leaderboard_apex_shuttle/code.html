@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Club Rankings | FALCON CLUB</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wght@700;800&family=Lexend:wght@400;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wght@100..900&family=Lexend:wght@100..900&display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#fcf8fa",
+                    "primary-fixed-dim": "#bec6e0",
+                    "inverse-surface": "#303032",
+                    "outline-variant": "#c6c6cd",
+                    "on-tertiary-fixed": "#161e00",
+                    "on-surface-variant": "#45464d",
+                    "surface-bright": "#fcf8fa",
+                    "on-primary-fixed": "#131b2e",
+                    "on-tertiary-fixed-variant": "#3c4d00",
+                    "on-secondary-container": "#626567",
+                    "background": "#fcf8fa",
+                    "on-secondary-fixed-variant": "#444749",
+                    "on-secondary-fixed": "#191c1e",
+                    "tertiary-container": "#161e00",
+                    "surface-variant": "#e4e2e4",
+                    "on-primary": "#ffffff",
+                    "inverse-on-surface": "#f3f0f2",
+                    "outline": "#76777d",
+                    "surface-container-highest": "#e4e2e4",
+                    "secondary": "#5c5f61",
+                    "on-error": "#ffffff",
+                    "tertiary": "#000000",
+                    "secondary-container": "#e0e3e5",
+                    "secondary-fixed-dim": "#c4c7c9",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#abd600",
+                    "surface-dim": "#dcd9db",
+                    "primary-fixed": "#dae2fd",
+                    "surface-tint": "#565e74",
+                    "on-surface": "#1b1b1d",
+                    "on-tertiary-container": "#718e00",
+                    "surface-container-low": "#f6f3f5",
+                    "surface-container-high": "#eae7e9",
+                    "secondary-fixed": "#e0e3e5",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#f0edef",
+                    "on-primary-container": "#7c839b",
+                    "primary": "#000000",
+                    "on-background": "#1b1b1d",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#c3f400",
+                    "primary-container": "#131b2e",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "inverse-primary": "#bec6e0",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "base": "8px",
+                    "margin-desktop": "48px",
+                    "container-max": "1280px",
+                    "gutter": "24px",
+                    "section-gap": "120px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Anybody"],
+                    "headline-md": ["Anybody"],
+                    "display-lg-mobile": ["Anybody"],
+                    "body-lg": ["Lexend"],
+                    "display-lg": ["Anybody"],
+                    "label-md": ["Lexend"],
+                    "headline-lg-mobile": ["Anybody"],
+                    "body-md": ["Lexend"]
+            },
+            "fontSize": {
+                    "headline-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "display-lg-mobile": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg": ["72px", {"lineHeight": "76px", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        vertical-align: middle;
+    }
+
+    /* === KEYFRAME ANIMATIONS === */
+    @keyframes float-slow {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(3deg); }
+    }
+    @keyframes float-reverse {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(15px) rotate(-2deg); }
+    }
+    @keyframes shimmer {
+        0% { background-position: -200% 0; }
+        100% { background-position: 200% 0; }
+    }
+    @keyframes pulse-ring {
+        0% { transform: scale(0.95); opacity: 0.7; }
+        50% { transform: scale(1.08); opacity: 0.3; }
+        100% { transform: scale(0.95); opacity: 0.7; }
+    }
+    @keyframes pulse-glow {
+        0%, 100% { box-shadow: 0 0 20px rgba(195,244,0,0.3), 0 0 60px rgba(195,244,0,0.1); }
+        50% { box-shadow: 0 0 40px rgba(195,244,0,0.6), 0 0 100px rgba(195,244,0,0.2); }
+    }
+    @keyframes slide-up {
+        from { opacity: 0; transform: translateY(60px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes bar-fill {
+        from { width: 0%; }
+    }
+    @keyframes rotate-slow {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+    @keyframes gradient-shift {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+    }
+    @keyframes counter-pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+    }
+    @keyframes sparkle {
+        0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+        50% { opacity: 1; transform: scale(1) rotate(180deg); }
+    }
+
+    /* === UTILITY CLASSES === */
+    .glass {
+        background: rgba(255,255,255,0.05);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255,255,255,0.08);
+    }
+    .glass-strong {
+        background: rgba(255,255,255,0.08);
+        backdrop-filter: blur(40px);
+        -webkit-backdrop-filter: blur(40px);
+        border: 1px solid rgba(255,255,255,0.12);
+    }
+    .card-lift {
+        transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+    }
+    .card-lift:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+    }
+    .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .shimmer-text {
+        background: linear-gradient(90deg, #c3f400 0%, #ffffff 40%, #c3f400 80%);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shimmer 3s linear infinite;
+    }
+
+    /* === HERO SECTION === */
+    .hero-gradient {
+        background: linear-gradient(135deg, #0a0f1e 0%, #131b2e 30%, #1a2540 60%, #0d1422 100%);
+    }
+    .hero-watermark {
+        font-size: clamp(120px, 18vw, 280px);
+        line-height: 1;
+        color: rgba(195, 244, 0, 0.03);
+        position: absolute;
+        right: -30px;
+        top: 50%;
+        transform: translateY(-50%) rotate(-8deg);
+        pointer-events: none;
+        font-family: 'Anybody', sans-serif;
+        font-weight: 800;
+        letter-spacing: -0.06em;
+        white-space: nowrap;
+        user-select: none;
+    }
+    .floating-el {
+        animation: float-slow 6s ease-in-out infinite;
+    }
+    .floating-el-reverse {
+        animation: float-reverse 7s ease-in-out infinite;
+    }
+    .hero-particles {
+        background-image:
+            radial-gradient(circle at 20% 30%, rgba(195,244,0,0.08) 1px, transparent 1px),
+            radial-gradient(circle at 80% 70%, rgba(195,244,0,0.06) 1px, transparent 1px),
+            radial-gradient(circle at 50% 50%, rgba(195,244,0,0.04) 2px, transparent 2px);
+        background-size: 80px 80px, 60px 60px, 100px 100px;
+    }
+
+    /* === PODIUM === */
+    .podium-gold {
+        border-color: #c3f400;
+        box-shadow: 0 0 30px rgba(195,244,0,0.4), 0 0 80px rgba(195,244,0,0.15);
+        animation: pulse-glow 3s ease-in-out infinite;
+    }
+    .podium-silver {
+        border-color: #C0C0C0;
+        box-shadow: 0 0 25px rgba(192,192,192,0.3), 0 0 60px rgba(192,192,192,0.1);
+    }
+    .podium-bronze {
+        border-color: #CD7F32;
+        box-shadow: 0 0 25px rgba(205,127,50,0.3), 0 0 60px rgba(205,127,50,0.1);
+    }
+    .podium-gradient-overlay {
+        background: linear-gradient(180deg, rgba(19, 27, 46, 0) 0%, rgba(19, 27, 46, 1) 100%);
+    }
+
+    /* === LEADERBOARD === */
+    .table-row-hover {
+        transition: all 0.3s ease;
+    }
+    .table-row-hover:hover {
+        background: rgba(195,244,0,0.04);
+        transform: scale(1.005);
+    }
+    .win-bar {
+        animation: bar-fill 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* === SPOTLIGHT === */
+    .spotlight-gradient {
+        background: linear-gradient(135deg, #0a0f1e 0%, #131b2e 40%, #1a2844 100%);
+    }
+
+    /* === MISC === */
+    .conic-border {
+        background: conic-gradient(from 0deg, #c3f400, #abd600, #718e00, #c3f400);
+        animation: rotate-slow 8s linear infinite;
+    }
+    .gradient-border-gold {
+        background: linear-gradient(135deg, #c3f400 0%, #abd600 50%, #c3f400 100%);
+        background-size: 200% 200%;
+        animation: gradient-shift 3s ease infinite;
+    }
+    .stat-card-glow:hover {
+        box-shadow: 0 0 40px rgba(195,244,0,0.15);
+    }
+</style>
+</head>
+<body class="bg-surface text-on-surface font-body-md selection:bg-tertiary-fixed selection:text-on-tertiary-fixed">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/50">
+<div class="flex justify-between items-center h-20 px-margin-desktop max-w-container-max mx-auto">
+<div class="font-display-lg text-headline-md tracking-tighter text-primary">FALCON CLUB</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200 uppercase" href="../home_apex_shuttle_badminton_club/code.html">Home</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200 uppercase" href="../facilities_courts_apex_shuttle/code.html">Courts</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200 uppercase" href="../coaching_programs_apex_shuttle/code.html">Programs</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200 uppercase" href="../membership_apex_shuttle/code.html">Membership</a>
+<a class="font-label-md text-label-md text-primary font-bold border-b-2 border-tertiary-fixed uppercase" href="../rankings_leaderboard_apex_shuttle/code.html">Rankings</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors duration-200 uppercase" href="../tournament_schedule_apex_shuttle/code.html">Schedule</a>
+</div>
+<button class="bg-primary-container text-on-primary px-8 py-3 rounded-DEFAULT font-label-md text-label-md uppercase active:scale-95 transition-transform">
+                Book Now
+            </button>
+</div>
+</nav>
+<main class="pt-20">
+
+<!-- ============================================= -->
+<!-- HERO SECTION — Full Viewport Dark Gradient -->
+<!-- ============================================= -->
+<section class="relative min-h-screen overflow-hidden hero-gradient flex items-center">
+    <!-- Animated particle background -->
+    <div class="absolute inset-0 hero-particles opacity-60"></div>
+
+    <!-- Giant watermark -->
+    <div class="hero-watermark">RANKINGS</div>
+
+    <!-- Floating decorative elements -->
+    <div class="absolute top-20 left-[10%] w-2 h-2 bg-tertiary-fixed/30 rounded-full floating-el" style="animation-delay: 0s;"></div>
+    <div class="absolute top-[30%] right-[15%] w-3 h-3 bg-tertiary-fixed/20 rounded-full floating-el-reverse" style="animation-delay: 1s;"></div>
+    <div class="absolute bottom-[25%] left-[8%] w-1.5 h-1.5 bg-tertiary-fixed/25 rounded-full floating-el" style="animation-delay: 2s;"></div>
+    <div class="absolute top-[60%] right-[8%] w-4 h-4 border border-tertiary-fixed/10 rounded-full floating-el-reverse" style="animation-delay: 0.5s;"></div>
+    <div class="absolute top-[15%] right-[30%] w-6 h-6 border border-tertiary-fixed/8 rounded-full floating-el" style="animation-delay: 3s;"></div>
+    <div class="absolute bottom-[40%] left-[25%] w-2.5 h-2.5 bg-tertiary-fixed/15 rounded-full floating-el-reverse" style="animation-delay: 1.5s;"></div>
+
+    <!-- Floating geometric shapes -->
+    <div class="absolute top-[20%] left-[5%] w-32 h-32 border border-tertiary-fixed/5 rounded-xl rotate-12 floating-el" style="animation-delay: 2s;"></div>
+    <div class="absolute bottom-[15%] right-[10%] w-24 h-24 border border-white/5 rounded-lg -rotate-6 floating-el-reverse" style="animation-delay: 1s;"></div>
+
+    <!-- Radial glow behind hero content -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-tertiary-fixed/5 rounded-full blur-[150px] pointer-events-none"></div>
+
+    <div class="relative px-margin-desktop max-w-container-max mx-auto w-full grid md:grid-cols-2 gap-gutter items-center py-20">
+        <!-- Left: Hero Copy -->
+        <div class="reveal">
+            <div class="flex items-center gap-3 mb-8">
+                <div class="w-12 h-[2px] bg-tertiary-fixed"></div>
+                <span class="inline-block glass text-tertiary-fixed px-4 py-1.5 text-label-md font-label-md uppercase tracking-[0.2em] rounded-full">
+                    <span class="material-symbols-outlined text-sm mr-1" style="font-size:16px;">military_tech</span>
+                    Global Ranking System
+                </span>
+            </div>
+            <h1 class="font-display-lg text-display-lg text-white mb-4 leading-none">
+                CLUB<br>
+                <span class="shimmer-text">RANKINGS</span>
+            </h1>
+            <p class="font-body-lg text-body-lg text-white/50 mb-10 max-w-lg leading-relaxed">
+                The definitive leaderboard for Falcon Club athletes. Our Elo-based system tracks every smash, every rally, and every victory to bring you the most accurate skill assessment in the region.
+            </p>
+            <div class="flex flex-wrap gap-4 items-center">
+                <button class="group relative bg-tertiary-fixed text-on-tertiary-fixed px-10 py-4 font-label-md text-label-md uppercase hover:bg-tertiary-fixed-dim transition-all duration-300 overflow-hidden">
+                    <span class="relative z-10 flex items-center gap-2">
+                        Track Your Progress
+                        <span class="material-symbols-outlined text-lg transition-transform group-hover:translate-x-1">arrow_forward</span>
+                    </span>
+                </button>
+                <button class="glass text-white/70 hover:text-white px-8 py-4 font-label-md text-label-md uppercase transition-all duration-300 hover:bg-white/10 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-lg">play_circle</span>
+                    Watch Highlights
+                </button>
+            </div>
+
+            <!-- Stats row -->
+            <div class="flex gap-8 mt-14">
+                <div class="glass px-6 py-4 rounded-lg stat-card-glow transition-all duration-300 cursor-default">
+                    <div class="text-tertiary-fixed font-headline-lg text-2xl font-bold" id="counter-players">0</div>
+                    <div class="text-white/40 text-xs font-label-md uppercase tracking-wider">Active Players</div>
+                </div>
+                <div class="glass px-6 py-4 rounded-lg stat-card-glow transition-all duration-300 cursor-default">
+                    <div class="text-white font-headline-lg text-2xl font-bold">1,200+</div>
+                    <div class="text-white/40 text-xs font-label-md uppercase tracking-wider">Matches Played</div>
+                </div>
+                <div class="glass px-6 py-4 rounded-lg stat-card-glow transition-all duration-300 cursor-default">
+                    <div class="text-white font-headline-lg text-2xl font-bold">4</div>
+                    <div class="text-white/40 text-xs font-label-md uppercase tracking-wider">Divisions</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Hero Image with floating design -->
+        <div class="hidden md:block relative h-[600px] reveal" style="transition-delay: 0.2s;">
+            <!-- Main image card -->
+            <div class="absolute top-8 right-0 w-[420px] h-[520px] rounded-2xl overflow-hidden shadow-2xl floating-el" style="animation-duration: 8s;">
+                <img class="w-full h-full object-cover" data-alt="A dynamic, high-action photograph of a professional badminton match in progress. The lighting is dramatic and cinematic, emphasizing the athletic motion and intensity. The color palette is dominated by deep navy blue shadows and vibrant electric yellow accents from the court markings. The aesthetic is high-contrast, professional, and captures the kinetic energy of the sport in a modern athletic facility." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDh2sBS9f29CX9KTb_miiEy92ZCWXxne-1bz4N8HYr7DimhtOMJ0yt3GrbTJvSSssiKJQ_O88Jp4l_Q8lym5JJq6QuIQm0Ke2DwRJEbS3OhcCielpO6Z2R8h6qaL8G4co-I9tUFpyP3H8LuyzOmqDaJBy-tS3QIHblYWZHzrIct7_Si3UfZBfLkbvYLAjGj7rFDhYW0tg1riyr3L9sYH3aheIDqb0-Smv6uGKZ7A9_UdB9kZvTFOxN7xH_peKbfsVXQa6P1XsqRLZFn"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-primary-container/80 via-transparent to-transparent"></div>
+            </div>
+
+            <!-- Floating stats card -->
+            <div class="absolute -bottom-4 left-0 glass-strong p-6 rounded-xl floating-el-reverse z-20" style="animation-duration: 5s;">
+                <div class="flex items-center gap-4">
+                    <div class="w-14 h-14 rounded-xl bg-tertiary-fixed/20 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-tertiary-fixed text-3xl" style="font-variation-settings: 'FILL' 1;">emoji_events</span>
+                    </div>
+                    <div>
+                        <div class="text-white text-3xl font-bold font-headline-lg" id="counter-players-hero" style="animation: counter-pulse 2s ease-in-out infinite;">240+</div>
+                        <div class="text-white/50 text-xs font-label-md uppercase tracking-wider">Active Players</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Floating rank badge -->
+            <div class="absolute top-0 left-8 glass-strong px-5 py-3 rounded-xl floating-el z-20" style="animation-delay: 1s; animation-duration: 6s;">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-tertiary-fixed" style="font-variation-settings: 'FILL' 1;">leaderboard</span>
+                    <span class="text-white/80 text-sm font-label-md uppercase">Live Rankings</span>
+                    <span class="w-2 h-2 bg-tertiary-fixed rounded-full animate-pulse"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+        <span class="text-white/30 text-xs font-label-md uppercase tracking-widest">Scroll</span>
+        <span class="material-symbols-outlined text-white/30">expand_more</span>
+    </div>
+</section>
+
+<!-- ============================================= -->
+<!-- PODIUM & LEADERBOARD SECTION -->
+<!-- ============================================= -->
+<section class="py-section-gap bg-surface relative overflow-hidden">
+    <!-- Subtle background texture -->
+    <div class="absolute inset-0 opacity-[0.02]" style="background-image: radial-gradient(#131b2e 1px, transparent 1px); background-size: 30px 30px;"></div>
+
+    <div class="relative px-margin-desktop max-w-container-max mx-auto">
+        <!-- Section Header with Filters -->
+        <div class="reveal flex flex-wrap justify-between items-end mb-20 gap-6">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-[3px] bg-tertiary-fixed"></div>
+                    <span class="text-on-tertiary-container font-label-md text-label-md uppercase tracking-[0.15em]">Leaderboard</span>
+                </div>
+                <h2 class="font-display-lg text-headline-lg text-4xl md:text-5xl tracking-tight">TOP RANKED<br><span class="text-on-tertiary-container">ATHLETES</span></h2>
+            </div>
+            <div class="flex flex-col items-end gap-4">
+                <div class="flex gap-1.5 p-1.5 bg-surface-container rounded-xl">
+                    <button class="px-6 py-2.5 bg-primary-container text-on-primary font-label-md text-label-md rounded-lg transition-all duration-300">Men's Singles</button>
+                    <button class="px-6 py-2.5 text-on-surface-variant font-label-md text-label-md hover:bg-surface-variant transition-all duration-300 rounded-lg">Women's Singles</button>
+                    <button class="px-6 py-2.5 text-on-surface-variant font-label-md text-label-md hover:bg-surface-variant transition-all duration-300 rounded-lg">Doubles</button>
+                    <button class="px-6 py-2.5 text-on-surface-variant font-label-md text-label-md hover:bg-surface-variant transition-all duration-300 rounded-lg">Junior Series</button>
+                </div>
+                <div class="flex items-center gap-2 text-on-surface-variant">
+                    <span class="material-symbols-outlined text-sm">schedule</span>
+                    <span class="text-label-md font-label-md">Last updated: 14 Oct 2024</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== TOP 3 PODIUM ========== -->
+        <div class="reveal grid md:grid-cols-3 gap-gutter items-end mb-28">
+
+            <!-- RANK 2 — Marcus Thorne (Silver) -->
+            <div class="order-2 md:order-1 flex flex-col items-center card-lift" style="transition-delay: 0.1s;">
+                <div class="relative mb-8 group">
+                    <!-- Pulse ring -->
+                    <div class="absolute -inset-3 rounded-full border-2 border-[#C0C0C0]/30" style="animation: pulse-ring 3s ease-in-out infinite;"></div>
+                    <!-- Image -->
+                    <div class="relative w-44 h-44 rounded-full p-1 podium-silver overflow-hidden border-4">
+                        <img class="w-full h-full object-cover rounded-full" data-alt="A professional studio portrait of a competitive male badminton player in his mid-20s. He is wearing high-performance athletic gear in navy and teal. The background is a clean, neutral grey with soft studio lighting that creates high-end corporate athletic vibes. His expression is focused and determined, reflecting the discipline of a top-tier athlete." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmKSsRz00IODkUiDSjfqH4v3J2jnb_ULrysh1L56a2AXVxAtC2i5g3ih1nzv1OI6bVCYNeQGkw6LzRWuKUmqwtWhseiEp6nP5f98WUPp2UWZeYPsVhazmJ2nTh2xg-bpo_A-QFd4-W8oSieRYnxOiHFSbU1rp2D5Ikg0kXwKck-KIWvPp66LfMTL4qjaQZi52oV0uXJuMvOUw06s9jKCH0f3uHblmUcWkPmEcgL95Qxx27Z2JxJevwTJPmq1psIEYN7LA1cexFejFn"/>
+                    </div>
+                    <!-- Rank badge -->
+                    <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-[#C0C0C0] text-primary-container w-10 h-10 flex items-center justify-center rounded-full font-headline-md text-headline-md border-4 border-surface shadow-lg z-10">2</div>
+                    <!-- Floating sparkle -->
+                    <div class="absolute -top-1 -right-1 text-[#C0C0C0]/60">
+                        <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1; animation: sparkle 4s ease-in-out infinite;">star</span>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h3 class="font-headline-md text-headline-md mb-1">Marcus Thorne</h3>
+                    <p class="text-on-surface-variant font-label-md text-xs uppercase mb-4 tracking-widest">Silver Seed</p>
+                    <div class="inline-flex items-center gap-2 bg-surface-container-high px-5 py-2 rounded-full">
+                        <span class="material-symbols-outlined text-[#C0C0C0] text-sm" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+                        <span class="font-bold text-primary text-lg">2,840</span>
+                        <span class="text-on-surface-variant text-xs font-label-md">PTS</span>
+                    </div>
+                </div>
+                <!-- Mini podium bar -->
+                <div class="w-full mt-6 bg-surface-container-high rounded-t-xl pt-16 pb-4 text-center relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#C0C0C0]/10 to-transparent"></div>
+                    <span class="relative text-[#C0C0C0]/40 font-headline-lg text-6xl font-extrabold">#2</span>
+                </div>
+            </div>
+
+            <!-- RANK 1 — Elena Vance (Gold / #c3f400) -->
+            <div class="order-1 md:order-2 flex flex-col items-center card-lift z-10" style="transition-delay: 0s;">
+                <div class="relative mb-8 group">
+                    <!-- Outer glow ring -->
+                    <div class="absolute -inset-5 rounded-full border-2 border-tertiary-fixed/40" style="animation: pulse-ring 2.5s ease-in-out infinite;"></div>
+                    <div class="absolute -inset-8 rounded-full border border-tertiary-fixed/20" style="animation: pulse-ring 3s ease-in-out infinite 0.5s;"></div>
+                    <!-- Conic gradient rotating ring -->
+                    <div class="absolute -inset-2 rounded-full conic-border opacity-50 blur-[2px]"></div>
+                    <!-- Image -->
+                    <div class="relative w-56 h-56 rounded-full p-1.5 podium-gold overflow-hidden border-[6px]">
+                        <img class="w-full h-full object-cover rounded-full" data-alt="A professional headshot of a female badminton champion in her late 20s. She exudes confidence and athletic power. She is wearing a premium white and electric yellow jersey. The lighting is sharp and dynamic, casting gentle shadows that define her athletic features. The style is modern, high-contrast, and professional, suitable for a elite club leaderboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuChKDI4_GpxFZ9O_q-CJKWZtPOc2V2-YM71P06-BQ4usBEBgffRTIJpHU9UaZr7DqpMox0YA5Ygsf0w8kQvRaq6tG3FWYwcr3nC3WD-W2_ca6TxPz-CCtGMM3oF7oxadEvYYzI3-LgoohoT8KyE7u3mYZe7rVMKGrCPuFY6Ao2lFdC78IhzAfWrEQRtde9iZCfPAXCyHX5lio-fSzFdz4-7eWHjoSz1xT1Q-nTcj9JXjoeMMIFI_iGwprIv1pJ4iZlJvN_YeChHgJdB"/>
+                    </div>
+                    <!-- Crown badge -->
+                    <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 gradient-border-gold text-on-tertiary-fixed px-6 py-2 rounded-full font-headline-md text-headline-md border-4 border-surface shadow-xl z-10 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+                        1
+                    </div>
+                    <!-- Sparkles -->
+                    <div class="absolute -top-2 left-4 text-tertiary-fixed/70">
+                        <span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1; animation: sparkle 3s ease-in-out infinite;">star</span>
+                    </div>
+                    <div class="absolute top-4 -right-2 text-tertiary-fixed/50">
+                        <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1; animation: sparkle 4s ease-in-out infinite 1s;">star</span>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h3 class="font-display-lg text-3xl uppercase tracking-tight mb-1">Elena Vance</h3>
+                    <p class="inline-flex items-center gap-1.5 bg-primary-container text-tertiary-fixed-dim px-4 py-1 rounded font-label-md text-xs uppercase mb-4 tracking-widest">
+                        <span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1; font-size:14px;">diamond</span>
+                        Top Seed • Grandmaster
+                    </p>
+                    <div class="text-3xl font-bold text-primary flex items-center justify-center gap-1">
+                        3,150 <span class="text-on-surface-variant text-sm font-label-md">PTS</span>
+                    </div>
+                </div>
+                <!-- Taller podium bar -->
+                <div class="w-full mt-6 bg-surface-container-high rounded-t-xl pt-24 pb-4 text-center relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-t from-tertiary-fixed/10 to-transparent"></div>
+                    <span class="relative text-tertiary-fixed/30 font-headline-lg text-7xl font-extrabold">#1</span>
+                </div>
+            </div>
+
+            <!-- RANK 3 — David Chen (Bronze) -->
+            <div class="order-3 md:order-3 flex flex-col items-center card-lift" style="transition-delay: 0.2s;">
+                <div class="relative mb-8 group">
+                    <!-- Pulse ring -->
+                    <div class="absolute -inset-3 rounded-full border-2 border-[#CD7F32]/30" style="animation: pulse-ring 3.5s ease-in-out infinite;"></div>
+                    <!-- Image -->
+                    <div class="relative w-44 h-44 rounded-full p-1 podium-bronze overflow-hidden border-4">
+                        <img class="w-full h-full object-cover rounded-full" data-alt="A focused close-up of a professional male athlete, mid-30s, looking ready for competition. He has a sharp, disciplined appearance. He wears dark navy sports apparel with teal details. The lighting is low-key and dramatic, focusing on his face and shoulders. The aesthetic is clean, athletic, and sophisticated, maintaining the club's high-contrast brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJ59_ynVnD1qnXM-z8obhwY3fZdtMDSjfpDIQ2mLQzy2KkCUEhLMw9GKFyx2KO_NwBJPrjcGi4yufV4Y0ZbmBseDFx0r-PX5n3Nwiw2988i50PetWpp2eKjy5NodQvHRb_4cH4me2nc4mC4_jCepjoKEAkhjc4lzJ5CR9jAQaoEu-DhSGP3xdvtCmTauhUzZFOH_4DKTEDRPk_1Obohe1FNArZ3Cu9NVqer9jBVEaelkT1Ng15J7sO24P6u6YUuk9hv4VcU7ZYxFNR"/>
+                    </div>
+                    <!-- Rank badge -->
+                    <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-[#CD7F32] text-white w-10 h-10 flex items-center justify-center rounded-full font-headline-md text-headline-md border-4 border-surface shadow-lg z-10">3</div>
+                    <!-- Floating sparkle -->
+                    <div class="absolute -top-1 left-2 text-[#CD7F32]/60">
+                        <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1; animation: sparkle 5s ease-in-out infinite 0.5s;">star</span>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h3 class="font-headline-md text-headline-md mb-1">David Chen</h3>
+                    <p class="text-on-surface-variant font-label-md text-xs uppercase mb-4 tracking-widest">Bronze Seed</p>
+                    <div class="inline-flex items-center gap-2 bg-surface-container-high px-5 py-2 rounded-full">
+                        <span class="material-symbols-outlined text-[#CD7F32] text-sm" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+                        <span class="font-bold text-primary text-lg">2,710</span>
+                        <span class="text-on-surface-variant text-xs font-label-md">PTS</span>
+                    </div>
+                </div>
+                <!-- Shorter podium bar -->
+                <div class="w-full mt-6 bg-surface-container-high rounded-t-xl pt-10 pb-4 text-center relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#CD7F32]/10 to-transparent"></div>
+                    <span class="relative text-[#CD7F32]/30 font-headline-lg text-6xl font-extrabold">#3</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== DETAILED LEADERBOARD TABLE ========== -->
+        <div class="reveal bg-white rounded-xl border border-outline-variant/50 overflow-hidden shadow-xl">
+            <div class="overflow-x-auto">
+            <table class="w-full text-left">
+            <thead class="bg-primary-container text-white">
+                <tr>
+                <th class="px-8 py-6 font-label-md text-label-md uppercase tracking-widest">
+                    <span class="flex items-center gap-2"><span class="material-symbols-outlined text-tertiary-fixed text-sm">tag</span> Rank</span>
+                </th>
+                <th class="px-8 py-6 font-label-md text-label-md uppercase tracking-widest">
+                    <span class="flex items-center gap-2"><span class="material-symbols-outlined text-tertiary-fixed text-sm">person</span> Player</span>
+                </th>
+                <th class="px-8 py-6 font-label-md text-label-md uppercase tracking-widest">
+                    <span class="flex items-center gap-2"><span class="material-symbols-outlined text-tertiary-fixed text-sm">star</span> Points</span>
+                </th>
+                <th class="px-8 py-6 font-label-md text-label-md uppercase tracking-widest">
+                    <span class="flex items-center gap-2"><span class="material-symbols-outlined text-tertiary-fixed text-sm">scoreboard</span> W/L Record</span>
+                </th>
+                <th class="px-8 py-6 font-label-md text-label-md uppercase tracking-widest">
+                    <span class="flex items-center gap-2"><span class="material-symbols-outlined text-tertiary-fixed text-sm">percent</span> Win Rate</span>
+                </th>
+                <th class="px-8 py-6 font-label-md text-label-md uppercase tracking-widest text-right">
+                    <span class="flex items-center gap-2 justify-end"><span class="material-symbols-outlined text-tertiary-fixed text-sm">trending_up</span> Trend</span>
+                </th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-outline-variant/50">
+                <!-- Row 4 — David Carter -->
+                <tr class="table-row-hover group cursor-pointer">
+                <td class="px-8 py-6">
+                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-surface-container font-headline-md text-headline-md text-primary">04</span>
+                </td>
+                <td class="px-8 py-6">
+                    <div class="flex items-center gap-4">
+                    <div class="relative">
+                        <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-outline/30 group-hover:border-tertiary-fixed transition-colors duration-300">
+                        <img class="w-full h-full object-cover" data-alt="A portrait of a male professional athlete, mid-20s, with a short haircut and energetic look. High-contrast athletic lighting. Deep navy and electric yellow jersey colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDl9Z72btoiPl3J_mVqkEGz9XNgKOReT5lgILNYs_TGKjLHSGVBoGN5eLfq76bvzgkOuoUHbVqKXuTewW_d0Rj7-GdmM0YgtDYDqLaOFTu-fthL7M2uxZ4Xq6AkRdnLA4B_OFDg6LOyjl9-i9F-SQP0-CmfBR9_0LujzvHalwZc4C6tpfRKdWHoeYRlwb5sGgX2yj0zOG0U8hThNDSCOZJGK6CGD3SjeZXKBMVySFmSMdMF7qZ2YmmVKgNdvkZBxCgzRdB0UVfrjX8"/>
+                        </div>
+                        <div class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-on-tertiary-container rounded-full border-2 border-white"></div>
+                    </div>
+                    <div>
+                        <div class="font-bold text-primary group-hover:text-on-tertiary-container transition-colors">David Carter</div>
+                        <div class="text-xs text-on-surface-variant font-label-md flex items-center gap-1">
+                            <span class="material-symbols-outlined text-xs" style="font-size:12px;">verified</span>
+                            PRO TIER
+                        </div>
+                    </div>
+                    </div>
+                </td>
+                <td class="px-8 py-6">
+                    <span class="font-bold text-lg">2,650</span>
+                </td>
+                <td class="px-8 py-6">
+                    <span class="text-on-tertiary-container font-bold">42</span>
+                    <span class="text-on-surface-variant mx-1">/</span>
+                    <span class="text-error font-bold">12</span>
+                </td>
+                <td class="px-8 py-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-32 bg-surface-container-high h-2.5 rounded-full overflow-hidden">
+                        <div class="bg-on-tertiary-container h-full rounded-full win-bar" style="width: 78%;"></div>
+                        </div>
+                        <span class="text-xs font-label-md font-bold text-on-tertiary-container">78%</span>
+                    </div>
+                </td>
+                <td class="px-8 py-6 text-right">
+                    <span class="inline-flex items-center gap-1 bg-on-tertiary-container/10 text-on-tertiary-container px-3 py-1 rounded-full text-xs font-bold">
+                        <span class="material-symbols-outlined text-sm">trending_up</span>
+                        +12
+                    </span>
+                </td>
+                </tr>
+
+                <!-- Row 5 — Emily Davis -->
+                <tr class="table-row-hover group cursor-pointer">
+                <td class="px-8 py-6">
+                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-surface-container font-headline-md text-headline-md text-primary">05</span>
+                </td>
+                <td class="px-8 py-6">
+                    <div class="flex items-center gap-4">
+                    <div class="relative">
+                        <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-outline/30 group-hover:border-tertiary-fixed transition-colors duration-300">
+                        <img class="w-full h-full object-cover" data-alt="A studio portrait of a focused female badminton player with athletic equipment visible in the blurred background. Modern lighting, clean composition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA015BQXb6-a9Ac-ZOx_eO9d1FQgDN204MN1OUZKAtIkEn2AL49HrA1fM6yw0wOECxwpnPCeN4OVNZKvA8tpBQ8EieON--_BfFNK72YHv_X2tKE7D7JyX8rQgo4yFo38DUpQ_YGvtU2k3IBItn2eMg2ylmRNPY1c6X5Np5ryLLCqOr-a5UitgzEw90b2XnOUL4h77qI9LqRp-Z2wLuLlv3DP-RJhmhkbaAnA-jh7Hc9wa2jlJUt1Xw_8dZoyrcoj6ajfcszWdCf_Dwc"/>
+                        </div>
+                        <div class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-tertiary-fixed-dim rounded-full border-2 border-white"></div>
+                    </div>
+                    <div>
+                        <div class="font-bold text-primary group-hover:text-on-tertiary-container transition-colors">Emily Davis</div>
+                        <div class="text-xs text-on-surface-variant font-label-md flex items-center gap-1">
+                            <span class="material-symbols-outlined text-xs" style="font-size:12px;">verified</span>
+                            ELITE TIER
+                        </div>
+                    </div>
+                    </div>
+                </td>
+                <td class="px-8 py-6">
+                    <span class="font-bold text-lg">2,590</span>
+                </td>
+                <td class="px-8 py-6">
+                    <span class="text-on-tertiary-container font-bold">38</span>
+                    <span class="text-on-surface-variant mx-1">/</span>
+                    <span class="text-error font-bold">15</span>
+                </td>
+                <td class="px-8 py-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-32 bg-surface-container-high h-2.5 rounded-full overflow-hidden">
+                        <div class="bg-on-tertiary-container h-full rounded-full win-bar" style="width: 72%;"></div>
+                        </div>
+                        <span class="text-xs font-label-md font-bold text-on-surface-variant">72%</span>
+                    </div>
+                </td>
+                <td class="px-8 py-6 text-right">
+                    <span class="inline-flex items-center gap-1 bg-outline/10 text-outline px-3 py-1 rounded-full text-xs font-bold">
+                        <span class="material-symbols-outlined text-sm">horizontal_rule</span>
+                        0
+                    </span>
+                </td>
+                </tr>
+
+                <!-- Row 6 — Robert Miller -->
+                <tr class="table-row-hover group cursor-pointer">
+                <td class="px-8 py-6">
+                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-surface-container font-headline-md text-headline-md text-primary">06</span>
+                </td>
+                <td class="px-8 py-6">
+                    <div class="flex items-center gap-4">
+                    <div class="relative">
+                        <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-outline/30 group-hover:border-tertiary-fixed transition-colors duration-300">
+                        <img class="w-full h-full object-cover" data-alt="Athletic headshot of a male player, mid-30s, determined expression. Wearing dark athletic vest. Studio lighting with sharp highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2A3LdANeiZomBGQLdUsH8TxGQzscWrPzH_4h54xEhfO1TnoXb0nUfR8KXWkwrENdXXwSLv_ZN2I7AWyud6XeGz2m43S1rv716zHFzLSpt90Uf7zi7EQFq-b6ckkXhMANv0P-gx4i3TZqJXym34ame6-_KlRF7ogm2WSwTwyCA-4DHsi6dvTKypcBHP_09VONvljIg_DI9fDD9xI6rbRZQt_2KWma2HGtd2jov0SwEhUX6oA9HOrhnE12lFdMcD_WMRnVgDE4N_u8C"/>
+                        </div>
+                        <div class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-error rounded-full border-2 border-white"></div>
+                    </div>
+                    <div>
+                        <div class="font-bold text-primary group-hover:text-on-tertiary-container transition-colors">Robert Miller</div>
+                        <div class="text-xs text-on-surface-variant font-label-md flex items-center gap-1">
+                            <span class="material-symbols-outlined text-xs" style="font-size:12px;">verified</span>
+                            ELITE TIER
+                        </div>
+                    </div>
+                    </div>
+                </td>
+                <td class="px-8 py-6">
+                    <span class="font-bold text-lg">2,410</span>
+                </td>
+                <td class="px-8 py-6">
+                    <span class="text-on-tertiary-container font-bold">31</span>
+                    <span class="text-on-surface-variant mx-1">/</span>
+                    <span class="text-error font-bold">19</span>
+                </td>
+                <td class="px-8 py-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-32 bg-surface-container-high h-2.5 rounded-full overflow-hidden">
+                        <div class="bg-on-tertiary-container h-full rounded-full win-bar" style="width: 62%;"></div>
+                        </div>
+                        <span class="text-xs font-label-md font-bold text-on-surface-variant">62%</span>
+                    </div>
+                </td>
+                <td class="px-8 py-6 text-right">
+                    <span class="inline-flex items-center gap-1 bg-error/10 text-error px-3 py-1 rounded-full text-xs font-bold">
+                        <span class="material-symbols-outlined text-sm">trending_down</span>
+                        -5
+                    </span>
+                </td>
+                </tr>
+            </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================= -->
+<!-- PLAYER SPOTLIGHT — Full-Width Dark Section -->
+<!-- ============================================= -->
+<section class="relative py-section-gap spotlight-gradient overflow-hidden">
+    <!-- Background decoration -->
+    <div class="absolute inset-0 hero-particles opacity-40"></div>
+    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-tertiary-fixed/5 rounded-full blur-[200px]"></div>
+    <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary-fixed/5 rounded-full blur-[150px]"></div>
+
+    <div class="relative px-margin-desktop max-w-container-max mx-auto">
+        <!-- Section label -->
+        <div class="reveal mb-14">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-[3px] bg-tertiary-fixed"></div>
+                <span class="text-tertiary-fixed font-label-md text-label-md uppercase tracking-[0.15em]">Featured Athlete</span>
+            </div>
+            <h2 class="font-headline-lg text-headline-lg text-white">PLAYER SPOTLIGHT</h2>
+            <p class="text-white/40 font-body-md mt-2">Recognizing exceptional performance this month.</p>
+        </div>
+
+        <!-- Spotlight Card -->
+        <div class="reveal glass-strong rounded-2xl overflow-hidden shadow-2xl">
+            <div class="flex flex-col lg:flex-row">
+                <!-- Left: Image -->
+                <div class="lg:w-2/5 relative h-96 lg:h-auto min-h-[500px]">
+                    <img class="w-full h-full object-cover" data-alt="A striking portrait of a male badminton athlete holding a racquet, standing in front of a dark, atmospheric background with a spotlight focus. The lighting is high-contrast, dramatic, and professional. Deep blue and electric yellow color scheme. The player looks intense and ready for a match." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkZSNe_yg8X6M3M09fiMIgN5H7W6kOMEMutKAYLMqjXxvTnIedE2olpOpcg2zyw1ZCzLK2MzWmkhbImd7jAQqa-k__2L_yJ0wswdShWHwyAOdQVC8sd3iidWmqXniaXh3Z5Jma8c2uB-X3pVBLeyXrQjVTRD37TryRNJDk2XxuGM2yEYzncb_dpnUS5ho4XxWZMvAfp_NmD3f999g0AwmMVl90IA--a8A1eIY4YGygJwFpwNMzloIOweRXwQS8CtTOq56bYxaav5C9"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary-container via-primary-container/30 to-transparent pointer-events-none"></div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent to-primary-container/50 pointer-events-none hidden lg:block"></div>
+
+                    <!-- Name overlay on image -->
+                    <div class="absolute bottom-8 left-8 right-8">
+                        <div class="inline-flex items-center gap-2 bg-tertiary-fixed text-on-tertiary-fixed px-4 py-1.5 font-label-md rounded uppercase mb-3">
+                            <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">emoji_events</span>
+                            MVP Oct 2024
+                        </div>
+                        <h3 class="text-4xl font-display-lg uppercase leading-none text-white tracking-tight">Leo "The Lightning" Smith</h3>
+                    </div>
+                </div>
+
+                <!-- Right: Stats & Match History -->
+                <div class="lg:w-3/5 p-10 lg:p-14 text-white">
+                    <!-- Stat Columns -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
+                        <div class="glass rounded-xl p-6 text-center card-lift group cursor-default">
+                            <div class="w-12 h-12 mx-auto mb-3 rounded-lg bg-tertiary-fixed/10 flex items-center justify-center group-hover:bg-tertiary-fixed/20 transition-colors">
+                                <span class="material-symbols-outlined text-tertiary-fixed text-2xl" style="font-variation-settings: 'FILL' 1;">speed</span>
+                            </div>
+                            <div class="text-tertiary-fixed font-headline-lg text-headline-lg mb-1">324</div>
+                            <div class="text-xs font-label-md uppercase text-white/40 tracking-wider">Smash Speed (km/h)</div>
+                        </div>
+                        <div class="glass rounded-xl p-6 text-center card-lift group cursor-default">
+                            <div class="w-12 h-12 mx-auto mb-3 rounded-lg bg-tertiary-fixed/10 flex items-center justify-center group-hover:bg-tertiary-fixed/20 transition-colors">
+                                <span class="material-symbols-outlined text-tertiary-fixed text-2xl" style="font-variation-settings: 'FILL' 1;">bolt</span>
+                            </div>
+                            <div class="text-tertiary-fixed font-headline-lg text-headline-lg mb-1">9.8</div>
+                            <div class="text-xs font-label-md uppercase text-white/40 tracking-wider">Agility Score</div>
+                        </div>
+                        <div class="glass rounded-xl p-6 text-center card-lift group cursor-default">
+                            <div class="w-12 h-12 mx-auto mb-3 rounded-lg bg-tertiary-fixed/10 flex items-center justify-center group-hover:bg-tertiary-fixed/20 transition-colors">
+                                <span class="material-symbols-outlined text-tertiary-fixed text-2xl" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+                            </div>
+                            <div class="text-tertiary-fixed font-headline-lg text-headline-lg mb-1">12-0</div>
+                            <div class="text-xs font-label-md uppercase text-white/40 tracking-wider">Match Streak</div>
+                        </div>
+                    </div>
+
+                    <!-- Match History -->
+                    <div class="space-y-6">
+                        <h4 class="font-label-md text-label-md uppercase tracking-widest text-tertiary-fixed flex items-center gap-2">
+                            <span class="material-symbols-outlined text-sm">history</span>
+                            Recent Match History
+                        </h4>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center glass p-5 rounded-xl hover:bg-white/[0.08] transition-all duration-300 group/match cursor-pointer">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-on-tertiary-container/20 flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-on-tertiary-container text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                    </div>
+                                    <span class="font-bold group-hover/match:text-tertiary-fixed transition-colors">vs Marcus Thorne</span>
+                                </div>
+                                <span class="text-tertiary-fixed font-bold text-sm">21-18, 21-14 (W)</span>
+                            </div>
+                            <div class="flex justify-between items-center glass p-5 rounded-xl hover:bg-white/[0.08] transition-all duration-300 group/match cursor-pointer">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-on-tertiary-container/20 flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-on-tertiary-container text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                    </div>
+                                    <span class="font-bold group-hover/match:text-tertiary-fixed transition-colors">vs David Carter</span>
+                                </div>
+                                <span class="text-tertiary-fixed font-bold text-sm">21-09, 21-11 (W)</span>
+                            </div>
+                            <div class="flex justify-between items-center glass p-5 rounded-xl hover:bg-white/[0.08] transition-all duration-300 group/match cursor-pointer">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-on-tertiary-container/20 flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-on-tertiary-container text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                    </div>
+                                    <span class="font-bold group-hover/match:text-tertiary-fixed transition-colors">vs Elena Vance (Exhibition)</span>
+                                </div>
+                                <span class="text-tertiary-fixed font-bold text-sm">21-19, 15-21, 21-18 (W)</span>
+                            </div>
+                        </div>
+                        <button class="w-full mt-4 glass py-4 font-label-md text-label-md uppercase hover:bg-white/10 transition-all duration-300 rounded-xl flex items-center justify-center gap-2 group/btn">
+                            View Full Profile
+                            <span class="material-symbols-outlined text-sm transition-transform group-hover/btn:translate-x-1">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</main>
+<!-- Footer -->
+<footer class="bg-primary-container text-on-primary-container py-section-gap w-full">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<div class="font-display-lg text-headline-md text-on-primary-fixed mb-6 uppercase">FALCON CLUB</div>
+<p class="text-on-primary-container/80 text-body-md mb-8">
+                    Elevating the game since 2018. The premier destination for competitive badminton and athletic excellence.
+                </p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full border border-on-primary-container/20 flex items-center justify-center hover:bg-tertiary-fixed hover:text-on-tertiary-fixed transition-all" href="#"><span class="material-symbols-outlined">share</span></a>
+<a class="w-10 h-10 rounded-full border border-on-primary-container/20 flex items-center justify-center hover:bg-tertiary-fixed hover:text-on-tertiary-fixed transition-all" href="#"><span class="material-symbols-outlined">public</span></a>
+</div>
+</div>
+<div>
+<h4 class="text-white font-label-md text-label-md uppercase mb-6">Explore</h4>
+<ul class="space-y-4">
+<li><a class="text-on-primary-container/80 hover:text-tertiary-fixed transition-colors" href="#">About Us</a></li>
+<li><a class="text-on-primary-container/80 hover:text-tertiary-fixed transition-colors" href="#">Courts</a></li>
+<li><a class="text-on-primary-container/80 hover:text-tertiary-fixed transition-colors" href="#">Programs</a></li>
+<li><a class="text-on-primary-container/80 hover:text-tertiary-fixed transition-colors" href="#">Membership</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-label-md text-label-md uppercase mb-6">Support</h4>
+<ul class="space-y-4">
+<li><a class="text-on-primary-container/80 hover:text-tertiary-fixed transition-colors" href="#">Contact</a></li>
+<li><a class="text-on-primary-container/80 hover:text-tertiary-fixed transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="text-on-primary-container/80 hover:text-tertiary-fixed transition-colors" href="#">Terms of Service</a></li>
+<li><a class="text-on-primary-container/80 hover:text-tertiary-fixed transition-colors" href="#">Careers</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-label-md text-label-md uppercase mb-6">Newsletter</h4>
+<p class="text-on-primary-container/80 text-sm mb-4">Get the latest rankings and club updates.</p>
+<form class="flex">
+<input class="bg-white/10 border-0 focus:ring-1 focus:ring-tertiary-fixed text-white px-4 py-3 w-full rounded-l-lg" placeholder="Email address" type="email"/>
+<button class="bg-tertiary-fixed text-on-tertiary-fixed px-4 rounded-r-lg font-bold hover:bg-tertiary-fixed-dim transition-colors">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</form>
+</div>
+</div>
+<div class="mt-section-gap pt-8 border-t border-white/10 text-center px-margin-desktop max-w-container-max mx-auto">
+<p class="text-on-primary-container/60 text-label-md font-label-md">© 2024 FALCON BADMINTON CLUB. ALL RIGHTS RESERVED.</p>
+</div>
+</footer>
+
+<script>
+    // ============================================
+    // IntersectionObserver for .reveal elements
+    // ============================================
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                // Don't unobserve — keep the class permanent
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => {
+        revealObserver.observe(el);
+    });
+
+    // ============================================
+    // Counter Animation (240+ Active Players)
+    // ============================================
+    function animateCounter(element, target, duration = 2000) {
+        let start = 0;
+        const increment = target / (duration / 16);
+        const timer = setInterval(() => {
+            start += increment;
+            if (start >= target) {
+                element.textContent = target + '+';
+                clearInterval(timer);
+            } else {
+                element.textContent = Math.floor(start) + '+';
+            }
+        }, 16);
+    }
+
+    // Trigger counter when hero is visible
+    const counterEl = document.getElementById('counter-players');
+    if (counterEl) {
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(counterEl, 240, 2000);
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        counterObserver.observe(counterEl);
+    }
+
+    // ============================================
+    // Win-rate bar animation on scroll
+    // ============================================
+    const barObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animationPlayState = 'running';
+            }
+        });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('.win-bar').forEach(bar => {
+        bar.style.animationPlayState = 'paused';
+        barObserver.observe(bar);
+    });
+
+    // ============================================
+    // Smooth navbar background on scroll
+    // ============================================
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+            nav.classList.add('shadow-lg');
+            nav.classList.remove('bg-surface/80');
+            nav.classList.add('bg-surface/95');
+        } else {
+            nav.classList.remove('shadow-lg');
+            nav.classList.add('bg-surface/80');
+            nav.classList.remove('bg-surface/95');
+        }
+    });
+</script>
+</body></html>
